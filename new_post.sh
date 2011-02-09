@@ -1,13 +1,15 @@
 #!/bin/bash
 
-if [ -z $1 ]; then
+echo "$1"
+
+if [ -z "$1" ]; then
     echo "No title"
     exit 1
 fi
 
 DATE_META=`date`
 TITLE=$1
-TPL=$( cat <<EOL
+TPL=`cat <<EOL
 ---
 layout: post
 title: $TITLE
@@ -17,7 +19,8 @@ title: $TITLE
 ================
 
 <p class="meta">$DATE_META</p>
-EOL)
+EOL`
 
-POST=_posts/`date +"%Y-%m-%d"`-"$TITLE".md
+FILENAME=`echo $TITLE | tr ' ' '-' | tr [A-Z] [a-z]`
+POST=_posts/`date +"%Y-%m-%d"`-"$FILENAME".md
 echo "$TPL" > $POST && vim $POST
