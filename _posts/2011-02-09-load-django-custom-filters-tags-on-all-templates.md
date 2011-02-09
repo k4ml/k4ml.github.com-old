@@ -4,7 +4,7 @@ title: Load Django custom filters or tags on all templates
 ---
 
 {{ page.title }}
-================
+==========
 
 <p class="meta">Wed Feb 9 13:39:58 MYT 2011</p>
 
