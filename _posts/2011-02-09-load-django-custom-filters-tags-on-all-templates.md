@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Load Django custom filters or tags on all templates
+title: Load Django custom filters/tags on all templates
 ---
 
 {{ page.title }}
