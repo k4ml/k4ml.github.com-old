@@ -11,7 +11,7 @@ title: Load Django custom filters/tags on all templates
 To load your custom template tags or filters in your template, you use the following:-
 
 <pre>
-{% load custom_filters %}
+{! load custom_filters !}
 </pre>
 
 In your template files. But this mean doing this in each template files that need to use the filters. You can't even put this in a base template and make it available to any templates that extend the base template. Kind of violating the DRY.
