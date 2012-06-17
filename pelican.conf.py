@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*- #
 
 AUTHOR = u"Kamal Bin Mustafa"
-SITENAME = u"Life Notes"
+SITENAME = u"Kamal Bin Mustafa"
 SITEURL = '/'
 
-TIMEZONE = 'Europe/Paris'
+TIMEZONE = 'Asia/Kuala_Lumpur'
 
 DEFAULT_LANG='en'
 
@@ -19,8 +19,10 @@ LINKS =  (
 
 # Social widget
 SOCIAL = (
-          ('You can add links in your config file', '#'),
+          ('metak4ml@blogspot', 'http://metak4ml.blogspot.com'),
+          ('k4ml@twitter', 'http://twitter.com/#!/k4ml'),
+          ('k4ml@blogspot', 'http://k4ml.blogspot.com'),
          )
 
 DEFAULT_PAGINATION = 7
-THEME = 'Just-Read'
+THEME = 'tuxlite_tbs'
