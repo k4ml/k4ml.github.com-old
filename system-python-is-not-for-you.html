@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Kamal Bin Mustafa</title>
+    <meta name="description" content="">
+    <meta name="author" content="Kamal Bin Mustafa">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="./theme/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="./theme/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="./theme/bootstrap.min.responsive.css" rel="stylesheet" type="text/css">
+    <link href="./theme/pygments.css" rel="stylesheet" type="text/css">
+    <link href="./theme/local.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="navbar-inner">
+    <div class="container">
+
+         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+         </a>
+
+        <a class="brand" href=".">Kamal Bin Mustafa</a>
+
+        <div class="nav-collapse">
+        <ul class="nav">
+        
+            
+        
+        
+        
+        </ul>
+        </div>
+        
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="content">
+    <div class="row">
+
+        <div class="span9">
+        
+    <div class='article'>
+        <div class="content-title">
+            <h1>System python is not for you</h1>
+            Mon 04 October 2010
+
+
+by <a class="url fn" href="./">Kamal Bin Mustafa</a>
+ 
+
+
+
+
+        </div>
+	
+        <div><p>If you already did some python development or just getting started, one of the advice you would always get is to never mess with the system python - the python version that come with your distro. For example on Ubuntu or Debian based system, python that was installed by <code>sudo apt-get install python</code>. At first I didn't really understand what this mean, why you can't use something that already comes for free ?</p>
+<p>The answer to that question is because that version of python actually meant for the distro itself. Most distro would in some place used python, maybe for some configurations script. In Ubuntu, lot of their own applications are written with python. If we upgrade some of the libraries not through the standard package manager, there's a chance it would break these apps. So that's what the python they provided is for. It's for their own use, not us. Once I realized this, I have a feeling that distro should ship the python that they need separately from the python that would be used by the users.</p>
+<p>For development purpose, I always run <code>virtualenv $HOME</code> to setup virtualenv environment in my home directory. Under Ubuntu, <code>$HOME/bin</code> is under <code>$PATH</code> so <code>which python</code> would always point to <code>/home/kamal/bin/python</code> rather than <code>/usr/bin/python</code>. This allow me to freely use easy_install and it would install it to my <code>$HOME/lib/python2.5</code> instead of system wide lib directory. For something specific like developing a django project, I prefer to use <a href="http://www.buildout.org/">Buildout</a> to further isolate the environment. More on <a href="http://www.buildout.org/">Buildout</a> later.</p></div>
+	
+        <hr>
+    	   
+        <h2>Comments</h2>
+	
+	
+    </div>
+
+        </div>
+        
+        <div class="span3">
+
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Site
+                </li>
+            
+                <li><a href="./archives.html">Archives</a>
+                <li><a href="./tags.html">Tags</a>
+                <li><a href="./feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
+                
+            </ul>
+            </div>
+
+
+            
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Categories
+                </li>
+                
+                
+                <li><a href="./">misc</a></li>
+                                   
+            </ul>
+            </div>
+            
+
+
+            
+
+
+            
+            <div class="social">
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <ul class="nav nav-list">
+                <li class="nav-header"> 
+                Social
+                </li>
+           
+                
+                <li><a href="http://metak4ml.blogspot.com">metak4ml@blogspot</a></li>
+                
+                <li><a href="http://twitter.com/#!/k4ml">k4ml@twitter</a></li>
+                
+                <li><a href="http://k4ml.blogspot.com">k4ml@blogspot</a></li>
+                
+            </ul>
+            </div>
+            </div>
+            
+
+        </div>  
+    </div> 
+    </div> 
+
+<footer>
+<br />
+<p><a href=".">Kamal Bin Mustafa</a> &copy; Kamal Bin Mustafa 2012</p>
+</footer>
+
+</div> <!-- /container -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+
+ 
+</body>
+</html>

@@ -4,7 +4,7 @@ PELICANOPTS=None
 
 BASEDIR=$(PWD)
 INPUTDIR=$(BASEDIR)/src
-OUTPUTDIR=$(BASEDIR)/output
+OUTPUTDIR=$(BASEDIR)
 CONFFILE=$(BASEDIR)/pelican.conf.py
 
 FTP_HOST=localhost
@@ -29,7 +29,7 @@ help:
 	@echo '                                                                      '
 
 
-html: clean $(OUTPUTDIR)/index.html
+html: $(OUTPUTDIR)/index.html
 	@echo 'Done'
 
 $(OUTPUTDIR)/%.html:
@@ -53,7 +53,7 @@ github: $(OUTPUTDIR)/index.html
 	git push origin gh-pages
 
 serve:
-	cd output && python -m 'SimpleHTTPServer'
+	python -m 'SimpleHTTPServer'
 
 .PHONY: html help clean ftp_upload ssh_upload dropbox_upload github
     
