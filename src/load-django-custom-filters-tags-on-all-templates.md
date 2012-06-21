@@ -1,12 +1,5 @@
----
-layout: post
-title: Load Django custom filters/tags on all templates
----
-
-{{ page.title }}
-==========
-
-<p class="meta">Wed Feb 9 13:39:58 MYT 2011</p>
+Title: Load Django custom filters/tags on all templates
+Date: 2011-02-09
 
 To load your custom template tags or filters in your template, you use the following:-
 

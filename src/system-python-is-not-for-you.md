@@ -1,12 +1,5 @@
----
-layout: post
-title: System python is not for you
----
-
-{{ page.title }}
-================
-
-<p class="meta">Mon Oct  4 01:18:09 MYT 2010</p>
+Title: System python is not for you
+Date: 2010-10-04
 
 If you already did some python development or just getting started, one of the advice you would always get is to never mess with the system python - the python version that come with your distro. For example on Ubuntu or Debian based system, python that was installed by `sudo apt-get install python`. At first I didn't really understand what this mean, why you can't use something that already comes for free ?
 

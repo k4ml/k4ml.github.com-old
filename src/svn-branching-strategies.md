@@ -1,12 +1,5 @@
----
-layout: post
-title: SVN branching strategies
----
-
-{{ page.title }}
-================
-
-<p class="meta">Sat Aug 27 06:47:37 MYT 2011</p>
+Title: SVN branching strategies
+Date: 2011-08-27
 
 The linked SO question mentioned two branching strategies commonly used in parallel developments.
 
