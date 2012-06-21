@@ -24,5 +24,5 @@ SOCIAL = (
           ('k4ml@blogspot', 'http://k4ml.blogspot.com'),
          )
 
-DEFAULT_PAGINATION = 7
+DEFAULT_PAGINATION = 3
 THEME = 'tuxlite_tbs'
