@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Kamal Bin Mustafa</title><link href="/" rel="alternate"></link><link href="//feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2012-06-21T19:19:27+08:00</updated><entry><title>Django admin: Hook into actions</title><link href="//django-admin-hook-into-actions.html" rel="alternate"></link><updated>2012-06-21T19:19:27+08:00</updated><author><name>Kamal Bin Mustafa</name></author><id>//django-admin-hook-into-actions.html</id><summary type="html">&lt;p&gt;I want to do something before actions was executed. For example when admin 
+deleting users using 'Delete selected' dropdown in admin panel, I want to run 
+some commands in backend system to remove info about that user in a config 
+file. If the commands somehow failed, I want to abort the operation so the user 
+can't be deleted. Signals won't work here since there's no way to abort the 
+request gracefully (other than raising exception and causing the 500 error page 
+displayed). Using transaction also wouldn't work since there might be more 
+users deleted in single actions and I only want the user that failed get 
+aborted, not the whole users selected.&lt;/p&gt;
+&lt;p&gt;Django allow us to define custom actions in admin, it quite simple but I don't 
+want to reimplement what &lt;code&gt;delete_selected&lt;/code&gt; already doing. The idea is just hook 
+before the action function get called and do my stuff. The first part is 
+overriding the actions:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MyModelAdmin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;admin&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ModelAdmin&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;actions&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;delete_selected&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,]&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;delete_selected&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;queryset&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;pass&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This seem to work. When you define action name similar to what already defined 
+in &lt;code&gt;django.contrib.admin&lt;/code&gt;, yours will be used. (TODO: Check if order in 
+&lt;code&gt;INSTALLED_APPS&lt;/code&gt; matters). The next thing to do is to wrap your logic before 
+calling actual &lt;code&gt;delete_selected&lt;/code&gt; function. I have implemented my 
+&lt;code&gt;delete_selected&lt;/code&gt; as:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.contrib.admin.actions&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;delete_selected&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MyModelAdmin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;admin&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ModelAdmin&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;actions&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;delete_selected&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,]&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;delete_selected&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;queryset&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;POST&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;post&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;delete_selected&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;queryset&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;POST&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;post&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;queryset&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="n"&gt;status&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;backend&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;some_command&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;user&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;status&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;message_user&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Fail to update user&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                    &lt;span class="k"&gt;break&lt;/span&gt;
+            &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="n"&gt;delete_selected&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;queryset&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;delete_selected&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;short_description&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Delete selected&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;My code just iterate through the selected users and run backend command on 
+them, if the command success it will go through the next user. If the loop 
+terminate normally, the else clause will be executed, calling the real 
+&lt;code&gt;delete_selected&lt;/code&gt; function. If somehow the backend function failed, the loop 
+&lt;code&gt;break&lt;/code&gt; and the else clause will never been executed. Here I'd also finally 
+found some use case for &lt;a href="http://psung.blogspot.com/2007/12/for-else-in-python.html"&gt;python's &lt;code&gt;for ... else&lt;/code&gt;&lt;/a&gt; construct.&lt;/p&gt;
+&lt;p&gt;Initially I named my &lt;code&gt;delete_selected&lt;/code&gt; as &lt;code&gt;custom_delete_selected&lt;/code&gt; and then 
+remove the real &lt;code&gt;delete_selected&lt;/code&gt; by overriding ModelAdmin's &lt;code&gt;get_actions()&lt;/code&gt; 
+method but there's a problem with that. When user submit to delete the selected 
+users, a confirmation page is displayed. Only when admin submit the 
+confirmation page the function start deleting the user. To facilitate the 
+confirmation, it use form validition to make sure the action name 
+('delete_selected') exists in the POST data. If we use our 
+&lt;code&gt;custom_delete_selected&lt;/code&gt; as the action then 'delete_selected' not present in 
+the POST data and the validation fail, the function will not be executed.&lt;/p&gt;</summary><category term="django"></category><category term="python"></category></entry><entry><title>New blog</title><link href="//new-blog.html" rel="alternate"></link><updated>2012-06-21T19:19:27+08:00</updated><author><name>Kamal Bin Mustafa</name></author><id>//new-blog.html</id><summary type="html">&lt;p&gt;Just testing new blog using Pelican.&lt;/p&gt;</summary></entry><entry><title>SVN branching strategies</title><link href="//svn-branching-strategies.html" rel="alternate"></link><updated>2011-08-27T00:00:00+08:00</updated><author><name>Kamal Bin Mustafa</name></author><id>//svn-branching-strategies.html</id><summary type="html">&lt;p&gt;The linked SO question mentioned two branching strategies commonly used in parallel developments.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;Trunk&lt;/span&gt; &lt;span class="n"&gt;as&lt;/span&gt; &lt;span class="n"&gt;stable&lt;/span&gt; &lt;span class="n"&gt;point&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;development&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;features&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;separate&lt;/span&gt; &lt;span class="n"&gt;branch&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;Trunk&lt;/span&gt; &lt;span class="n"&gt;as&lt;/span&gt; &lt;span class="n"&gt;development&lt;/span&gt; &lt;span class="n"&gt;mainline&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="n"&gt;every&lt;/span&gt; &lt;span class="n"&gt;releases&lt;/span&gt; &lt;span class="n"&gt;tagged&lt;/span&gt; &lt;span class="n"&gt;or&lt;/span&gt; &lt;span class="n"&gt;branched&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;
+  &lt;span class="n"&gt;separate&lt;/span&gt; &lt;span class="n"&gt;branch&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Currently we're using more of the former approach where development mostly done in trunk and when we're releasing new features, we tagged it and push it to live. For new features that would take time or quite experimental, we create a new branch and once it ready, merge back to trunk. This would keep trunk stable most of the time and allow us to do any quick bug fixes in the trunk as it arise. With svn ability to remember merge (1.5 above), the work flow is quite straightforward.&lt;/p&gt;
+&lt;p&gt;I would start with creating new branch for the new feature to work on. While working on the branch, I would merge latest changes to the trunk into my current branch. Once it ready, merging it back to trunk would be accomplish by &lt;code&gt;svn merge --reintegrate&lt;/code&gt; in the trunk. One limitation of &lt;code&gt;--reintegrate&lt;/code&gt; switch is it make the branch unusable anymore. You simply would delete the branch.&lt;/p&gt;
+&lt;p&gt;Now there's certain situation that I need to create 2 separate branch for different set of new features. For example I need to work on a set of features in branch A and for another set of features I prefer to work in new branch B. This is because feature in branch B maybe would not finish or ready in time with branch A. But still, I need to base branch B with branch A because it contain some related changes. And of course while developing in branch B, I want to merge changes in branch A to make sure I have all the latest changes to the code base.&lt;/p&gt;
+&lt;p&gt;With modern DVCS such as git or mercurial the workflow is feasible because they can intelligently merge all the changes between the various branch but svn is not that smart.  While I can merge changes in branch A to branch B, the problem arise when try merge B back into trunk while A also has been merged into trunk prior to that (because branch A was released first). SVN would see a conflict since some changes in B already being merged when we merge A back into trunk.&lt;/p&gt;
+&lt;p&gt;This is the very reason why I want to look into alternative way of structuring our development process. We definitely won't move to dvcs such as git or mercurial. But it look like making trunk as development mainline would be more problematic as mentioned in the SO's answer. It also doesn't seem to solve the problem that we have.&lt;/p&gt;</summary></entry><entry><title>Load Django custom filters/tags on all templates</title><link href="//load-django-custom-filterstags-on-all-templates.html" rel="alternate"></link><updated>2011-02-09T00:00:00+08:00</updated><author><name>Kamal Bin Mustafa</name></author><id>//load-django-custom-filterstags-on-all-templates.html</id><summary type="html">&lt;p&gt;To load your custom template tags or filters in your template, you use the following:-&lt;/p&gt;
+&lt;pre&gt;
+{! load custom_filters !}
+&lt;/pre&gt;
+
+&lt;p&gt;Notes: ! is not valid django template tag, replace it with %. Refer &lt;a href="https://github.com/mojombo/jekyll/issues/145"&gt;this&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In your template files. But this mean doing this in each template files that need to use the filters. You can't even put this in a base template and make it available to any templates that extend the base template. Kind of violating the DRY.&lt;/p&gt;
+&lt;p&gt;Looking around (google), I found &lt;a href="http://d-w.me/blog/2010/2/18/11/"&gt;1&lt;/a&gt; which use &lt;code&gt;add_to_builtins&lt;/code&gt; function from &lt;code&gt;django.template&lt;/code&gt;. Digged into Django source code, I found out how it being used to load the default tags and filters:-&lt;/p&gt;
+&lt;pre&gt;
+def add_to_builtins(module):
+    builtins.append(import_library(module))
+
+add_to_builtins('django.template.defaulttags')
+add_to_builtins('django.template.defaultfilters')
+&lt;/pre&gt;
+
+&lt;p&gt;That around line 1048 inside &lt;code&gt;django/template/__init__.py&lt;/code&gt;. So this is how I used it in &lt;a href="https://github.com/k4ml/kecupuapp_base"&gt;kecupuapp_base&lt;/a&gt;:-&lt;/p&gt;
+&lt;p&gt;https://github.com/k4ml/kecupuapp_base/commit/b9c62736ebabffa7e972ca00d6a6a1bace47931b&lt;/p&gt;
+&lt;p&gt;Along the way, also found out this links:-&lt;/p&gt;
+&lt;p&gt;http://www.b-list.org/weblog/2007/dec/04/magic-tags/
+http://stackoverflow.com/questions/1118183/how-to-debug-in-django-the-good-way/2324210#2324210&lt;/p&gt;</summary></entry><entry><title>System python is not for you</title><link href="//system-python-is-not-for-you.html" rel="alternate"></link><updated>2010-10-04T00:00:00+08:00</updated><author><name>Kamal Bin Mustafa</name></author><id>//system-python-is-not-for-you.html</id><summary type="html">&lt;p&gt;If you already did some python development or just getting started, one of the advice you would always get is to never mess with the system python - the python version that come with your distro. For example on Ubuntu or Debian based system, python that was installed by &lt;code&gt;sudo apt-get install python&lt;/code&gt;. At first I didn't really understand what this mean, why you can't use something that already comes for free ?&lt;/p&gt;
+&lt;p&gt;The answer to that question is because that version of python actually meant for the distro itself. Most distro would in some place used python, maybe for some configurations script. In Ubuntu, lot of their own applications are written with python. If we upgrade some of the libraries not through the standard package manager, there's a chance it would break these apps. So that's what the python they provided is for. It's for their own use, not us. Once I realized this, I have a feeling that distro should ship the python that they need separately from the python that would be used by the users.&lt;/p&gt;
+&lt;p&gt;For development purpose, I always run &lt;code&gt;virtualenv $HOME&lt;/code&gt; to setup virtualenv environment in my home directory. Under Ubuntu, &lt;code&gt;$HOME/bin&lt;/code&gt; is under &lt;code&gt;$PATH&lt;/code&gt; so &lt;code&gt;which python&lt;/code&gt; would always point to &lt;code&gt;/home/kamal/bin/python&lt;/code&gt; rather than &lt;code&gt;/usr/bin/python&lt;/code&gt;. This allow me to freely use easy_install and it would install it to my &lt;code&gt;$HOME/lib/python2.5&lt;/code&gt; instead of system wide lib directory. For something specific like developing a django project, I prefer to use &lt;a href="http://www.buildout.org/"&gt;Buildout&lt;/a&gt; to further isolate the environment. More on &lt;a href="http://www.buildout.org/"&gt;Buildout&lt;/a&gt; later.&lt;/p&gt;</summary></entry><entry><title>Hello World</title><link href="//hello-world.html" rel="alternate"></link><updated>2010-09-18T00:00:00+08:00</updated><author><name>Kamal Bin Mustafa</name></author><id>//hello-world.html</id><summary type="html">&lt;p&gt;Hello world, my attempt to use &lt;a href="http://pages.github.com/"&gt;github pages&lt;/a&gt; as blog platform.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;somevar&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;print&lt;/span&gt; &amp;quot;&lt;span class="n"&gt;something&lt;/span&gt;&amp;quot;
+&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;print&lt;/span&gt; &amp;quot;&lt;span class="n"&gt;another&lt;/span&gt; &lt;span class="n"&gt;thing&lt;/span&gt;&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;So &lt;code&gt;easy_install python&lt;/code&gt; will install into &lt;code&gt;/home/kamal/lib/python2.5/&lt;/code&gt;:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;$ &lt;span class="n"&gt;which&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt;
+&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;kamal&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;
+$ &lt;span class="n"&gt;easy_install&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary></entry></feed>
