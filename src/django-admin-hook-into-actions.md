@@ -1,5 +1,6 @@
 Title: Django admin: Hook into actions
 Tags: django, python
+Date: 2012-06-18
 
 I want to do something before actions was executed. For example when admin 
 deleting users using 'Delete selected' dropdown in admin panel, I want to run 
