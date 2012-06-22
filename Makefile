@@ -29,10 +29,7 @@ help:
 	@echo '                                                                      '
 
 
-html: $(OUTPUTDIR)/index.html
-	@echo 'Done'
-
-$(OUTPUTDIR)/%.html:
+html:
 	$(PELICAN) $(INPUTDIR) -o $(OUTPUTDIR) -s $(CONFFILE)
 
 clean:
