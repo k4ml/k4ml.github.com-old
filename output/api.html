@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>API</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="./theme/css/main.css" type="text/css" />
+        
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="A Pelican Blog Atom Feed" />
+        
+        
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="./css/ie.css"/>
+                <script src="./js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="./css/ie6.css"/><![endif]-->
+
+</head>
+
+<body id="index" class="home">
+
+        <header id="banner" class="body">
+                <h1><a href=".">A Pelican Blog </a></h1>
+                <nav><ul>
+                
+                
+                
+                
+                
+                    <li ><a href="./category/testcategory.html">TestCategory</a></li>
+                
+                    <li ><a href="./category/testpages.html">TestPages</a></li>
+                
+                    <li ><a href="./category/yeah.html">Yeah</a></li>
+                
+                    <li ><a href="./category/content.html">content</a></li>
+                
+                    <li class="active"><a href="./category/docs.html">docs</a></li>
+                
+                    <li ><a href="./category/emacs.html">emacs</a></li>
+                
+                    <li ><a href="./category/pelican.html">pelican</a></li>
+                
+                    <li ><a href="./category/source.html">source</a></li>
+                
+                    <li ><a href="./category/src.html">src</a></li>
+                
+                    <li ><a href="./category/test.html">test</a></li>
+                
+                    <li ><a href="./category/yeah.html">yeah</a></li>
+                
+                </ul></nav>
+        </header><!-- /#banner -->
+        
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="api.html" rel="bookmark"
+           title="Permalink to API">API</a></h1>
+      
+    </header>
+
+    <div class="entry-content">
+      <footer class="post-info">
+        <abbr class="published" title="2012-09-30T04:52:53.529306">
+                Sun 30 September 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/kamal.html">kamal</a>
+        </address>
+        
+<p>In <a href="./category/docs.html">docs</a>. </p>
+
+
+
+</footer><!-- /.post-info -->
+      <div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 4)</p>
+<p>Unknown directive type &quot;module&quot;.</p>
+<pre class="literal-block">
+.. module:: jinja2
+    :synopsis: public Jinja2 API
+
+</pre>
+</div>
+<p>This document describes the API to Jinja2 and not the template language.  It
+will be most useful as reference to those implementing the template interface
+to the application and not those who are creating Jinja2 templates.</p>
+<div class="section" id="basics">
+<h2>Basics</h2>
+<p>Jinja2 uses a central object called the template <a href="#id1"><span class="problematic" id="id2">:class:`Environment`</span></a>.
+Instances of this class are used to store the configuration, global objects
+and are used to load templates from the file system or other locations.
+Even if you are creating templates from strings by using the constructor of
+<a href="#id3"><span class="problematic" id="id4">:class:`Template`</span></a> class, an environment is created automatically for you,
+albeit a shared one.</p>
+<div class="system-message" id="id1">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 14); <em><a href="#id2">backlink</a></em></p>
+Unknown interpreted text role &quot;class&quot;.</div>
+<div class="system-message" id="id3">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 14); <em><a href="#id4">backlink</a></em></p>
+Unknown interpreted text role &quot;class&quot;.</div>
+<p>Most applications will create one <a href="#id5"><span class="problematic" id="id6">:class:`Environment`</span></a> object on application
+initialization and use that to load templates.  In some cases it's however
+useful to have multiple environments side by side, if different configurations
+are in use.</p>
+<div class="system-message" id="id5">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 21); <em><a href="#id6">backlink</a></em></p>
+Unknown interpreted text role &quot;class&quot;.</div>
+<p>The simplest way to configure Jinja2 to load templates for your application
+looks roughly like this:</p>
+<pre class="literal-block">
+from jinja2 import Environment, PackageLoader
+env = Environment(loader=PackageLoader('yourapplication', 'templates'))
+</pre>
+<p>This will create a template environment with the default settings and a
+loader that looks up the templates in the <cite>templates</cite> folder inside the
+<cite>yourapplication</cite> python package.  Different loaders are available
+and you can also write your own if you want to load templates from a
+database or other resources.</p>
+<p>To load a template from this environment you just have to call the
+<a href="#id7"><span class="problematic" id="id8">:meth:`get_template`</span></a> method which then returns the loaded <a href="#id9"><span class="problematic" id="id10">:class:`Template`</span></a>:</p>
+<div class="system-message" id="id7">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 38); <em><a href="#id8">backlink</a></em></p>
+Unknown interpreted text role &quot;meth&quot;.</div>
+<div class="system-message" id="id9">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 38); <em><a href="#id10">backlink</a></em></p>
+Unknown interpreted text role &quot;class&quot;.</div>
+<pre class="literal-block">
+template = env.get_template('mytemplate.html')
+</pre>
+<p>To render it with some variables, just call the <a href="#id11"><span class="problematic" id="id12">:meth:`render`</span></a> method:</p>
+<div class="system-message" id="id11">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 43); <em><a href="#id12">backlink</a></em></p>
+Unknown interpreted text role &quot;meth&quot;.</div>
+<pre class="literal-block">
+print template.render(the='variables', go='here')
+</pre>
+<p>Using a template loader rather then passing strings to <a href="#id13"><span class="problematic" id="id14">:class:`Template`</span></a>
+or <a href="#id15"><span class="problematic" id="id16">:meth:`Environment.from_string`</span></a> has multiple advantages.  Besides being
+a lot easier to use it also enables template inheritance.</p>
+<div class="system-message" id="id13">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 47); <em><a href="#id14">backlink</a></em></p>
+Unknown interpreted text role &quot;class&quot;.</div>
+<div class="system-message" id="id15">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 47); <em><a href="#id16">backlink</a></em></p>
+Unknown interpreted text role &quot;meth&quot;.</div>
+</div>
+<div class="section" id="unicode">
+<h2>Unicode</h2>
+<p>Jinja2 is using Unicode internally which means that you have to pass Unicode
+objects to the render function or bytestrings that only consist of ASCII
+characters.  Additionally newlines are normalized to one end of line
+sequence which is per default UNIX style (<tt class="docutils literal">\n</tt>).</p>
+<p>Python 2.x supports two ways of representing string objects.  One is the
+<cite>str</cite> type and the other is the <cite>unicode</cite> type, both of which extend a type
+called <cite>basestring</cite>.  Unfortunately the default is <cite>str</cite> which should not
+be used to store text based information unless only ASCII characters are
+used.  With Python 2.6 it is possible to make <cite>unicode</cite> the default on a per
+module level and with Python 3 it will be the default.</p>
+<p>To explicitly use a Unicode string you have to prefix the string literal
+with a <cite>u</cite>: <tt class="docutils literal">u'Hänsel und Gretel sagen Hallo'</tt>.  That way Python will
+store the string as Unicode by decoding the string with the character
+encoding from the current Python module.  If no encoding is specified this
+defaults to 'ASCII' which means that you can't use any non ASCII identifier.</p>
+<p>To set a better module encoding add the following comment to the first or
+second line of the Python module using the Unicode literal:</p>
+<pre class="literal-block">
+# -*- coding: utf-8 -*-
+</pre>
+<p>We recommend utf-8 as Encoding for Python modules and templates as it's
+possible to represent every Unicode character in utf-8 and because it's
+backwards compatible to ASCII.  For Jinja2 the default encoding of templates
+is assumed to be utf-8.</p>
+<p>It is not possible to use Jinja2 to process non-Unicode data.  The reason
+for this is that Jinja2 uses Unicode already on the language level.  For
+example Jinja2 treats the non-breaking space as valid whitespace inside
+expressions which requires knowledge of the encoding or operating on an
+Unicode string.</p>
+<p>For more details about Unicode in Python have a look at the excellent
+<a class="reference external" href="http://docs.python.org/dev/howto/unicode.html">Unicode documentation</a>.</p>
+<p>Another important thing is how Jinja2 is handling string literals in
+templates.  A naive implementation would be using Unicode strings for
+all string literals but it turned out in the past that this is problematic
+as some libraries are typechecking against <cite>str</cite> explicitly.  For example
+<cite>datetime.strftime</cite> does not accept Unicode arguments.  To not break it
+completely Jinja2 is returning <cite>str</cite> for strings that fit into ASCII and
+for everything else <cite>unicode</cite>:</p>
+<pre class="doctest-block">
+&gt;&gt;&gt; m = Template(u&quot;{% set a, b = 'foo', 'föö' %}&quot;).module
+&gt;&gt;&gt; m.a
+'foo'
+&gt;&gt;&gt; m.b
+u'f\xf6\xf6'
+</pre>
+</div>
+<div class="section" id="high-level-api">
+<h2>High Level API</h2>
+<p>The high-level API is the API you will use in the application to load and
+render Jinja2 templates.  The <a href="#id17"><span class="problematic" id="id18">:ref:`low-level-api`</span></a> on the other side is only
+useful if you want to dig deeper into Jinja2 or <a href="#id19"><span class="problematic" id="id20">:ref:`develop extensions
+&lt;jinja-extensions&gt;`</span></a>.</p>
+<div class="system-message" id="id17">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 112); <em><a href="#id18">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+<div class="system-message" id="id19">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 112); <em><a href="#id20">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 117)</p>
+<p>Unknown directive type &quot;autoclass&quot;.</p>
+<pre class="literal-block">
+.. autoclass:: Environment([options])
+    :members: from_string, get_template, select_template,
+              get_or_select_template, join_path, extend, compile_expression,
+              compile_templates, list_templates
+
+    .. attribute:: shared
+
+        If a template was created by using the :class:`Template` constructor
+        an environment is created automatically.  These environments are
+        created as shared environments which means that multiple templates
+        may have the same anonymous environment.  For all shared environments
+        this attribute is `True`, else `False`.
+
+    .. attribute:: sandboxed
+
+        If the environment is sandboxed this attribute is `True`.  For the
+        sandbox mode have a look at the documentation for the
+        :class:`~jinja2.sandbox.SandboxedEnvironment`.
+
+    .. attribute:: filters
+
+        A dict of filters for this environment.  As long as no template was
+        loaded it's safe to add new filters or remove old.  For custom filters
+        see :ref:`writing-filters`.  For valid filter names have a look at
+        :ref:`identifier-naming`.
+
+    .. attribute:: tests
+
+        A dict of test functions for this environment.  As long as no
+        template was loaded it's safe to modify this dict.  For custom tests
+        see :ref:`writing-tests`.  For valid test names have a look at
+        :ref:`identifier-naming`.
+
+    .. attribute:: globals
+
+        A dict of global variables.  These variables are always available
+        in a template.  As long as no template was loaded it's safe
+        to modify this dict.  For more details see :ref:`global-namespace`.
+        For valid object names have a look at :ref:`identifier-naming`.
+
+    .. automethod:: overlay([options])
+
+    .. method:: undefined([hint, obj, name, exc])
+
+        Creates a new :class:`Undefined` object for `name`.  This is useful
+        for filters or functions that may return undefined objects for
+        some operations.  All parameters except of `hint` should be provided
+        as keyword parameters for better readability.  The `hint` is used as
+        error message for the exception if provided, otherwise the error
+        message will be generated from `obj` and `name` automatically.  The exception
+        provided as `exc` is raised if something with the generated undefined
+        object is done that the undefined object does not allow.  The default
+        exception is :exc:`UndefinedError`.  If a `hint` is provided the
+        `name` may be ommited.
+
+        The most common way to create an undefined object is by providing
+        a name only::
+
+            return environment.undefined(name='some_name')
+
+        This means that the name `some_name` is not defined.  If the name
+        was from an attribute of an object it makes sense to tell the
+        undefined object the holder object to improve the error message::
+
+            if not hasattr(obj, 'attr'):
+                return environment.undefined(obj=obj, name='attr')
+
+        For a more complex example you can provide a hint.  For example
+        the :func:`first` filter creates an undefined object that way::
+
+            return environment.undefined('no first item, sequence was empty')
+
+        If it the `name` or `obj` is known (for example because an attribute
+        was accessed) it shold be passed to the undefined object, even if
+        a custom `hint` is provided.  This gives undefined objects the
+        possibility to enhance the error message.
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 194)</p>
+<p>Unknown directive type &quot;autoclass&quot;.</p>
+<pre class="literal-block">
+.. autoclass:: Template
+    :members: module, make_module
+
+    .. attribute:: globals
+
+        The dict with the globals of that template.  It's unsafe to modify
+        this dict as it may be shared with other templates or the environment
+        that loaded the template.
+
+    .. attribute:: name
+
+        The loading name of the template.  If the template was loaded from a
+        string this is `None`.
+
+    .. attribute:: filename
+
+        The filename of the template on the file system if it was loaded from
+        there.  Otherwise this is `None`.
+
+    .. automethod:: render([context])
+
+    .. automethod:: generate([context])
+
+    .. automethod:: stream([context])
+
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 220)</p>
+<p>Unknown directive type &quot;autoclass&quot;.</p>
+<pre class="literal-block">
+.. autoclass:: jinja2.environment.TemplateStream()
+    :members: disable_buffering, enable_buffering, dump
+
+
+</pre>
+</div>
+</div>
+<div class="section" id="autoescaping">
+<h2>Autoescaping</h2>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 227)</p>
+<p>Unknown directive type &quot;versionadded&quot;.</p>
+<pre class="literal-block">
+.. versionadded:: 2.4
+
+</pre>
+</div>
+<p>As of Jinja 2.4 the preferred way to do autoescaping is to enable the
+<a href="#id21"><span class="problematic" id="id22">:ref:`autoescape-extension`</span></a> and to configure a sensible default for
+autoescaping.  This makes it possible to enable and disable autoescaping
+on a per-template basis (HTML versus text for instance).</p>
+<div class="system-message" id="id21">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 229); <em><a href="#id22">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+<p>Here a recommended setup that enables autoescaping for templates ending
+in <tt class="docutils literal">'.html'</tt>, <tt class="docutils literal">'.htm'</tt> and <tt class="docutils literal">'.xml'</tt> and disabling it by default
+for all other extensions:</p>
+<pre class="literal-block">
+def guess_autoescape(template_name):
+    if template_name is None or '.' not in template_name:
+        return False
+    ext = template_name.rsplit('.', 1)[1]
+    return ext in ('html', 'htm', 'xml')
+
+env = Environment(autoescape=guess_autoescape,
+                  loader=PackageLoader('mypackage'),
+                  extensions=['jinja2.ext.autoescape'])
+</pre>
+<p>When implementing a guessing autoescape function, make sure you also
+accept <cite>None</cite> as valid template name.  This will be passed when generating
+templates from strings.</p>
+<p>Inside the templates the behaviour can be temporarily changed by using
+the <cite>autoescape</cite> block (see <a href="#id23"><span class="problematic" id="id24">:ref:`autoescape-overrides`</span></a>).</p>
+<div class="system-message" id="id23">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 252); <em><a href="#id24">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+</div>
+<div class="section" id="notes-on-identifiers">
+<span id="identifier-naming"></span><h2>Notes on Identifiers</h2>
+<p>Jinja2 uses the regular Python 2.x naming rules.  Valid identifiers have to
+match <tt class="docutils literal"><span class="pre">[a-zA-Z_][a-zA-Z0-9_]*</span></tt>.  As a matter of fact non ASCII characters
+are currently not allowed.  This limitation will probably go away as soon as
+unicode identifiers are fully specified for Python 3.</p>
+<p>Filters and tests are looked up in separate namespaces and have slightly
+modified identifier syntax.  Filters and tests may contain dots to group
+filters and tests by topic.  For example it's perfectly valid to add a
+function into the filter dict and call it <cite>to.unicode</cite>.  The regular
+expression for filter and test identifiers is
+<tt class="docutils literal"><span class="pre">[a-zA-Z_][a-zA-Z0-9_]*(\.[a-zA-Z_][a-zA-Z0-9_]*)*`</span></tt>.</p>
+</div>
+<div class="section" id="undefined-types">
+<h2>Undefined Types</h2>
+<p>These classes can be used as undefined types.  The <a href="#id25"><span class="problematic" id="id26">:class:`Environment`</span></a>
+constructor takes an <cite>undefined</cite> parameter that can be one of those classes
+or a custom subclass of <a href="#id27"><span class="problematic" id="id28">:class:`Undefined`</span></a>.  Whenever the template engine is
+unable to look up a name or access an attribute one of those objects is
+created and returned.  Some operations on undefined values are then allowed,
+others fail.</p>
+<div class="system-message" id="id25">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 277); <em><a href="#id26">backlink</a></em></p>
+Unknown interpreted text role &quot;class&quot;.</div>
+<div class="system-message" id="id27">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 277); <em><a href="#id28">backlink</a></em></p>
+Unknown interpreted text role &quot;class&quot;.</div>
+<p>The closest to regular Python behavior is the <cite>StrictUndefined</cite> which
+disallows all operations beside testing if it's an undefined object.</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 287)</p>
+<p>Unknown directive type &quot;autoclass&quot;.</p>
+<pre class="literal-block">
+.. autoclass:: jinja2.Undefined()
+
+    .. attribute:: _undefined_hint
+
+        Either `None` or an unicode string with the error message for
+        the undefined object.
+
+    .. attribute:: _undefined_obj
+
+        Either `None` or the owner object that caused the undefined object
+        to be created (for example because an attribute does not exist).
+
+    .. attribute:: _undefined_name
+
+        The name for the undefined variable / attribute or just `None`
+        if no such information exists.
+
+    .. attribute:: _undefined_exception
+
+        The exception that the undefined object wants to raise.  This
+        is usually one of :exc:`UndefinedError` or :exc:`SecurityError`.
+
+    .. method:: _fail_with_undefined_error(\*args, \**kwargs)
+
+        When called with any arguments this method raises
+        :attr:`_undefined_exception` with an error message generated
+        from the undefined hints stored on the undefined object.
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 315)</p>
+<p>Unknown directive type &quot;autoclass&quot;.</p>
+<pre class="literal-block">
+.. autoclass:: jinja2.DebugUndefined()
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 317)</p>
+<p>Unknown directive type &quot;autoclass&quot;.</p>
+<pre class="literal-block">
+.. autoclass:: jinja2.StrictUndefined()
+
+</pre>
+</div>
+<p>Undefined objects are created by calling <a href="#id29"><span class="problematic" id="id30">:attr:`undefined`</span></a>.</p>
+<div class="system-message" id="id29">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 319); <em><a href="#id30">backlink</a></em></p>
+Unknown interpreted text role &quot;attr&quot;.</div>
+<div class="admonition-implementation admonition">
+<p class="first admonition-title">Implementation</p>
+<p><a href="#id31"><span class="problematic" id="id32">:class:`Undefined`</span></a> objects are implemented by overriding the special
+<cite>__underscore__</cite> methods.  For example the default <a href="#id33"><span class="problematic" id="id34">:class:`Undefined`</span></a>
+class implements <cite>__unicode__</cite> in a way that it returns an empty
+string, however <cite>__int__</cite> and others still fail with an exception.  To
+allow conversion to int by returning <tt class="docutils literal">0</tt> you can implement your own:</p>
+<div class="system-message" id="id31">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 323); <em><a href="#id32">backlink</a></em></p>
+Unknown interpreted text role &quot;class&quot;.</div>
+<div class="system-message" id="id33">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 323); <em><a href="#id34">backlink</a></em></p>
+Unknown interpreted text role &quot;class&quot;.</div>
+<pre class="literal-block">
+class NullUndefined(Undefined):
+    def __int__(self):
+        return 0
+    def __float__(self):
+        return 0.0
+</pre>
+<p>To disallow a method, just override it and raise
+<a href="#id35"><span class="problematic" id="id36">:attr:`~Undefined._undefined_exception`</span></a>.  Because this is a very common
+idom in undefined objects there is the helper method
+<a href="#id37"><span class="problematic" id="id38">:meth:`~Undefined._fail_with_undefined_error`</span></a> that does the error raising
+automatically.  Here a class that works like the regular <a href="#id39"><span class="problematic" id="id40">:class:`Undefined`</span></a>
+but chokes on iteration:</p>
+<div class="system-message" id="id35">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 335); <em><a href="#id36">backlink</a></em></p>
+Unknown interpreted text role &quot;attr&quot;.</div>
+<div class="system-message" id="id37">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 335); <em><a href="#id38">backlink</a></em></p>
+Unknown interpreted text role &quot;meth&quot;.</div>
+<div class="system-message" id="id39">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 335); <em><a href="#id40">backlink</a></em></p>
+Unknown interpreted text role &quot;class&quot;.</div>
+<pre class="last literal-block">
+class NonIterableUndefined(Undefined):
+    __iter__ = Undefined._fail_with_undefined_error
+</pre>
+</div>
+</div>
+<div class="section" id="the-context">
+<h2>The Context</h2>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 349)</p>
+<p>Unknown directive type &quot;autoclass&quot;.</p>
+<pre class="literal-block">
+.. autoclass:: jinja2.runtime.Context()
+    :members: resolve, get_exported, get_all
+
+    .. attribute:: parent
+
+        A dict of read only, global variables the template looks up.  These
+        can either come from another :class:`Context`, from the
+        :attr:`Environment.globals` or :attr:`Template.globals` or points
+        to a dict created by combining the globals with the variables
+        passed to the render function.  It must not be altered.
+
+    .. attribute:: vars
+
+        The template local variables.  This list contains environment and
+        context functions from the :attr:`parent` scope as well as local
+        modifications and exported variables from the template.  The template
+        will modify this dict during template evaluation but filters and
+        context functions are not allowed to modify it.
+
+    .. attribute:: environment
+
+        The environment that loaded the template.
+
+    .. attribute:: exported_vars
+
+        This set contains all the names the template exports.  The values for
+        the names are in the :attr:`vars` dict.  In order to get a copy of the
+        exported variables as dict, :meth:`get_exported` can be used.
+
+    .. attribute:: name
+
+        The load name of the template owning this context.
+
+    .. attribute:: blocks
+
+        A dict with the current mapping of blocks in the template.  The keys
+        in this dict are the names of the blocks, and the values a list of
+        blocks registered.  The last item in each list is the current active
+        block (latest in the inheritance chain).
+
+    .. attribute:: eval_ctx
+
+        The current :ref:`eval-context`.
+
+    .. automethod:: jinja2.runtime.Context.call(callable, \*args, \**kwargs)
+
+
+</pre>
+</div>
+<div class="admonition-implementation admonition">
+<p class="first admonition-title">Implementation</p>
+<p>Context is immutable for the same reason Python's frame locals are
+immutable inside functions.  Both Jinja2 and Python are not using the
+context / frame locals as data storage for variables but only as primary
+data source.</p>
+<p class="last">When a template accesses a variable the template does not define, Jinja2
+looks up the variable in the context, after that the variable is treated
+as if it was defined in the template.</p>
+</div>
+</div>
+<div class="section" id="id41">
+<span id="loaders"></span><h2>Loaders</h2>
+<p>Loaders are responsible for loading templates from a resource such as the
+file system.  The environment will keep the compiled modules in memory like
+Python's <cite>sys.modules</cite>.  Unlike <cite>sys.modules</cite> however this cache is limited in
+size by default and templates are automatically reloaded.
+All loaders are subclasses of <a href="#id42"><span class="problematic" id="id43">:class:`BaseLoader`</span></a>.  If you want to create your
+own loader, subclass <a href="#id44"><span class="problematic" id="id45">:class:`BaseLoader`</span></a> and override <cite>get_source</cite>.</p>
+<div class="system-message" id="id42">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 413); <em><a href="#id43">backlink</a></em></p>
+Unknown interpreted text role &quot;class&quot;.</div>
+<div class="system-message" id="id44">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 413); <em><a href="#id45">backlink</a></em></p>
+Unknown interpreted text role &quot;class&quot;.</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 420)</p>
+<p>Unknown directive type &quot;autoclass&quot;.</p>
+<pre class="literal-block">
+.. autoclass:: jinja2.BaseLoader
+    :members: get_source, load
+
+</pre>
+</div>
+<p>Here a list of the builtin loaders Jinja2 provides:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 425)</p>
+<p>Unknown directive type &quot;autoclass&quot;.</p>
+<pre class="literal-block">
+.. autoclass:: jinja2.FileSystemLoader
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 427)</p>
+<p>Unknown directive type &quot;autoclass&quot;.</p>
+<pre class="literal-block">
+.. autoclass:: jinja2.PackageLoader
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 429)</p>
+<p>Unknown directive type &quot;autoclass&quot;.</p>
+<pre class="literal-block">
+.. autoclass:: jinja2.DictLoader
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 431)</p>
+<p>Unknown directive type &quot;autoclass&quot;.</p>
+<pre class="literal-block">
+.. autoclass:: jinja2.FunctionLoader
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 433)</p>
+<p>Unknown directive type &quot;autoclass&quot;.</p>
+<pre class="literal-block">
+.. autoclass:: jinja2.PrefixLoader
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 435)</p>
+<p>Unknown directive type &quot;autoclass&quot;.</p>
+<pre class="literal-block">
+.. autoclass:: jinja2.ChoiceLoader
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 437)</p>
+<p>Unknown directive type &quot;autoclass&quot;.</p>
+<pre class="literal-block">
+.. autoclass:: jinja2.ModuleLoader
+
+
+</pre>
+</div>
+</div>
+<div class="section" id="id46">
+<span id="bytecode-cache"></span><h2>Bytecode Cache</h2>
+<p>Jinja 2.1 and higher support external bytecode caching.  Bytecode caches make
+it possible to store the generated bytecode on the file system or a different
+location to avoid parsing the templates on first use.</p>
+<p>This is especially useful if you have a web application that is initialized on
+the first request and Jinja compiles many templates at once which slows down
+the application.</p>
+<p>To use a bytecode cache, instanciate it and pass it to the <a href="#id47"><span class="problematic" id="id48">:class:`Environment`</span></a>.</p>
+<div class="system-message" id="id47">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 453); <em><a href="#id48">backlink</a></em></p>
+Unknown interpreted text role &quot;class&quot;.</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 455)</p>
+<p>Unknown directive type &quot;autoclass&quot;.</p>
+<pre class="literal-block">
+.. autoclass:: jinja2.BytecodeCache
+    :members: load_bytecode, dump_bytecode, clear
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 458)</p>
+<p>Unknown directive type &quot;autoclass&quot;.</p>
+<pre class="literal-block">
+.. autoclass:: jinja2.bccache.Bucket
+    :members: write_bytecode, load_bytecode, bytecode_from_string,
+              bytecode_to_string, reset
+
+    .. attribute:: environment
+
+        The :class:`Environment` that created the bucket.
+
+    .. attribute:: key
+
+        The unique cache key for this bucket
+
+    .. attribute:: code
+
+        The bytecode if it's loaded, otherwise `None`.
+
+
+</pre>
+</div>
+<p>Builtin bytecode caches:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 477)</p>
+<p>Unknown directive type &quot;autoclass&quot;.</p>
+<pre class="literal-block">
+.. autoclass:: jinja2.FileSystemBytecodeCache
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 479)</p>
+<p>Unknown directive type &quot;autoclass&quot;.</p>
+<pre class="literal-block">
+.. autoclass:: jinja2.MemcachedBytecodeCache
+
+
+</pre>
+</div>
+</div>
+<div class="section" id="utilities">
+<h2>Utilities</h2>
+<p>These helper functions and classes are useful if you add custom filters or
+functions to a Jinja2 environment.</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 488)</p>
+<p>Unknown directive type &quot;autofunction&quot;.</p>
+<pre class="literal-block">
+.. autofunction:: jinja2.environmentfilter
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 490)</p>
+<p>Unknown directive type &quot;autofunction&quot;.</p>
+<pre class="literal-block">
+.. autofunction:: jinja2.contextfilter
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 492)</p>
+<p>Unknown directive type &quot;autofunction&quot;.</p>
+<pre class="literal-block">
+.. autofunction:: jinja2.evalcontextfilter
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 494)</p>
+<p>Unknown directive type &quot;autofunction&quot;.</p>
+<pre class="literal-block">
+.. autofunction:: jinja2.environmentfunction
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 496)</p>
+<p>Unknown directive type &quot;autofunction&quot;.</p>
+<pre class="literal-block">
+.. autofunction:: jinja2.contextfunction
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 498)</p>
+<p>Unknown directive type &quot;autofunction&quot;.</p>
+<pre class="literal-block">
+.. autofunction:: jinja2.evalcontextfunction
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 500)</p>
+<p>Unknown directive type &quot;function&quot;.</p>
+<pre class="literal-block">
+.. function:: escape(s)
+
+    Convert the characters ``&amp;``, ``&lt;``, ``&gt;``, ``'``, and ``&quot;`` in string `s`
+    to HTML-safe sequences.  Use this if you need to display text that might
+    contain such characters in HTML.  This function will not escaped objects
+    that do have an HTML representation such as already escaped data.
+
+    The return value is a :class:`Markup` string.
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 509)</p>
+<p>Unknown directive type &quot;autofunction&quot;.</p>
+<pre class="literal-block">
+.. autofunction:: jinja2.clear_caches
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 511)</p>
+<p>Unknown directive type &quot;autofunction&quot;.</p>
+<pre class="literal-block">
+.. autofunction:: jinja2.is_undefined
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 513)</p>
+<p>Unknown directive type &quot;autoclass&quot;.</p>
+<pre class="literal-block">
+.. autoclass:: jinja2.Markup([string])
+    :members: escape, unescape, striptags
+
+</pre>
+</div>
+<div class="admonition-note admonition">
+<p class="first admonition-title">Note</p>
+<p>The Jinja2 <a href="#id49"><span class="problematic" id="id50">:class:`Markup`</span></a> class is compatible with at least Pylons and
+Genshi.  It's expected that more template engines and framework will pick
+up the <cite>__html__</cite> concept soon.</p>
+<div class="last system-message" id="id49">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 518); <em><a href="#id50">backlink</a></em></p>
+Unknown interpreted text role &quot;class&quot;.</div>
+</div>
+</div>
+<div class="section" id="exceptions">
+<h2>Exceptions</h2>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 526)</p>
+<p>Unknown directive type &quot;autoexception&quot;.</p>
+<pre class="literal-block">
+.. autoexception:: jinja2.TemplateError
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 528)</p>
+<p>Unknown directive type &quot;autoexception&quot;.</p>
+<pre class="literal-block">
+.. autoexception:: jinja2.UndefinedError
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 530)</p>
+<p>Unknown directive type &quot;autoexception&quot;.</p>
+<pre class="literal-block">
+.. autoexception:: jinja2.TemplateNotFound
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 532)</p>
+<p>Unknown directive type &quot;autoexception&quot;.</p>
+<pre class="literal-block">
+.. autoexception:: jinja2.TemplatesNotFound
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 534)</p>
+<p>Unknown directive type &quot;autoexception&quot;.</p>
+<pre class="literal-block">
+.. autoexception:: jinja2.TemplateSyntaxError
+
+    .. attribute:: message
+
+        The error message as utf-8 bytestring.
+
+    .. attribute:: lineno
+
+        The line number where the error occurred
+
+    .. attribute:: name
+
+        The load name for the template as unicode string.
+
+    .. attribute:: filename
+
+        The filename that loaded the template as bytestring in the encoding
+        of the file system (most likely utf-8 or mbcs on Windows systems).
+
+    The reason why the filename and error message are bytestrings and not
+    unicode strings is that Python 2.x is not using unicode for exceptions
+    and tracebacks as well as the compiler.  This will change with Python 3.
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 557)</p>
+<p>Unknown directive type &quot;autoexception&quot;.</p>
+<pre class="literal-block">
+.. autoexception:: jinja2.TemplateAssertionError
+
+
+</pre>
+</div>
+</div>
+<div class="section" id="custom-filters">
+<span id="writing-filters"></span><h2>Custom Filters</h2>
+<p>Custom filters are just regular Python functions that take the left side of
+the filter as first argument and the the arguments passed to the filter as
+extra arguments or keyword arguments.</p>
+<p>For example in the filter <tt class="docutils literal">{{ 42|myfilter(23) }}</tt> the function would be
+called with <tt class="docutils literal">myfilter(42, 23)</tt>.  Here for example a simple filter that can
+be applied to datetime objects to format them:</p>
+<pre class="literal-block">
+def datetimeformat(value, format='%H:%M / %d-%m-%Y'):
+    return value.strftime(format)
+</pre>
+<p>You can register it on the template environment by updating the
+<a href="#id51"><span class="problematic" id="id52">:attr:`~Environment.filters`</span></a> dict on the environment:</p>
+<div class="system-message" id="id51">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 576); <em><a href="#id52">backlink</a></em></p>
+Unknown interpreted text role &quot;attr&quot;.</div>
+<pre class="literal-block">
+environment.filters['datetimeformat'] = datetimeformat
+</pre>
+<p>Inside the template it can then be used as follows:</p>
+<div class="highlight"><pre><span class="x">written on: </span><span class="cp">{{</span> <span class="nv">article.pub_date</span><span class="o">|</span><span class="nf">datetimeformat</span> <span class="cp">}}</span><span class="x"></span>
+<span class="x">publication date: </span><span class="cp">{{</span> <span class="nv">article.pub_date</span><span class="o">|</span><span class="nf">datetimeformat</span><span class="o">(</span><span class="s1">&#39;%d-%m-%Y&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x"></span>
+</pre></div>
+<p>Filters can also be passed the current template context or environment.  This
+is useful if a filter wants to return an undefined value or check the current
+<a href="#id53"><span class="problematic" id="id54">:attr:`~Environment.autoescape`</span></a> setting.  For this purpose three decorators
+exist: <a href="#id55"><span class="problematic" id="id56">:func:`environmentfilter`</span></a>, <a href="#id57"><span class="problematic" id="id58">:func:`contextfilter`</span></a> and
+<a href="#id59"><span class="problematic" id="id60">:func:`evalcontextfilter`</span></a>.</p>
+<div class="system-message" id="id53">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 588); <em><a href="#id54">backlink</a></em></p>
+Unknown interpreted text role &quot;attr&quot;.</div>
+<div class="system-message" id="id55">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 588); <em><a href="#id56">backlink</a></em></p>
+Unknown interpreted text role &quot;func&quot;.</div>
+<div class="system-message" id="id57">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 588); <em><a href="#id58">backlink</a></em></p>
+Unknown interpreted text role &quot;func&quot;.</div>
+<div class="system-message" id="id59">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 588); <em><a href="#id60">backlink</a></em></p>
+Unknown interpreted text role &quot;func&quot;.</div>
+<p>Here a small example filter that breaks a text into HTML line breaks and
+paragraphs and marks the return value as safe HTML string if autoescaping is
+enabled:</p>
+<pre class="literal-block">
+import re
+from jinja2 import evalcontextfilter, Markup, escape
+
+_paragraph_re = re.compile(r'(?:\r\n|\r|\n){2,}')
+
+&#64;evalcontextfilter
+def nl2br(eval_ctx, value):
+    result = u'\n\n'.join(u'&lt;p&gt;%s&lt;/p&gt;' % p.replace('\n', '&lt;br&gt;\n')
+                          for p in _paragraph_re.split(escape(value)))
+    if eval_ctx.autoescape:
+        result = Markup(result)
+    return result
+</pre>
+<p>Context filters work the same just that the first argument is the current
+active <a href="#id61"><span class="problematic" id="id62">:class:`Context`</span></a> rather then the environment.</p>
+<div class="system-message" id="id61">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 611); <em><a href="#id62">backlink</a></em></p>
+Unknown interpreted text role &quot;class&quot;.</div>
+</div>
+<div class="section" id="evaluation-context">
+<span id="eval-context"></span><h2>Evaluation Context</h2>
+<p>The evaluation context (short eval context or eval ctx) is a new object
+introducted in Jinja 2.4 that makes it possible to activate and deactivate
+compiled features at runtime.</p>
+<p>Currently it is only used to enable and disable the automatic escaping but
+can be used for extensions as well.</p>
+<p>In previous Jinja versions filters and functions were marked as
+environment callables in order to check for the autoescape status from the
+environment.  In new versions it's encouraged to check the setting from the
+evaluation context instead.</p>
+<p>Previous versions:</p>
+<pre class="literal-block">
+&#64;environmentfilter
+def filter(env, value):
+    result = do_something(value)
+    if env.autoescape:
+        result = Markup(result)
+    return result
+</pre>
+<p>In new versions you can either use a <a href="#id63"><span class="problematic" id="id64">:func:`contextfilter`</span></a> and access the
+evaluation context from the actual context, or use a
+<a href="#id65"><span class="problematic" id="id66">:func:`evalcontextfilter`</span></a> which directly passes the evaluation context to
+the function:</p>
+<div class="system-message" id="id63">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 641); <em><a href="#id64">backlink</a></em></p>
+Unknown interpreted text role &quot;func&quot;.</div>
+<div class="system-message" id="id65">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 641); <em><a href="#id66">backlink</a></em></p>
+Unknown interpreted text role &quot;func&quot;.</div>
+<pre class="literal-block">
+&#64;contextfilter
+def filter(context, value):
+    result = do_something(value)
+    if context.eval_ctx.autoescape:
+        result = Markup(result)
+    return result
+
+&#64;evalcontextfilter
+def filter(eval_ctx, value):
+    result = do_something(value)
+    if eval_ctx.autoescape:
+        result = Markup(result)
+    return result
+</pre>
+<p>The evaluation context must not be modified at runtime.  Modifications
+must only happen with a <a href="#id67"><span class="problematic" id="id68">:class:`nodes.EvalContextModifier`</span></a> and
+<a href="#id69"><span class="problematic" id="id70">:class:`nodes.ScopedEvalContextModifier`</span></a> from an extension, not on the
+eval context object itself.</p>
+<div class="system-message" id="id67">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 660); <em><a href="#id68">backlink</a></em></p>
+Unknown interpreted text role &quot;class&quot;.</div>
+<div class="system-message" id="id69">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 660); <em><a href="#id70">backlink</a></em></p>
+Unknown interpreted text role &quot;class&quot;.</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 665)</p>
+<p>Unknown directive type &quot;autoclass&quot;.</p>
+<pre class="literal-block">
+.. autoclass:: jinja2.nodes.EvalContext
+
+   .. attribute:: autoescape
+
+      `True` or `False` depending on if autoescaping is active or not.
+
+   .. attribute:: volatile
+
+      `True` if the compiler cannot evaluate some expressions at compile
+      time.  At runtime this should always be `False`.
+
+
+</pre>
+</div>
+</div>
+<div class="section" id="custom-tests">
+<span id="writing-tests"></span><h2>Custom Tests</h2>
+<p>Tests work like filters just that there is no way for a test to get access
+to the environment or context and that they can't be chained.  The return
+value of a test should be <cite>True</cite> or <cite>False</cite>.  The purpose of a test is to
+give the template designers the possibility to perform type and conformability
+checks.</p>
+<p>Here a simple test that checks if a variable is a prime number:</p>
+<pre class="literal-block">
+import math
+
+def is_prime(n):
+    if n == 2:
+        return True
+    for i in xrange(2, int(math.ceil(math.sqrt(n))) + 1):
+        if n % i == 0:
+            return False
+    return True
+</pre>
+<p>You can register it on the template environment by updating the
+<a href="#id71"><span class="problematic" id="id72">:attr:`~Environment.tests`</span></a> dict on the environment:</p>
+<div class="system-message" id="id71">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 701); <em><a href="#id72">backlink</a></em></p>
+Unknown interpreted text role &quot;attr&quot;.</div>
+<pre class="literal-block">
+environment.tests['prime'] = is_prime
+</pre>
+<p>A template designer can then use the test like this:</p>
+<div class="highlight"><pre><span class="cp">{%</span> <span class="k">if</span> <span class="m">42</span> <span class="k">is</span> <span class="nf">prime</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">    42 is a prime number</span>
+<span class="cp">{%</span> <span class="k">else</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">    42 is not a prime number</span>
+<span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x"></span>
+</pre></div>
+</div>
+<div class="section" id="the-global-namespace">
+<span id="global-namespace"></span><h2>The Global Namespace</h2>
+<p>Variables stored in the <a href="#id73"><span class="problematic" id="id74">:attr:`Environment.globals`</span></a> dict are special as they
+are available for imported templates too, even if they are imported without
+context.  This is the place where you can put variables and functions
+that should be available all the time.  Additionally <a href="#id75"><span class="problematic" id="id76">:attr:`Template.globals`</span></a>
+exist that are variables available to a specific template that are available
+to all <a href="#id77"><span class="problematic" id="id78">:meth:`~Template.render`</span></a> calls.</p>
+<div class="system-message" id="id73">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 722); <em><a href="#id74">backlink</a></em></p>
+Unknown interpreted text role &quot;attr&quot;.</div>
+<div class="system-message" id="id75">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 722); <em><a href="#id76">backlink</a></em></p>
+Unknown interpreted text role &quot;attr&quot;.</div>
+<div class="system-message" id="id77">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 722); <em><a href="#id78">backlink</a></em></p>
+Unknown interpreted text role &quot;meth&quot;.</div>
+</div>
+<div class="section" id="id79">
+<span id="low-level-api"></span><h2>Low Level API</h2>
+<p>The low level API exposes functionality that can be useful to understand some
+implementation details, debugging purposes or advanced <a href="#id80"><span class="problematic" id="id81">:ref:`extension
+&lt;jinja-extensions&gt;`</span></a> techniques.  Unless you know exactly what you are doing we
+don't recommend using any of those.</p>
+<div class="system-message" id="id80">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 735); <em><a href="#id81">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 740)</p>
+<p>Unknown directive type &quot;automethod&quot;.</p>
+<pre class="literal-block">
+.. automethod:: Environment.lex
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 742)</p>
+<p>Unknown directive type &quot;automethod&quot;.</p>
+<pre class="literal-block">
+.. automethod:: Environment.parse
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 744)</p>
+<p>Unknown directive type &quot;automethod&quot;.</p>
+<pre class="literal-block">
+.. automethod:: Environment.preprocess
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 746)</p>
+<p>Unknown directive type &quot;automethod&quot;.</p>
+<pre class="literal-block">
+.. automethod:: Template.new_context
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 748)</p>
+<p>Unknown directive type &quot;method&quot;.</p>
+<pre class="literal-block">
+.. method:: Template.root_render_func(context)
+
+    This is the low level render function.  It's passed a :class:`Context`
+    that has to be created by :meth:`new_context` of the same template or
+    a compatible template.  This render function is generated by the
+    compiler from the template code and returns a generator that yields
+    unicode strings.
+
+    If an exception in the template code happens the template engine will
+    not rewrite the exception but pass through the original one.  As a
+    matter of fact this function should only be called from within a
+    :meth:`render` / :meth:`generate` / :meth:`stream` call.
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 761)</p>
+<p>Unknown directive type &quot;attribute&quot;.</p>
+<pre class="literal-block">
+.. attribute:: Template.blocks
+
+    A dict of block render functions.  Each of these functions works exactly
+    like the :meth:`root_render_func` with the same limitations.
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 766)</p>
+<p>Unknown directive type &quot;attribute&quot;.</p>
+<pre class="literal-block">
+.. attribute:: Template.is_up_to_date
+
+    This attribute is `False` if there is a newer version of the template
+    available, otherwise `True`.
+
+</pre>
+</div>
+<div class="admonition-note admonition">
+<p class="first admonition-title">Note</p>
+<p>The low-level API is fragile.  Future Jinja2 versions will try not to
+change it in a backwards incompatible way but modifications in the Jinja2
+core may shine through.  For example if Jinja2 introduces a new AST node
+in later versions that may be returned by <a href="#id82"><span class="problematic" id="id83">:meth:`~Environment.parse`</span></a>.</p>
+<div class="last system-message" id="id82">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 773); <em><a href="#id83">backlink</a></em></p>
+Unknown interpreted text role &quot;meth&quot;.</div>
+</div>
+</div>
+<div class="section" id="the-meta-api">
+<h2>The Meta API</h2>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 781)</p>
+<p>Unknown directive type &quot;versionadded&quot;.</p>
+<pre class="literal-block">
+.. versionadded:: 2.2
+
+</pre>
+</div>
+<p>The meta API returns some information about abstract syntax trees that
+could help applications to implement more advanced template concepts.  All
+the functions of the meta API operate on an abstract syntax tree as
+returned by the <a href="#id84"><span class="problematic" id="id85">:meth:`Environment.parse`</span></a> method.</p>
+<div class="system-message" id="id84">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 783); <em><a href="#id85">backlink</a></em></p>
+Unknown interpreted text role &quot;meth&quot;.</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 788)</p>
+<p>Unknown directive type &quot;autofunction&quot;.</p>
+<pre class="literal-block">
+.. autofunction:: jinja2.meta.find_undeclared_variables
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/api.rst</tt>, line 790)</p>
+<p>Unknown directive type &quot;autofunction&quot;.</p>
+<pre class="literal-block">
+.. autofunction:: jinja2.meta.find_referenced_templates
+</pre>
+</div>
+</div>
+
+    </div><!-- /.entry-content -->
+    
+
+  </article>
+</section>
+
+        <section id="extras" class="body">
+        
+        
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+
+
+
+</body>
+</html>

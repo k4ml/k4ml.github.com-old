@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Jinja2 Changelog</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="./theme/css/main.css" type="text/css" />
+        
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="A Pelican Blog Atom Feed" />
+        
+        
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="./css/ie.css"/>
+                <script src="./js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="./css/ie6.css"/><![endif]-->
+
+</head>
+
+<body id="index" class="home">
+
+        <header id="banner" class="body">
+                <h1><a href=".">A Pelican Blog </a></h1>
+                <nav><ul>
+                
+                
+                
+                
+                
+                    <li ><a href="./category/testcategory.html">TestCategory</a></li>
+                
+                    <li ><a href="./category/testpages.html">TestPages</a></li>
+                
+                    <li ><a href="./category/yeah.html">Yeah</a></li>
+                
+                    <li ><a href="./category/content.html">content</a></li>
+                
+                    <li class="active"><a href="./category/docs.html">docs</a></li>
+                
+                    <li ><a href="./category/emacs.html">emacs</a></li>
+                
+                    <li ><a href="./category/pelican.html">pelican</a></li>
+                
+                    <li ><a href="./category/source.html">source</a></li>
+                
+                    <li ><a href="./category/src.html">src</a></li>
+                
+                    <li ><a href="./category/test.html">test</a></li>
+                
+                    <li ><a href="./category/yeah.html">yeah</a></li>
+                
+                </ul></nav>
+        </header><!-- /#banner -->
+        
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="jinja2-changelog.html" rel="bookmark"
+           title="Permalink to Jinja2 Changelog">Jinja2 Changelog</a></h1>
+      
+    </header>
+
+    <div class="entry-content">
+      <footer class="post-info">
+        <abbr class="published" title="2012-09-30T04:52:53.529306">
+                Sun 30 September 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/kamal.html">kamal</a>
+        </address>
+        
+<p>In <a href="./category/docs.html">docs</a>. </p>
+
+
+
+</footer><!-- /.post-info -->
+      <div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/changelog.rst</tt>, line 1)</p>
+<p>Unknown directive type &quot;module&quot;.</p>
+<pre class="literal-block">
+.. module:: jinja2
+
+</pre>
+</div>
+<div class="section" id="version-2-6">
+<h2>Version 2.6</h2>
+<p>(codename Convolution, released on July 24th 2011)</p>
+<ul class="simple">
+<li>internal attributes now raise an internal attribute error now instead
+of returning an undefined.  This fixes problems when passing undefined
+objects to Python semantics expecting APIs.</li>
+<li>traceback support now works properly for PyPy.  (Tested with 1.4)</li>
+<li>implemented operator intercepting for sandboxed environments.  This
+allows application developers to disable builtin operators for better
+security.  (For instance limit the mathematical operators to actual
+integers instead of longs)</li>
+<li>groupby filter now supports dotted notation for grouping by attributes
+of attributes.</li>
+<li>scoped blocks not properly treat toplevel assignments and imports.
+Previously an import suddenly &quot;disappeared&quot; in a scoped block.</li>
+<li>automatically detect newer Python interpreter versions before loading code
+from bytecode caches to prevent segfaults on invalid opcodes.  The segfault
+in earlier Jinja2 versions here was not a Jinja2 bug but a limitation in
+the underlying Python interpreter.  If you notice Jinja2 segfaulting in
+earlier versions after an upgrade of the Python interpreter you don't have
+to upgrade, it's enough to flush the bytecode cache.  This just no longer
+makes this necessary, Jinja2 will automatically detect these cases now.</li>
+<li>the sum filter can now sum up values by attribute.  This is a backwards
+incompatible change.  The argument to the filter previously was the
+optional starting index which defaultes to zero.  This now became the
+second argument to the function because it's rarely used.</li>
+<li>like sum, sort now also makes it possible to order items by attribute.</li>
+<li>like sum and sort, join now also is able to join attributes of objects
+as string.</li>
+<li>the internal eval context now has a reference to the environment.</li>
+<li>added a mapping test to see if an object is a dict or an object with
+a similar interface.</li>
+</ul>
+</div>
+<div class="section" id="version-2-5-5">
+<h2>Version 2.5.5</h2>
+<dl class="docutils">
+<dt>(re-release of 2.5.4 with built documentation removed for filesize.</dt>
+<dd>Released on October 18th 2010)</dd>
+</dl>
+<ul class="simple">
+<li>built documentation is no longer part of release.</li>
+</ul>
+</div>
+<div class="section" id="version-2-5-4">
+<h2>Version 2.5.4</h2>
+<p>(bugfix release, released on October 17th 2010)</p>
+<ul class="simple">
+<li>Fixed extensions not loading properly with overlays.</li>
+<li>Work around a bug in cpython for the debugger that causes segfaults
+on 64bit big-endian architectures.</li>
+</ul>
+</div>
+<div class="section" id="version-2-5-3">
+<h2>Version 2.5.3</h2>
+<p>(bugfix release, released on October 17th 2010)</p>
+<ul class="simple">
+<li>fixed an operator precedence error introduced in 2.5.2.  Statements
+like &quot;-foo.bar&quot; had their implicit parentheses applied around the
+first part of the expression (&quot;(-foo).bar&quot;) instead of the more
+correct &quot;-(foo.bar)&quot;.</li>
+</ul>
+</div>
+<div class="section" id="version-2-5-2">
+<h2>Version 2.5.2</h2>
+<p>(bugfix release, released on August 18th 2010)</p>
+<ul class="simple">
+<li>improved setup.py script to better work with assumptions people
+might still have from it (<tt class="docutils literal"><span class="pre">--with-speedups</span></tt>).</li>
+<li>fixed a packaging error that excluded the new debug support.</li>
+</ul>
+</div>
+<div class="section" id="version-2-5-1">
+<h2>Version 2.5.1</h2>
+<p>(bugfix release, released on August 17th 2010)</p>
+<ul>
+<li><p class="first">StopIteration exceptions raised by functions called from templates
+are now intercepted and converted to undefineds.  This solves a
+lot of debugging grief.  (StopIteration is used internally to
+abort template execution)</p>
+</li>
+<li><p class="first">improved performance of macro calls slightly.</p>
+</li>
+<li><p class="first">babel extraction can now properly extract newstyle gettext calls.</p>
+</li>
+<li><p class="first">using the variable <cite>num</cite> in newstyle gettext for something else
+than the pluralize count will no longer raise a <a href="#id1"><span class="problematic" id="id2">:exc:`KeyError`</span></a>.</p>
+<div class="system-message" id="id1">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">~/.pip/build/jinja2/CHANGES</tt>, line 80); <em><a href="#id2">backlink</a></em></p>
+<p>Unknown interpreted text role &quot;exc&quot;.</p>
+</div>
+</li>
+<li><p class="first">removed builtin markup class and switched to markupsafe.  For backwards
+compatibility the pure Python implementation still exists but is
+pulled from markupsafe by the Jinja2 developers.  The debug support
+went into a separate feature called &quot;debugsupport&quot; and is disabled
+by default because it is only relevant for Python 2.4</p>
+</li>
+<li><p class="first">fixed an issue with unary operators having the wrong precendence.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="version-2-5">
+<h2>Version 2.5</h2>
+<p>(codename Incoherence, relased on May 29th 2010)</p>
+<ul>
+<li><p class="first">improved the sort filter (should have worked like this for a
+long time) by adding support for case insensitive searches.</p>
+</li>
+<li><p class="first">fixed a bug for getattribute constant folding.</p>
+</li>
+<li><p class="first">support for newstyle gettext translations which result in a
+nicer in-template user interface and more consistent
+catalogs. (<a href="#id3"><span class="problematic" id="id4">:ref:`newstyle-gettext`</span></a>)</p>
+<div class="system-message" id="id3">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">~/.pip/build/jinja2/CHANGES</tt>, line 96); <em><a href="#id4">backlink</a></em></p>
+<p>Unknown interpreted text role &quot;ref&quot;.</p>
+</div>
+</li>
+<li><p class="first">it's now possible to register extensions after an environment
+was created.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="version-2-4-1">
+<h2>Version 2.4.1</h2>
+<p>(bugfix release, released on April 20th 2010)</p>
+<ul class="simple">
+<li>fixed an error reporting bug for undefineds.</li>
+</ul>
+</div>
+<div class="section" id="version-2-4">
+<h2>Version 2.4</h2>
+<p>(codename Correlation, released on April 13th 2010)</p>
+<ul>
+<li><p class="first">the environment template loading functions now transparently
+pass through a template object if it was passed to it.  This
+makes it possible to import or extend from a template object
+that was passed to the template.</p>
+</li>
+<li><p class="first">added a <a href="#id5"><span class="problematic" id="id6">:class:`ModuleLoader`</span></a> that can load templates from
+precompiled sources.  The environment now features a method
+to compile the templates from a configured loader into a zip
+file or folder.</p>
+<div class="system-message" id="id5">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">~/.pip/build/jinja2/CHANGES</tt>, line 116); <em><a href="#id6">backlink</a></em></p>
+<p>Unknown interpreted text role &quot;class&quot;.</p>
+</div>
+</li>
+<li><p class="first">the _speedups C extension now supports Python 3.</p>
+</li>
+<li><p class="first">added support for autoescaping toggling sections and support
+for evaluation contexts (<a href="#id7"><span class="problematic" id="id8">:ref:`eval-context`</span></a>).</p>
+<div class="system-message" id="id7">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">~/.pip/build/jinja2/CHANGES</tt>, line 121); <em><a href="#id8">backlink</a></em></p>
+<p>Unknown interpreted text role &quot;ref&quot;.</p>
+</div>
+</li>
+<li><p class="first">extensions have a priority now.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="version-2-3-1">
+<h2>Version 2.3.1</h2>
+<p>(bugfix release, released on February 19th 2010)</p>
+<ul class="simple">
+<li>fixed an error reporting bug on all python versions</li>
+<li>fixed an error reporting bug on Python 2.4</li>
+</ul>
+</div>
+<div class="section" id="version-2-3">
+<h2>Version 2.3</h2>
+<p>(3000 Pythons, released on February 10th 2010)</p>
+<ul class="simple">
+<li>fixes issue with code generator that causes unbound variables
+to be generated if set was used in if-blocks and other small
+identifier problems.</li>
+<li>include tags are now able to select between multiple templates
+and take the first that exists, if a list of templates is
+given.</li>
+<li>fixed a problem with having call blocks in outer scopes that
+have an argument that is also used as local variable in an
+inner frame (#360).</li>
+<li>greatly improved error message reporting (#339)</li>
+<li>implicit tuple expressions can no longer be totally empty.
+This change makes <tt class="docutils literal">{% if <span class="pre">%}...{%</span> endif %}</tt> a syntax error
+now. (#364)</li>
+<li>added support for translator comments if extracted via babel.</li>
+<li>added with-statement extension.</li>
+<li>experimental Python 3 support.</li>
+</ul>
+</div>
+<div class="section" id="version-2-2-1">
+<h2>Version 2.2.1</h2>
+<p>(bugfix release, released on September 14th 2009)</p>
+<ul class="simple">
+<li>fixes some smaller problems for Jinja2 on Jython.</li>
+</ul>
+</div>
+<div class="section" id="version-2-2">
+<h2>Version 2.2</h2>
+<p>(codename Kong, released on September 13th 2009)</p>
+<ul class="simple">
+<li>Include statements can now be marked with <tt class="docutils literal">ignore missing</tt> to skip
+non existing templates.</li>
+<li>Priority of <cite>not</cite> raised.  It's now possible to write <cite>not foo in bar</cite>
+as an alias to <cite>foo not in bar</cite> like in python.  Previously the grammar
+required parentheses (<cite>not (foo in bar)</cite>) which was odd.</li>
+<li>Fixed a bug that caused syntax errors when defining macros or using the
+<cite>{% call %}</cite> tag inside loops.</li>
+<li>Fixed a bug in the parser that made <tt class="docutils literal">{{ foo[1, 2] }}</tt> impossible.</li>
+<li>Made it possible to refer to names from outer scopes in included templates
+that were unused in the callers frame (#327)</li>
+<li>Fixed a bug that caused internal errors if names where used as iteration
+variable and regular variable <em>after</em> the loop if that variable was unused
+<em>before</em> the loop.  (#331)</li>
+<li>Added support for optional <cite>scoped</cite> modifier to blocks.</li>
+<li>Added support for line-comments.</li>
+<li>Added the <cite>meta</cite> module.</li>
+<li>Renamed (undocumented) attribute &quot;overlay&quot; to &quot;overlayed&quot; on the
+environment because it was clashing with a method of the same name.</li>
+<li>speedup extension is now disabled by default.</li>
+</ul>
+</div>
+<div class="section" id="version-2-1-1">
+<h2>Version 2.1.1</h2>
+<p>(Bugfix release)</p>
+<ul class="simple">
+<li>Fixed a translation error caused by looping over empty recursive loops.</li>
+</ul>
+</div>
+<div class="section" id="version-2-1">
+<h2>Version 2.1</h2>
+<p>(codename Yasuzō, released on November 23rd 2008)</p>
+<ul>
+<li><p class="first">fixed a bug with nested loops and the special loop variable.  Before the
+change an inner loop overwrote the loop variable from the outer one after
+iteration.</p>
+</li>
+<li><p class="first">fixed a bug with the i18n extension that caused the explicit pluralization
+block to look up the wrong variable.</p>
+</li>
+<li><p class="first">fixed a limitation in the lexer that made <tt class="docutils literal">{{ foo.0.0 }}</tt> impossible.</p>
+</li>
+<li><p class="first">index based subscribing of variables with a constant value returns an
+undefined object now instead of raising an index error.  This was a bug
+caused by eager optimizing.</p>
+</li>
+<li><p class="first">the i18n extension looks up <cite>foo.ugettext</cite> now followed by <cite>foo.gettext</cite>
+if an translations object is installed.  This makes dealing with custom
+translations classes easier.</p>
+</li>
+<li><p class="first">fixed a confusing behavior with conditional extending.  loops were partially
+executed under some conditions even though they were not part of a visible
+area.</p>
+</li>
+<li><p class="first">added <cite>sort</cite> filter that works like <cite>dictsort</cite> but for arbitrary sequences.</p>
+</li>
+<li><p class="first">fixed a bug with empty statements in macros.</p>
+</li>
+<li><p class="first">implemented a bytecode cache system.  (<a href="#id9"><span class="problematic" id="id10">:ref:`bytecode-cache`</span></a>)</p>
+<div class="system-message" id="id9">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">~/.pip/build/jinja2/CHANGES</tt>, line 218); <em><a href="#id10">backlink</a></em></p>
+<p>Unknown interpreted text role &quot;ref&quot;.</p>
+</div>
+</li>
+<li><p class="first">the template context is now weakref-able</p>
+</li>
+<li><p class="first">inclusions and imports &quot;with context&quot; forward all variables now, not only
+the initial context.</p>
+</li>
+<li><p class="first">added a cycle helper called <cite>cycler</cite>.</p>
+</li>
+<li><p class="first">added a joining helper called <cite>joiner</cite>.</p>
+</li>
+<li><p class="first">added a <cite>compile_expression</cite> method to the environment that allows compiling
+of Jinja expressions into callable Python objects.</p>
+</li>
+<li><p class="first">fixed an escaping bug in urlize</p>
+</li>
+</ul>
+</div>
+<div class="section" id="version-2-0">
+<h2>Version 2.0</h2>
+<p>(codename jinjavitus, released on July 17th 2008)</p>
+<ul>
+<li><p class="first">the subscribing of objects (looking up attributes and items) changed from
+slightly.  It's now possible to give attributes or items a higher priority
+by either using dot-notation lookup or the bracket syntax.  This also
+changed the AST slightly.  <cite>Subscript</cite> is gone and was replaced with
+<a href="#id11"><span class="problematic" id="id12">:class:`~jinja2.nodes.Getitem`</span></a> and <a href="#id13"><span class="problematic" id="id14">:class:`~jinja2.nodes.Getattr`</span></a>.</p>
+<div class="system-message" id="id11">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">~/.pip/build/jinja2/CHANGES</tt>, line 238); <em><a href="#id12">backlink</a></em></p>
+<p>Unknown interpreted text role &quot;class&quot;.</p>
+</div>
+<div class="system-message" id="id13">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">~/.pip/build/jinja2/CHANGES</tt>, line 238); <em><a href="#id14">backlink</a></em></p>
+<p>Unknown interpreted text role &quot;class&quot;.</p>
+</div>
+<p>For more information see <a href="#id15"><span class="problematic" id="id16">:ref:`the implementation details &lt;notes-on-subscriptions&gt;`</span></a>.</p>
+<div class="system-message" id="id15">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">~/.pip/build/jinja2/CHANGES</tt>, line 244); <em><a href="#id16">backlink</a></em></p>
+<p>Unknown interpreted text role &quot;ref&quot;.</p>
+</div>
+</li>
+<li><p class="first">added support for preprocessing and token stream filtering for extensions.
+This would allow extensions to allow simplified gettext calls in template
+data and something similar.</p>
+</li>
+<li><p class="first">added <a href="#id17"><span class="problematic" id="id18">:meth:`jinja2.environment.TemplateStream.dump`</span></a>.</p>
+<div class="system-message" id="id17">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">~/.pip/build/jinja2/CHANGES</tt>, line 250); <em><a href="#id18">backlink</a></em></p>
+<p>Unknown interpreted text role &quot;meth&quot;.</p>
+</div>
+</li>
+<li><p class="first">added missing support for implicit string literal concatenation.
+<tt class="docutils literal">{{ &quot;foo&quot; &quot;bar&quot; }}</tt> is equivalent to <tt class="docutils literal">{{ &quot;foobar&quot; }}</tt></p>
+</li>
+<li><p class="first"><cite>else</cite> is optional for conditional expressions.  If not given it evaluates
+to <cite>false</cite>.</p>
+</li>
+<li><p class="first">improved error reporting for undefined values by providing a position.</p>
+</li>
+<li><p class="first"><cite>filesizeformat</cite> filter uses decimal prefixes now per default and can be
+set to binary mode with the second parameter.</p>
+</li>
+<li><p class="first">fixed bug in finalizer</p>
+</li>
+</ul>
+</div>
+<div class="section" id="version-2-0rc1">
+<h2>Version 2.0rc1</h2>
+<p>(no codename, released on June 9th 2008)</p>
+<ul class="simple">
+<li>first release of Jinja2</li>
+</ul>
+</div>
+
+    </div><!-- /.entry-content -->
+    
+
+  </article>
+</section>
+
+        <section id="extras" class="body">
+        
+        
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+
+
+
+</body>
+</html>

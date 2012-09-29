@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Template Designer Documentation</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="./theme/css/main.css" type="text/css" />
+        
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="A Pelican Blog Atom Feed" />
+        
+        
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="./css/ie.css"/>
+                <script src="./js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="./css/ie6.css"/><![endif]-->
+
+</head>
+
+<body id="index" class="home">
+
+        <header id="banner" class="body">
+                <h1><a href=".">A Pelican Blog </a></h1>
+                <nav><ul>
+                
+                
+                
+                
+                
+                    <li ><a href="./category/testcategory.html">TestCategory</a></li>
+                
+                    <li ><a href="./category/testpages.html">TestPages</a></li>
+                
+                    <li ><a href="./category/yeah.html">Yeah</a></li>
+                
+                    <li ><a href="./category/content.html">content</a></li>
+                
+                    <li class="active"><a href="./category/docs.html">docs</a></li>
+                
+                    <li ><a href="./category/emacs.html">emacs</a></li>
+                
+                    <li ><a href="./category/pelican.html">pelican</a></li>
+                
+                    <li ><a href="./category/source.html">source</a></li>
+                
+                    <li ><a href="./category/src.html">src</a></li>
+                
+                    <li ><a href="./category/test.html">test</a></li>
+                
+                    <li ><a href="./category/yeah.html">yeah</a></li>
+                
+                </ul></nav>
+        </header><!-- /#banner -->
+        
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="template-designer-documentation.html" rel="bookmark"
+           title="Permalink to Template Designer Documentation">Template Designer Documentation</a></h1>
+      
+    </header>
+
+    <div class="entry-content">
+      <footer class="post-info">
+        <abbr class="published" title="2012-09-30T04:52:53.533306">
+                Sun 30 September 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/kamal.html">kamal</a>
+        </address>
+        
+<p>In <a href="./category/docs.html">docs</a>. </p>
+
+
+
+</footer><!-- /.post-info -->
+      <div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 4)</p>
+<p>Unknown directive type &quot;highlight&quot;.</p>
+<pre class="literal-block">
+.. highlight:: html+jinja
+
+</pre>
+</div>
+<p>This document describes the syntax and semantics of the template engine and
+will be most useful as reference to those creating Jinja templates.  As the
+template engine is very flexible the configuration from the application might
+be slightly different from here in terms of delimiters and behavior of
+undefined values.</p>
+<div class="section" id="synopsis">
+<h2>Synopsis</h2>
+<p>A template is simply a text file.  It can generate any text-based format
+(HTML, XML, CSV, LaTeX, etc.).  It doesn't have a specific extension,
+<tt class="docutils literal">.html</tt> or <tt class="docutils literal">.xml</tt> are just fine.</p>
+<p>A template contains <strong>variables</strong> or <strong>expressions</strong>, which get replaced with
+values when the template is evaluated, and tags, which control the logic of
+the template.  The template syntax is heavily inspired by Django and Python.</p>
+<p>Below is a minimal template that illustrates a few basics.  We will cover
+the details later in that document:</p>
+<pre class="literal-block">
+&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot;&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;title&gt;My Webpage&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;ul id=&quot;navigation&quot;&gt;
+    {% for item in navigation %}
+        &lt;li&gt;&lt;a href=&quot;{{ item.href }}&quot;&gt;{{ item.caption }}&lt;/a&gt;&lt;/li&gt;
+    {% endfor %}
+    &lt;/ul&gt;
+
+    &lt;h1&gt;My Webpage&lt;/h1&gt;
+    {{ a_variable }}
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p>This covers the default settings.  The application developer might have
+changed the syntax from <tt class="docutils literal">{% foo %}</tt> to <tt class="docutils literal">&lt;% foo %&gt;</tt> or something similar.</p>
+<p>There are two kinds of delimiters. <tt class="docutils literal">{% ... %}</tt> and <tt class="docutils literal">{{ ... }}</tt>.  The first
+one is used to execute statements such as for-loops or assign values, the
+latter prints the result of the expression to the template.</p>
+</div>
+<div class="section" id="id1">
+<span id="variables"></span><h2>Variables</h2>
+<p>The application passes variables to the templates you can mess around in the
+template.  Variables may have attributes or elements on them you can access
+too.  How a variable looks like, heavily depends on the application providing
+those.</p>
+<p>You can use a dot (<tt class="docutils literal">.</tt>) to access attributes of a variable, alternative the
+so-called &quot;subscript&quot; syntax (<tt class="docutils literal">[]</tt>) can be used.  The following lines do
+the same:</p>
+<pre class="literal-block">
+{{ foo.bar }}
+{{ foo['bar'] }}
+</pre>
+<p>It's important to know that the curly braces are <em>not</em> part of the variable
+but the print statement.  If you access variables inside tags don't put the
+braces around.</p>
+<p>If a variable or attribute does not exist you will get back an undefined
+value.  What you can do with that kind of value depends on the application
+configuration, the default behavior is that it evaluates to an empty string
+if printed and that you can iterate over it, but every other operation fails.</p>
+<div class="admonition-implementation admonition" id="notes-on-subscriptions">
+<p class="first admonition-title">Implementation</p>
+<p>For convenience sake <tt class="docutils literal">foo.bar</tt> in Jinja2 does the following things on
+the Python layer:</p>
+<ul class="simple">
+<li>check if there is an attribute called <cite>bar</cite> on <cite>foo</cite>.</li>
+<li>if there is not, check if there is an item <tt class="docutils literal">'bar'</tt> in <cite>foo</cite>.</li>
+<li>if there is not, return an undefined object.</li>
+</ul>
+<p><tt class="docutils literal"><span class="pre">foo['bar']</span></tt> on the other hand works mostly the same with the a small
+difference in the order:</p>
+<ul class="simple">
+<li>check if there is an item <tt class="docutils literal">'bar'</tt> in <cite>foo</cite>.</li>
+<li>if there is not, check if there is an attribute called <cite>bar</cite> on <cite>foo</cite>.</li>
+<li>if there is not, return an undefined object.</li>
+</ul>
+<p>This is important if an object has an item or attribute with the same
+name.  Additionally there is the <a href="#id2"><span class="problematic" id="id3">:func:`attr`</span></a> filter that just looks up
+attributes.</p>
+<div class="last system-message" id="id2">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 95); <em><a href="#id3">backlink</a></em></p>
+Unknown interpreted text role &quot;func&quot;.</div>
+</div>
+</div>
+<div class="section" id="id4">
+<span id="filters"></span><h2>Filters</h2>
+<p>Variables can be modified by <strong>filters</strong>.  Filters are separated from the
+variable by a pipe symbol (<tt class="docutils literal">|</tt>) and may have optional arguments in
+parentheses.  Multiple filters can be chained.  The output of one filter is
+applied to the next.</p>
+<p><tt class="docutils literal">{{ name|striptags|title }}</tt> for example will remove all HTML Tags from the
+<cite>name</cite> and title-cases it.  Filters that accept arguments have parentheses
+around the arguments, like a function call.  This example will join a list
+by commas:  <tt class="docutils literal">{{ <span class="pre">list|join(',</span> ') }}</tt>.</p>
+<p>The <a href="#id5"><span class="problematic" id="id6">:ref:`builtin-filters`</span></a> below describes all the builtin filters.</p>
+<div class="system-message" id="id5">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 114); <em><a href="#id6">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+</div>
+<div class="section" id="id7">
+<span id="tests"></span><h2>Tests</h2>
+<p>Beside filters there are also so called &quot;tests&quot; available.  Tests can be used
+to test a variable against a common expression.  To test a variable or
+expression you add <cite>is</cite> plus the name of the test after the variable.  For
+example to find out if a variable is defined you can do <tt class="docutils literal">name is defined</tt>
+which will then return true or false depending on if <cite>name</cite> is defined.</p>
+<p>Tests can accept arguments too.  If the test only takes one argument you can
+leave out the parentheses to group them.  For example the following two
+expressions do the same:</p>
+<pre class="literal-block">
+{% if loop.index is divisibleby 3 %}
+{% if loop.index is divisibleby(3) %}
+</pre>
+<p>The <a href="#id8"><span class="problematic" id="id9">:ref:`builtin-tests`</span></a> below describes all the builtin tests.</p>
+<div class="system-message" id="id8">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 134); <em><a href="#id9">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+</div>
+<div class="section" id="comments">
+<h2>Comments</h2>
+<p>To comment-out part of a line in a template, use the comment syntax which is
+by default set to <tt class="docutils literal">{# ... #}</tt>.  This is useful to comment out parts of the
+template for debugging or to add information for other template designers or
+yourself:</p>
+<pre class="literal-block">
+{# note: disabled template because we no longer use this
+    {% for user in users %}
+        ...
+    {% endfor %}
+#}
+</pre>
+</div>
+<div class="section" id="whitespace-control">
+<h2>Whitespace Control</h2>
+<p>In the default configuration whitespace is not further modified by the
+template engine, so each whitespace (spaces, tabs, newlines etc.) is returned
+unchanged.  If the application configures Jinja to <cite>trim_blocks</cite> the first
+newline after a a template tag is removed automatically (like in PHP).</p>
+<p>But you can also strip whitespace in templates by hand.  If you put an minus
+sign (<tt class="docutils literal">-</tt>) to the start or end of an block (for example a for tag), a
+comment or variable expression you can remove the whitespaces after or before
+that block:</p>
+<pre class="literal-block">
+{% for item in seq -%}
+    {{ item }}
+{%- endfor %}
+</pre>
+<p>This will yield all elements without whitespace between them.  If <cite>seq</cite> was
+a list of numbers from <tt class="docutils literal">1</tt> to <tt class="docutils literal">9</tt> the output would be <tt class="docutils literal">123456789</tt>.</p>
+<p>If <a href="#id10"><span class="problematic" id="id11">:ref:`line-statements`</span></a> are enabled they strip leading whitespace
+automatically up to the beginning of the line.</p>
+<div class="system-message" id="id10">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 172); <em><a href="#id11">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+<div class="admonition-note admonition">
+<p class="first admonition-title">Note</p>
+<p>You must not use a whitespace between the tag and the minus sign.</p>
+<p><strong>valid</strong>:</p>
+<pre class="literal-block">
+{%- if foo -%}...{% endif %}
+</pre>
+<p><strong>invalid</strong>:</p>
+<pre class="last literal-block">
+{% - if foo - %}...{% endif %}
+</pre>
+</div>
+</div>
+<div class="section" id="escaping">
+<h2>Escaping</h2>
+<p>It is sometimes desirable or even necessary to have Jinja ignore parts it
+would otherwise handle as variables or blocks.  For example if the default
+syntax is used and you want to use <tt class="docutils literal">{{</tt> as raw string in the template and
+not start a variable you have to use a trick.</p>
+<p>The easiest way is to output the variable delimiter (<tt class="docutils literal">{{</tt>) by using a
+variable expression:</p>
+<pre class="literal-block">
+{{ '{{' }}
+</pre>
+<p>For bigger sections it makes sense to mark a block <cite>raw</cite>.  For example to
+put Jinja syntax as example into a template you can use this snippet:</p>
+<pre class="literal-block">
+{% raw %}
+    &lt;ul&gt;
+    {% for item in seq %}
+        &lt;li&gt;{{ item }}&lt;/li&gt;
+    {% endfor %}
+    &lt;/ul&gt;
+{% endraw %}
+</pre>
+</div>
+<div class="section" id="id12">
+<span id="line-statements"></span><h2>Line Statements</h2>
+<p>If line statements are enabled by the application it's possible to mark a
+line as a statement.  For example if the line statement prefix is configured
+to <tt class="docutils literal">#</tt> the following two examples are equivalent:</p>
+<pre class="literal-block">
+&lt;ul&gt;
+# for item in seq
+    &lt;li&gt;{{ item }}&lt;/li&gt;
+# endfor
+&lt;/ul&gt;
+
+&lt;ul&gt;
+{% for item in seq %}
+    &lt;li&gt;{{ item }}&lt;/li&gt;
+{% endfor %}
+&lt;/ul&gt;
+</pre>
+<p>The line statement prefix can appear anywhere on the line as long as no text
+precedes it.  For better readability statements that start a block (such as
+<cite>for</cite>, <cite>if</cite>, <cite>elif</cite> etc.) may end with a colon:</p>
+<pre class="literal-block">
+# for item in seq:
+    ...
+# endfor
+</pre>
+<div class="admonition-note admonition">
+<p class="first admonition-title">Note</p>
+<p>Line statements can span multiple lines if there are open parentheses,
+braces or brackets:</p>
+<pre class="last literal-block">
+&lt;ul&gt;
+# for href, caption in [('index.html', 'Index'),
+                        ('about.html', 'About')]:
+    &lt;li&gt;&lt;a href=&quot;{{ href }}&quot;&gt;{{ caption }}&lt;/a&gt;&lt;/li&gt;
+# endfor
+&lt;/ul&gt;
+</pre>
+</div>
+<p>Since Jinja 2.2 line-based comments are available as well.  For example if
+the line-comment prefix is configured to be <tt class="docutils literal">##</tt> everything from <tt class="docutils literal">##</tt> to
+the end of the line is ignored (excluding the newline sign):</p>
+<pre class="literal-block">
+# for item in seq:
+    &lt;li&gt;{{ item }}&lt;/li&gt;     ## this comment is ignored
+# endfor
+</pre>
+</div>
+<div class="section" id="id13">
+<span id="template-inheritance"></span><h2>Template Inheritance</h2>
+<p>The most powerful part of Jinja is template inheritance. Template inheritance
+allows you to build a base &quot;skeleton&quot; template that contains all the common
+elements of your site and defines <strong>blocks</strong> that child templates can override.</p>
+<p>Sounds complicated but is very basic. It's easiest to understand it by starting
+with an example.</p>
+<div class="section" id="base-template">
+<h3>Base Template</h3>
+<p>This template, which we'll call <tt class="docutils literal">base.html</tt>, defines a simple HTML skeleton
+document that you might use for a simple two-column page. It's the job of
+&quot;child&quot; templates to fill the empty blocks with content:</p>
+<pre class="literal-block">
+&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot;&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    {% block head %}
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot; /&gt;
+    &lt;title&gt;{% block title %}{% endblock %} - My Webpage&lt;/title&gt;
+    {% endblock %}
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;content&quot;&gt;{% block content %}{% endblock %}&lt;/div&gt;
+    &lt;div id=&quot;footer&quot;&gt;
+        {% block footer %}
+        &amp;copy; Copyright 2008 by &lt;a href=&quot;http://domain.invalid/&quot;&gt;you&lt;/a&gt;.
+        {% endblock %}
+    &lt;/div&gt;
+&lt;/body&gt;
+</pre>
+<p>In this example, the <tt class="docutils literal">{% block %}</tt> tags define four blocks that child templates
+can fill in. All the <cite>block</cite> tag does is to tell the template engine that a
+child template may override those portions of the template.</p>
+</div>
+<div class="section" id="child-template">
+<h3>Child Template</h3>
+<p>A child template might look like this:</p>
+<pre class="literal-block">
+{% extends &quot;base.html&quot; %}
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ super() }}
+    &lt;style type=&quot;text/css&quot;&gt;
+        .important { color: #336699; }
+    &lt;/style&gt;
+{% endblock %}
+{% block content %}
+    &lt;h1&gt;Index&lt;/h1&gt;
+    &lt;p class=&quot;important&quot;&gt;
+      Welcome on my awesome homepage.
+    &lt;/p&gt;
+{% endblock %}
+</pre>
+<p>The <tt class="docutils literal">{% extends %}</tt> tag is the key here. It tells the template engine that
+this template &quot;extends&quot; another template.  When the template system evaluates
+this template, first it locates the parent.  The extends tag should be the
+first tag in the template.  Everything before it is printed out normally and
+may cause confusion.  For details about this behavior and how to take
+advantage of it, see <a href="#id14"><span class="problematic" id="id15">:ref:`null-master-fallback`</span></a>.</p>
+<div class="system-message" id="id14">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 326); <em><a href="#id15">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+<p>The filename of the template depends on the template loader.  For example the
+<a href="#id16"><span class="problematic" id="id17">:class:`FileSystemLoader`</span></a> allows you to access other templates by giving the
+filename.  You can access templates in subdirectories with an slash:</p>
+<div class="system-message" id="id16">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 333); <em><a href="#id17">backlink</a></em></p>
+Unknown interpreted text role &quot;class&quot;.</div>
+<pre class="literal-block">
+{% extends &quot;layout/default.html&quot; %}
+</pre>
+<p>But this behavior can depend on the application embedding Jinja.  Note that
+since the child template doesn't define the <tt class="docutils literal">footer</tt> block, the value from
+the parent template is used instead.</p>
+<p>You can't define multiple <tt class="docutils literal">{% block %}</tt> tags with the same name in the
+same template.  This limitation exists because a block tag works in &quot;both&quot;
+directions.  That is, a block tag doesn't just provide a hole to fill - it
+also defines the content that fills the hole in the <em>parent</em>.  If there
+were two similarly-named <tt class="docutils literal">{% block %}</tt> tags in a template, that template's
+parent wouldn't know which one of the blocks' content to use.</p>
+<p>If you want to print a block multiple times you can however use the special
+<cite>self</cite> variable and call the block with that name:</p>
+<pre class="literal-block">
+&lt;title&gt;{% block title %}{% endblock %}&lt;/title&gt;
+&lt;h1&gt;{{ self.title() }}&lt;/h1&gt;
+{% block body %}{% endblock %}
+</pre>
+</div>
+<div class="section" id="super-blocks">
+<h3>Super Blocks</h3>
+<p>It's possible to render the contents of the parent block by calling <cite>super</cite>.
+This gives back the results of the parent block:</p>
+<pre class="literal-block">
+{% block sidebar %}
+    &lt;h3&gt;Table Of Contents&lt;/h3&gt;
+    ...
+    {{ super() }}
+{% endblock %}
+</pre>
+</div>
+<div class="section" id="named-block-end-tags">
+<h3>Named Block End-Tags</h3>
+<p>Jinja2 allows you to put the name of the block after the end tag for better
+readability:</p>
+<pre class="literal-block">
+{% block sidebar %}
+    {% block inner_sidebar %}
+        ...
+    {% endblock inner_sidebar %}
+{% endblock sidebar %}
+</pre>
+<p>However the name after the <cite>endblock</cite> word must match the block name.</p>
+</div>
+<div class="section" id="block-nesting-and-scope">
+<h3>Block Nesting and Scope</h3>
+<p>Blocks can be nested for more complex layouts.  However per default blocks
+may not access variables from outer scopes:</p>
+<pre class="literal-block">
+{% for item in seq %}
+    &lt;li&gt;{% block loop_item %}{{ item }}{% endblock %}&lt;/li&gt;
+{% endfor %}
+</pre>
+<p>This example would output empty <tt class="docutils literal">&lt;li&gt;</tt> items because <cite>item</cite> is unavailable
+inside the block.  The reason for this is that if the block is replaced by
+a child template a variable would appear that was not defined in the block or
+passed to the context.</p>
+<p>Starting with Jinja 2.2 you can explicitly specify that variables are
+available in a block by setting the block to &quot;scoped&quot; by adding the <cite>scoped</cite>
+modifier to a block declaration:</p>
+<pre class="literal-block">
+{% for item in seq %}
+    &lt;li&gt;{% block loop_item scoped %}{{ item }}{% endblock %}&lt;/li&gt;
+{% endfor %}
+</pre>
+<p>When overriding a block the <cite>scoped</cite> modifier does not have to be provided.</p>
+</div>
+<div class="section" id="template-objects">
+<h3>Template Objects</h3>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 415)</p>
+<p>Unknown directive type &quot;versionchanged&quot;.</p>
+<pre class="literal-block">
+.. versionchanged:: 2.4
+
+</pre>
+</div>
+<p>If a template object was passed to the template context you can
+extend from that object as well.  Assuming the calling code passes
+a layout template as <cite>layout_template</cite> to the environment, this
+code works:</p>
+<pre class="literal-block">
+{% extends layout_template %}
+</pre>
+<p>Previously the <cite>layout_template</cite> variable had to be a string with
+the layout template's filename for this to work.</p>
+</div>
+</div>
+<div class="section" id="html-escaping">
+<h2>HTML Escaping</h2>
+<p>When generating HTML from templates, there's always a risk that a variable will
+include characters that affect the resulting HTML.  There are two approaches:
+manually escaping each variable or automatically escaping everything by default.</p>
+<p>Jinja supports both, but what is used depends on the application configuration.
+The default configuaration is no automatic escaping for various reasons:</p>
+<ul class="simple">
+<li>escaping everything except of safe values will also mean that Jinja is
+escaping variables known to not include HTML such as numbers which is
+a huge performance hit.</li>
+<li>The information about the safety of a variable is very fragile.  It could
+happen that by coercing safe and unsafe values the return value is double
+escaped HTML.</li>
+</ul>
+<div class="section" id="working-with-manual-escaping">
+<h3>Working with Manual Escaping</h3>
+<p>If manual escaping is enabled it's <strong>your</strong> responsibility to escape
+variables if needed.  What to escape?  If you have a variable that <em>may</em>
+include any of the following chars (<tt class="docutils literal">&gt;</tt>, <tt class="docutils literal">&lt;</tt>, <tt class="docutils literal">&amp;</tt>, or <tt class="docutils literal">&quot;</tt>) you
+<strong>have to</strong> escape it unless the variable contains well-formed and trusted
+HTML.  Escaping works by piping the variable through the <tt class="docutils literal">|e</tt> filter:
+<tt class="docutils literal">{{ user.username|e }}</tt>.</p>
+</div>
+<div class="section" id="working-with-automatic-escaping">
+<h3>Working with Automatic Escaping</h3>
+<p>When automatic escaping is enabled everything is escaped by default except
+for values explicitly marked as safe.  Those can either be marked by the
+application or in the template by using the <cite>|safe</cite> filter.  The main
+problem with this approach is that Python itself doesn't have the concept
+of tainted values so the information if a value is safe or unsafe can get
+lost.  If the information is lost escaping will take place which means that
+you could end up with double escaped contents.</p>
+<p>Double escaping is easy to avoid however, just rely on the tools Jinja2
+provides and don't use builtin Python constructs such as the string modulo
+operator.</p>
+<p>Functions returning template data (macros, <cite>super</cite>, <cite>self.BLOCKNAME</cite>) return
+safe markup always.</p>
+<p>String literals in templates with automatic escaping are considered unsafe
+too.  The reason for this is that the safe string is an extension to Python
+and not every library will work properly with it.</p>
+</div>
+</div>
+<div class="section" id="list-of-control-structures">
+<h2>List of Control Structures</h2>
+<p>A control structure refers to all those things that control the flow of a
+program - conditionals (i.e. if/elif/else), for-loops, as well as things like
+macros and blocks.  Control structures appear inside <tt class="docutils literal">{% ... %}</tt> blocks
+in the default syntax.</p>
+<div class="section" id="for">
+<h3>For</h3>
+<p>Loop over each item in a sequence.  For example, to display a list of users
+provided in a variable called <cite>users</cite>:</p>
+<pre class="literal-block">
+&lt;h1&gt;Members&lt;/h1&gt;
+&lt;ul&gt;
+{% for user in users %}
+  &lt;li&gt;{{ user.username|e }}&lt;/li&gt;
+{% endfor %}
+&lt;/ul&gt;
+</pre>
+<p>Inside of a for loop block you can access some special variables:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="69%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Variable</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><cite>loop.index</cite></td>
+<td>The current iteration of the loop. (1 indexed)</td>
+</tr>
+<tr><td><cite>loop.index0</cite></td>
+<td>The current iteration of the loop. (0 indexed)</td>
+</tr>
+<tr><td><cite>loop.revindex</cite></td>
+<td>The number of iterations from the end of the loop
+(1 indexed)</td>
+</tr>
+<tr><td><cite>loop.revindex0</cite></td>
+<td>The number of iterations from the end of the loop
+(0 indexed)</td>
+</tr>
+<tr><td><cite>loop.first</cite></td>
+<td>True if first iteration.</td>
+</tr>
+<tr><td><cite>loop.last</cite></td>
+<td>True if last iteration.</td>
+</tr>
+<tr><td><cite>loop.length</cite></td>
+<td>The number of items in the sequence.</td>
+</tr>
+<tr><td><cite>loop.cycle</cite></td>
+<td>A helper function to cycle between a list of
+sequences.  See the explanation below.</td>
+</tr>
+</tbody>
+</table>
+<p>Within a for-loop, it's possible to cycle among a list of strings/variables
+each time through the loop by using the special <cite>loop.cycle</cite> helper:</p>
+<pre class="literal-block">
+{% for row in rows %}
+    &lt;li class=&quot;{{ loop.cycle('odd', 'even') }}&quot;&gt;{{ row }}&lt;/li&gt;
+{% endfor %}
+</pre>
+<p>With Jinja 2.1 an extra <cite>cycle</cite> helper exists that allows loop-unbound
+cycling.  For more information have a look at the <a href="#id18"><span class="problematic" id="id19">:ref:`builtin-globals`</span></a>.</p>
+<div class="system-message" id="id18">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 532); <em><a href="#id19">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+<p id="loop-filtering">Unlike in Python it's not possible to <cite>break</cite> or <cite>continue</cite> in a loop.  You
+can however filter the sequence during iteration which allows you to skip
+items.  The following example skips all the users which are hidden:</p>
+<pre class="literal-block">
+{% for user in users if not user.hidden %}
+    &lt;li&gt;{{ user.username|e }}&lt;/li&gt;
+{% endfor %}
+</pre>
+<p>The advantage is that the special <cite>loop</cite> variable will count correctly thus
+not counting the users not iterated over.</p>
+<p>If no iteration took place because the sequence was empty or the filtering
+removed all the items from the sequence you can render a replacement block
+by using <cite>else</cite>:</p>
+<pre class="literal-block">
+&lt;ul&gt;
+{% for user in users %}
+    &lt;li&gt;{{ user.username|e }}&lt;/li&gt;
+{% else %}
+    &lt;li&gt;&lt;em&gt;no users found&lt;/em&gt;&lt;/li&gt;
+{% endfor %}
+&lt;/ul&gt;
+</pre>
+<p>It is also possible to use loops recursively.  This is useful if you are
+dealing with recursive data such as sitemaps.  To use loops recursively you
+basically have to add the <cite>recursive</cite> modifier to the loop definition and
+call the <cite>loop</cite> variable with the new iterable where you want to recurse.</p>
+<p>The following example implements a sitemap with recursive loops:</p>
+<pre class="literal-block">
+&lt;ul class=&quot;sitemap&quot;&gt;
+{%- for item in sitemap recursive %}
+    &lt;li&gt;&lt;a href=&quot;{{ item.href|e }}&quot;&gt;{{ item.title }}&lt;/a&gt;
+    {%- if item.children -%}
+        &lt;ul class=&quot;submenu&quot;&gt;{{ loop(item.children) }}&lt;/ul&gt;
+    {%- endif %}&lt;/li&gt;
+{%- endfor %}
+&lt;/ul&gt;
+</pre>
+</div>
+<div class="section" id="if">
+<h3>If</h3>
+<p>The <cite>if</cite> statement in Jinja is comparable with the if statements of Python.
+In the simplest form you can use it to test if a variable is defined, not
+empty or not false:</p>
+<pre class="literal-block">
+{% if users %}
+&lt;ul&gt;
+{% for user in users %}
+    &lt;li&gt;{{ user.username|e }}&lt;/li&gt;
+{% endfor %}
+&lt;/ul&gt;
+{% endif %}
+</pre>
+<p>For multiple branches <cite>elif</cite> and <cite>else</cite> can be used like in Python.  You can
+use more complex <a href="#id20"><span class="problematic" id="id21">:ref:`expressions`</span></a> there too:</p>
+<div class="system-message" id="id20">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 592); <em><a href="#id21">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+<pre class="literal-block">
+{% if kenny.sick %}
+    Kenny is sick.
+{% elif kenny.dead %}
+    You killed Kenny!  You bastard!!!
+{% else %}
+    Kenny looks okay --- so far
+{% endif %}
+</pre>
+<p>If can also be used as <a href="#id22"><span class="problematic" id="id23">:ref:`inline expression &lt;if-expression&gt;`</span></a> and for
+<a href="#id24"><span class="problematic" id="id25">:ref:`loop filtering &lt;loop-filtering&gt;`</span></a>.</p>
+<div class="system-message" id="id22">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 603); <em><a href="#id23">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+<div class="system-message" id="id24">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 603); <em><a href="#id25">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+</div>
+<div class="section" id="macros">
+<h3>Macros</h3>
+<p>Macros are comparable with functions in regular programming languages.  They
+are useful to put often used idioms into reusable functions to not repeat
+yourself.</p>
+<p>Here a small example of a macro that renders a form element:</p>
+<pre class="literal-block">
+{% macro input(name, value='', type='text', size=20) -%}
+    &lt;input type=&quot;{{ type }}&quot; name=&quot;{{ name }}&quot; value=&quot;{{
+        value|e }}&quot; size=&quot;{{ size }}&quot;&gt;
+{%- endmacro %}
+</pre>
+<p>The macro can then be called like a function in the namespace:</p>
+<pre class="literal-block">
+&lt;p&gt;{{ input('username') }}&lt;/p&gt;
+&lt;p&gt;{{ input('password', type='password') }}&lt;/p&gt;
+</pre>
+<p>If the macro was defined in a different template you have to
+<a href="#id26"><span class="problematic" id="id27">:ref:`import &lt;import&gt;`</span></a> it first.</p>
+<div class="system-message" id="id26">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 626); <em><a href="#id27">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+<p>Inside macros you have access to three special variables:</p>
+<dl class="docutils">
+<dt><cite>varargs</cite></dt>
+<dd>If more positional arguments are passed to the macro than accepted by the
+macro they end up in the special <cite>varargs</cite> variable as list of values.</dd>
+<dt><cite>kwargs</cite></dt>
+<dd>Like <cite>varargs</cite> but for keyword arguments.  All unconsumed keyword
+arguments are stored in this special variable.</dd>
+<dt><cite>caller</cite></dt>
+<dd><p class="first">If the macro was called from a <a href="#id28"><span class="problematic" id="id29">:ref:`call&lt;call&gt;`</span></a> tag the caller is stored
+in this variable as macro which can be called.</p>
+<div class="last system-message" id="id28">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 640); <em><a href="#id29">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+</dd>
+</dl>
+<p>Macros also expose some of their internal details.  The following attributes
+are available on a macro object:</p>
+<dl class="docutils">
+<dt><cite>name</cite></dt>
+<dd>The name of the macro.  <tt class="docutils literal">{{ input.name }}</tt> will print <tt class="docutils literal">input</tt>.</dd>
+<dt><cite>arguments</cite></dt>
+<dd>A tuple of the names of arguments the macro accepts.</dd>
+<dt><cite>defaults</cite></dt>
+<dd>A tuple of default values.</dd>
+<dt><cite>catch_kwargs</cite></dt>
+<dd>This is <cite>true</cite> if the macro accepts extra keyword arguments (ie: accesses
+the special <cite>kwargs</cite> variable).</dd>
+<dt><cite>catch_varargs</cite></dt>
+<dd>This is <cite>true</cite> if the macro accepts extra positional arguments (ie:
+accesses the special <cite>varargs</cite> variable).</dd>
+<dt><cite>caller</cite></dt>
+<dd><p class="first">This is <cite>true</cite> if the macro accesses the special <cite>caller</cite> variable and may
+be called from a <a href="#id30"><span class="problematic" id="id31">:ref:`call&lt;call&gt;`</span></a> tag.</p>
+<div class="last system-message" id="id30">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 664); <em><a href="#id31">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+</dd>
+</dl>
+<p>If a macro name starts with an underscore it's not exported and can't
+be imported.</p>
+</div>
+<div class="section" id="id32">
+<span id="call"></span><h3>Call</h3>
+<p>In some cases it can be useful to pass a macro to another macro.  For this
+purpose you can use the special <cite>call</cite> block.  The following example shows
+a macro that takes advantage of the call functionality and how it can be
+used:</p>
+<pre class="literal-block">
+{% macro render_dialog(title, class='dialog') -%}
+    &lt;div class=&quot;{{ class }}&quot;&gt;
+        &lt;h2&gt;{{ title }}&lt;/h2&gt;
+        &lt;div class=&quot;contents&quot;&gt;
+            {{ caller() }}
+        &lt;/div&gt;
+    &lt;/div&gt;
+{%- endmacro %}
+
+{% call render_dialog('Hello World') %}
+    This is a simple dialog rendered by using a macro and
+    a call block.
+{% endcall %}
+</pre>
+<p>It's also possible to pass arguments back to the call block.  This makes it
+useful as replacement for loops.  Generally speaking a call block works
+exactly like an macro, just that it doesn't have a name.</p>
+<p>Here an example of how a call block can be used with arguments:</p>
+<pre class="literal-block">
+{% macro dump_users(users) -%}
+    &lt;ul&gt;
+    {%- for user in users %}
+        &lt;li&gt;&lt;p&gt;{{ user.username|e }}&lt;/p&gt;{{ caller(user) }}&lt;/li&gt;
+    {%- endfor %}
+    &lt;/ul&gt;
+{%- endmacro %}
+
+{% call(user) dump_users(list_of_user) %}
+    &lt;dl&gt;
+        &lt;dl&gt;Realname&lt;/dl&gt;
+        &lt;dd&gt;{{ user.realname|e }}&lt;/dd&gt;
+        &lt;dl&gt;Description&lt;/dl&gt;
+        &lt;dd&gt;{{ user.description }}&lt;/dd&gt;
+    &lt;/dl&gt;
+{% endcall %}
+</pre>
+</div>
+<div class="section" id="id33">
+<h3>Filters</h3>
+<p>Filter sections allow you to apply regular Jinja2 filters on a block of
+template data.  Just wrap the code in the special <cite>filter</cite> section:</p>
+<pre class="literal-block">
+{% filter upper %}
+    This text becomes uppercase
+{% endfilter %}
+</pre>
+</div>
+<div class="section" id="assignments">
+<h3>Assignments</h3>
+<p>Inside code blocks you can also assign values to variables.  Assignments at
+top level (outside of blocks, macros or loops) are exported from the template
+like top level macros and can be imported by other templates.</p>
+<p>Assignments use the <cite>set</cite> tag and can have multiple targets:</p>
+<pre class="literal-block">
+{% set navigation = [('index.html', 'Index'), ('about.html', 'About')] %}
+{% set key, value = call_something() %}
+</pre>
+</div>
+<div class="section" id="extends">
+<h3>Extends</h3>
+<p>The <cite>extends</cite> tag can be used to extend a template from another one.  You
+can have multiple of them in a file but only one of them may be executed
+at the time.  See the section about <a href="#id34"><span class="problematic" id="id35">:ref:`template-inheritance`</span></a> above.</p>
+<div class="system-message" id="id34">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 746); <em><a href="#id35">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+</div>
+<div class="section" id="block">
+<h3>Block</h3>
+<p>Blocks are used for inheritance and act as placeholders and replacements
+at the same time.  They are documented in detail as part of the section
+about <a href="#id36"><span class="problematic" id="id37">:ref:`template-inheritance`</span></a>.</p>
+<div class="system-message" id="id36">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 754); <em><a href="#id37">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+</div>
+<div class="section" id="include">
+<h3>Include</h3>
+<p>The <cite>include</cite> statement is useful to include a template and return the
+rendered contents of that file into the current namespace:</p>
+<pre class="literal-block">
+{% include 'header.html' %}
+    Body
+{% include 'footer.html' %}
+</pre>
+<p>Included templates have access to the variables of the active context by
+default.  For more details about context behavior of imports and includes
+see <a href="#id38"><span class="problematic" id="id39">:ref:`import-visibility`</span></a>.</p>
+<div class="system-message" id="id38">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 769); <em><a href="#id39">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+<p>From Jinja 2.2 onwards you can mark an include with <tt class="docutils literal">ignore missing</tt> in
+which case Jinja will ignore the statement if the template to be ignored
+does not exist.  When combined with <tt class="docutils literal">with</tt> or <tt class="docutils literal">without context</tt> it has
+to be placed <em>before</em> the context visibility statement.  Here some valid
+examples:</p>
+<pre class="literal-block">
+{% include &quot;sidebar.html&quot; ignore missing %}
+{% include &quot;sidebar.html&quot; ignore missing with context %}
+{% include &quot;sidebar.html&quot; ignore missing without context %}
+</pre>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 783)</p>
+<p>Unknown directive type &quot;versionadded&quot;.</p>
+<pre class="literal-block">
+.. versionadded:: 2.2
+
+</pre>
+</div>
+<p>You can also provide a list of templates that are checked for existence
+before inclusion.  The first template that exists will be included.  If
+<cite>ignore missing</cite> is given, it will fall back to rendering nothing if
+none of the templates exist, otherwise it will raise an exception.</p>
+<p>Example:</p>
+<pre class="literal-block">
+{% include ['page_detailed.html', 'page.html'] %}
+{% include ['special_sidebar.html', 'sidebar.html'] ignore missing %}
+</pre>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 795)</p>
+<p>Unknown directive type &quot;versionchanged&quot;.</p>
+<pre class="literal-block">
+.. versionchanged:: 2.4
+   If a template object was passed to the template context you can
+   include that object using `include`.
+
+</pre>
+</div>
+</div>
+<div class="section" id="id40">
+<span id="import"></span><h3>Import</h3>
+<p>Jinja2 supports putting often used code into macros.  These macros can go into
+different templates and get imported from there.  This works similar to the
+import statements in Python.  It's important to know that imports are cached
+and imported templates don't have access to the current template variables,
+just the globals by defualt.  For more details about context behavior of
+imports and includes see <a href="#id41"><span class="problematic" id="id42">:ref:`import-visibility`</span></a>.</p>
+<div class="system-message" id="id41">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 804); <em><a href="#id42">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+<p>There are two ways to import templates.  You can import the complete template
+into a variable or request specific macros / exported variables from it.</p>
+<p>Imagine we have a helper module that renders forms (called <cite>forms.html</cite>):</p>
+<pre class="literal-block">
+{% macro input(name, value='', type='text') -%}
+    &lt;input type=&quot;{{ type }}&quot; value=&quot;{{ value|e }}&quot; name=&quot;{{ name }}&quot;&gt;
+{%- endmacro %}
+
+{%- macro textarea(name, value='', rows=10, cols=40) -%}
+    &lt;textarea name=&quot;{{ name }}&quot; rows=&quot;{{ rows }}&quot; cols=&quot;{{ cols
+        }}&quot;&gt;{{ value|e }}&lt;/textarea&gt;
+{%- endmacro %}
+</pre>
+<p>The easiest and most flexible is importing the whole module into a variable.
+That way you can access the attributes:</p>
+<pre class="literal-block">
+{% import 'forms.html' as forms %}
+&lt;dl&gt;
+    &lt;dt&gt;Username&lt;/dt&gt;
+    &lt;dd&gt;{{ forms.input('username') }}&lt;/dd&gt;
+    &lt;dt&gt;Password&lt;/dt&gt;
+    &lt;dd&gt;{{ forms.input('password', type='password') }}&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;{{ forms.textarea('comment') }}&lt;/p&gt;
+</pre>
+<p>Alternatively you can import names from the template into the current
+namespace:</p>
+<pre class="literal-block">
+{% from 'forms.html' import input as input_field, textarea %}
+&lt;dl&gt;
+    &lt;dt&gt;Username&lt;/dt&gt;
+    &lt;dd&gt;{{ input_field('username') }}&lt;/dd&gt;
+    &lt;dt&gt;Password&lt;/dt&gt;
+    &lt;dd&gt;{{ input_field('password', type='password') }}&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;p&gt;{{ textarea('comment') }}&lt;/p&gt;
+</pre>
+<p>Macros and variables starting with one ore more underscores are private and
+cannot be imported.</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 853)</p>
+<p>Unknown directive type &quot;versionchanged&quot;.</p>
+<pre class="literal-block">
+.. versionchanged:: 2.4
+   If a template object was passed to the template context you can
+   import from that object.
+
+
+</pre>
+</div>
+</div>
+</div>
+<div class="section" id="import-context-behavior">
+<span id="import-visibility"></span><h2>Import Context Behavior</h2>
+<p>Per default included templates are passed the current context and imported
+templates not.  The reason for this is that imports unlike includes are
+cached as imports are often used just as a module that holds macros.</p>
+<p>This however can be changed of course explicitly.  By adding <cite>with context</cite>
+or <cite>without context</cite> to the import/include directive the current context
+can be passed to the template and caching is disabled automatically.</p>
+<p>Here two examples:</p>
+<pre class="literal-block">
+{% from 'forms.html' import input with context %}
+{% include 'header.html' without context %}
+</pre>
+<div class="admonition-note admonition">
+<p class="first admonition-title">Note</p>
+<p>In Jinja 2.0 the context that was passed to the included template
+did not include variables defined in the template.  As a matter of
+fact this did not work:</p>
+<pre class="literal-block">
+{% for box in boxes %}
+    {% include &quot;render_box.html&quot; %}
+{% endfor %}
+</pre>
+<p class="last">The included template <tt class="docutils literal">render_box.html</tt> is <em>not</em> able to access
+<cite>box</cite> in Jinja 2.0. As of Jinja 2.1 <tt class="docutils literal">render_box.html</tt> <em>is</em> able
+to do so.</p>
+</div>
+</div>
+<div class="section" id="id43">
+<span id="expressions"></span><h2>Expressions</h2>
+<p>Jinja allows basic expressions everywhere.  These work very similar to regular
+Python and even if you're not working with Python you should feel comfortable
+with it.</p>
+<div class="section" id="literals">
+<h3>Literals</h3>
+<p>The simplest form of expressions are literals.  Literals are representations
+for Python objects such as strings and numbers.  The following literals exist:</p>
+<dl class="docutils">
+<dt>&quot;Hello World&quot;:</dt>
+<dd>Everything between two double or single quotes is a string.  They are
+useful whenever you need a string in the template (for example as
+arguments to function calls, filters or just to extend or include a
+template).</dd>
+<dt>42 / 42.23:</dt>
+<dd>Integers and floating point numbers are created by just writing the
+number down.  If a dot is present the number is a float, otherwise an
+integer.  Keep in mind that for Python <tt class="docutils literal">42</tt> and <tt class="docutils literal">42.0</tt> is something
+different.</dd>
+<dt>['list', 'of', 'objects']:</dt>
+<dd><p class="first">Everything between two brackets is a list.  Lists are useful to store
+sequential data in or to iterate over them.  For example you can easily
+create a list of links using lists and tuples with a for loop:</p>
+<pre class="last literal-block">
+&lt;ul&gt;
+{% for href, caption in [('index.html', 'Index'), ('about.html', 'About'),
+                         ('downloads.html', 'Downloads')] %}
+    &lt;li&gt;&lt;a href=&quot;{{ href }}&quot;&gt;{{ caption }}&lt;/a&gt;&lt;/li&gt;
+{% endfor %}
+&lt;/ul&gt;
+</pre>
+</dd>
+<dt>('tuple', 'of', 'values'):</dt>
+<dd>Tuples are like lists, just that you can't modify them.  If the tuple
+only has one item you have to end it with a comma.  Tuples are usually
+used to represent items of two or more elements.  See the example above
+for more details.</dd>
+<dt>{'dict': 'of', 'key': 'and', 'value': 'pairs'}:</dt>
+<dd><p class="first">A dict in Python is a structure that combines keys and values.  Keys must
+be unique and always have exactly one value.  Dicts are rarely used in
+templates, they are useful in some rare cases such as the <a href="#id44"><span class="problematic" id="id45">:func:`xmlattr`</span></a>
+filter.</p>
+<div class="last system-message" id="id44">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 937); <em><a href="#id45">backlink</a></em></p>
+Unknown interpreted text role &quot;func&quot;.</div>
+</dd>
+<dt>true / false:</dt>
+<dd>true is always true and false is always false.</dd>
+</dl>
+<div class="admonition-note admonition">
+<p class="first admonition-title">Note</p>
+<p class="last">The special constants <cite>true</cite>, <cite>false</cite> and <cite>none</cite> are indeed lowercase.
+Because that caused confusion in the past, when writing <cite>True</cite> expands
+to an undefined variable that is considered false, all three of them can
+be written in title case too (<cite>True</cite>, <cite>False</cite>, and <cite>None</cite>).  However for
+consistency (all Jinja identifiers are lowercase) you should use the
+lowercase versions.</p>
+</div>
+</div>
+<div class="section" id="math">
+<h3>Math</h3>
+<p>Jinja allows you to calculate with values.  This is rarely useful in templates
+but exists for completeness' sake.  The following operators are supported:</p>
+<dl class="docutils">
+<dt>+</dt>
+<dd>Adds two objects together.  Usually the objects are numbers but if both are
+strings or lists you can concatenate them this way.  This however is not
+the preferred way to concatenate strings!  For string concatenation have
+a look at the <tt class="docutils literal">~</tt> operator.  <tt class="docutils literal">{{ 1 + 1 }}</tt> is <tt class="docutils literal">2</tt>.</dd>
+<dt>-</dt>
+<dd>Substract the second number from the first one.  <tt class="docutils literal">{{ 3 - 2 }}</tt> is <tt class="docutils literal">1</tt>.</dd>
+</dl>
+<dl class="docutils">
+<dt>/</dt>
+<dd>Divide two numbers.  The return value will be a floating point number.
+<tt class="docutils literal">{{ 1 / 2 }}</tt> is <tt class="docutils literal">{{ 0.5 }}</tt>.</dd>
+</dl>
+<dl class="docutils">
+<dt>//</dt>
+<dd>Divide two numbers and return the truncated integer result.
+<tt class="docutils literal">{{ 20 // 7 }}</tt> is <tt class="docutils literal">2</tt>.</dd>
+</dl>
+<dl class="docutils">
+<dt>%</dt>
+<dd>Calculate the remainder of an integer division.  <tt class="docutils literal">{{ 11 % 7 }}</tt> is <tt class="docutils literal">4</tt>.</dd>
+<dt>*</dt>
+<dd>Multiply the left operand with the right one.  <tt class="docutils literal">{{ 2 * 2 }}</tt> would
+return <tt class="docutils literal">4</tt>.  This can also be used to repeat a string multiple times.
+<tt class="docutils literal">{{ '=' * 80 }}</tt> would print a bar of 80 equal signs.</dd>
+<dt>**</dt>
+<dd>Raise the left operand to the power of the right operand.  <tt class="docutils literal">{{ <span class="pre">2**3</span> }}</tt>
+would return <tt class="docutils literal">8</tt>.</dd>
+</dl>
+</div>
+<div class="section" id="comparisons">
+<h3>Comparisons</h3>
+<dl class="docutils">
+<dt>==</dt>
+<dd>Compares two objects for equality.</dd>
+<dt>!=</dt>
+<dd>Compares two objects for inequality.</dd>
+</dl>
+<dl class="docutils">
+<dt>&gt;</dt>
+<dd><cite>true</cite> if the left hand side is greater than the right hand side.</dd>
+<dt>&gt;=</dt>
+<dd><cite>true</cite> if the left hand side is greater or equal to the right hand side.</dd>
+</dl>
+<dl class="docutils">
+<dt>&lt;</dt>
+<dd><cite>true</cite> if the left hand side is lower than the right hand side.</dd>
+<dt>&lt;=</dt>
+<dd><cite>true</cite> if the left hand side is lower or equal to the right hand side.</dd>
+</dl>
+</div>
+<div class="section" id="logic">
+<h3>Logic</h3>
+<p>For <cite>if</cite> statements, <cite>for</cite> filtering or <cite>if</cite> expressions it can be useful to
+combine multiple expressions:</p>
+<dl class="docutils">
+<dt>and</dt>
+<dd>Return true if the left and the right operand is true.</dd>
+<dt>or</dt>
+<dd>Return true if the left or the right operand is true.</dd>
+<dt>not</dt>
+<dd>negate a statement (see below).</dd>
+<dt>(expr)</dt>
+<dd>group an expression.</dd>
+</dl>
+<div class="admonition-note admonition">
+<p class="first admonition-title">Note</p>
+<p class="last">The <tt class="docutils literal">is</tt> and <tt class="docutils literal">in</tt> operators support negation using an infix notation
+too: <tt class="docutils literal">foo is not bar</tt> and <tt class="docutils literal">foo not in bar</tt> instead of <tt class="docutils literal">not foo is bar</tt>
+and <tt class="docutils literal">not foo in bar</tt>.  All other expressions require a prefix notation:
+<tt class="docutils literal">not (foo and bar).</tt></p>
+</div>
+</div>
+<div class="section" id="other-operators">
+<h3>Other Operators</h3>
+<p>The following operators are very useful but don't fit into any of the other
+two categories:</p>
+<dl class="docutils">
+<dt>in</dt>
+<dd>Perform sequence / mapping containment test.  Returns true if the left
+operand is contained in the right.  <tt class="docutils literal">{{ 1 in [1, 2, 3] }}</tt> would for
+example return true.</dd>
+<dt>is</dt>
+<dd><p class="first">Performs a <a href="#id46"><span class="problematic" id="id47">:ref:`test &lt;tests&gt;`</span></a>.</p>
+<div class="last system-message" id="id46">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 1048); <em><a href="#id47">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+</dd>
+<dt>|</dt>
+<dd><p class="first">Applies a <a href="#id48"><span class="problematic" id="id49">:ref:`filter &lt;filters&gt;`</span></a>.</p>
+<div class="last system-message" id="id48">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 1051); <em><a href="#id49">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+</dd>
+</dl>
+<dl class="docutils">
+<dt>~</dt>
+<dd>Converts all operands into strings and concatenates them.
+<tt class="docutils literal">{{ &quot;Hello &quot; ~ name ~ &quot;!&quot; }}</tt> would return (assuming <cite>name</cite> is
+<tt class="docutils literal">'John'</tt>) <tt class="docutils literal">Hello John!</tt>.</dd>
+<dt>()</dt>
+<dd>Call a callable: <tt class="docutils literal">{{ post.render() }}</tt>.  Inside of the parentheses you
+can use positional arguments and keyword arguments like in python:
+<tt class="docutils literal">{{ post.render(user, full=true) }}</tt>.</dd>
+<dt>. / []</dt>
+<dd><p class="first">Get an attribute of an object.  (See <a href="#id50"><span class="problematic" id="id51">:ref:`variables`</span></a>)</p>
+<div class="last system-message" id="id50">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 1064); <em><a href="#id51">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="id52">
+<span id="if-expression"></span><h3>If Expression</h3>
+<p>It is also possible to use inline <cite>if</cite> expressions.  These are useful in some
+situations.  For example you can use this to extend from one template if a
+variable is defined, otherwise from the default layout template:</p>
+<pre class="literal-block">
+{% extends layout_template if layout_template is defined else 'master.html' %}
+</pre>
+<p>The general syntax is <tt class="docutils literal">&lt;do something&gt; if &lt;something is true&gt; else &lt;do
+something else&gt;</tt>.</p>
+<p>The <cite>else</cite> part is optional.  If not provided the else block implicitly
+evaluates into an undefined object:</p>
+<pre class="literal-block">
+{{ '[%s]' % page.title if page.title }}
+</pre>
+</div>
+</div>
+<div class="section" id="list-of-builtin-filters">
+<span id="builtin-filters"></span><h2>List of Builtin Filters</h2>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 1092)</p>
+<p>Unknown directive type &quot;jinjafilters&quot;.</p>
+<pre class="literal-block">
+.. jinjafilters::
+
+
+</pre>
+</div>
+</div>
+<div class="section" id="list-of-builtin-tests">
+<span id="builtin-tests"></span><h2>List of Builtin Tests</h2>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 1100)</p>
+<p>Unknown directive type &quot;jinjatests&quot;.</p>
+<pre class="literal-block">
+.. jinjatests::
+
+</pre>
+</div>
+</div>
+<div class="section" id="list-of-global-functions">
+<span id="builtin-globals"></span><h2>List of Global Functions</h2>
+<p>The following functions are available in the global scope by default:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 1109)</p>
+<p>Unknown directive type &quot;function&quot;.</p>
+<pre class="literal-block">
+.. function:: range([start,] stop[, step])
+
+    Return a list containing an arithmetic progression of integers.
+    range(i, j) returns [i, i+1, i+2, ..., j-1]; start (!) defaults to 0.
+    When step is given, it specifies the increment (or decrement).
+    For example, range(4) returns [0, 1, 2, 3].  The end point is omitted!
+    These are exactly the valid indices for a list of 4 elements.
+
+    This is useful to repeat a template block multiple times for example
+    to fill a list.  Imagine you have 7 users in the list but you want to
+    render three empty items to enforce a height with CSS::
+
+        &lt;ul&gt;
+        {% for user in users %}
+            &lt;li&gt;{{ user.username }}&lt;/li&gt;
+        {% endfor %}
+        {% for number in range(10 - users|count) %}
+            &lt;li class=&quot;empty&quot;&gt;&lt;span&gt;...&lt;/span&gt;&lt;/li&gt;
+        {% endfor %}
+        &lt;/ul&gt;
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 1130)</p>
+<p>Unknown directive type &quot;function&quot;.</p>
+<pre class="literal-block">
+.. function:: lipsum(n=5, html=True, min=20, max=100)
+
+    Generates some lorem ipsum for the template.  Per default five paragraphs
+    with HTML are generated each paragraph between 20 and 100 words.  If html
+    is disabled regular text is returned.  This is useful to generate simple
+    contents for layout testing.
+
+</pre>
+</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 1137)</p>
+<p>Unknown directive type &quot;function&quot;.</p>
+<pre class="literal-block">
+.. function:: dict(\**items)
+
+    A convenient alternative to dict literals.  ``{'foo': 'bar'}`` is the same
+    as ``dict(foo='bar')``.
+
+</pre>
+</div>
+<p class="cycler-items">The cycler allows you to cycle among values similar to how <cite>loop.cycle</cite>
+works.  Unlike <cite>loop.cycle</cite> however you can use this cycler outside of
+loops or over multiple loops.</p>
+<p class="cycler-items">This is for example very useful if you want to show a list of folders and
+files, with the folders on top, but both in the same list with alternating
+row colors.</p>
+<p class="cycler-items">The following example shows how <cite>cycler</cite> can be used:</p>
+<pre class="cycler-items literal-block">
+{% set row_class = cycler('odd', 'even') %}
+&lt;ul class=&quot;browser&quot;&gt;
+{% for folder in folders %}
+  &lt;li class=&quot;folder {{ row_class.next() }}&quot;&gt;{{ folder|e }}&lt;/li&gt;
+{% endfor %}
+{% for filename in files %}
+  &lt;li class=&quot;file {{ row_class.next() }}&quot;&gt;{{ filename|e }}&lt;/li&gt;
+{% endfor %}
+&lt;/ul&gt;
+</pre>
+<p class="cycler-items">A cycler has the following attributes and methods:</p>
+<div class="cycler-items system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 1166)</p>
+<p>Unknown directive type &quot;method&quot;.</p>
+<pre class="literal-block">
+.. method:: reset()
+
+    Resets the cycle to the first item.
+
+</pre>
+</div>
+<div class="cycler-items system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 1170)</p>
+<p>Unknown directive type &quot;method&quot;.</p>
+<pre class="literal-block">
+.. method:: next()
+
+    Goes one item a head and returns the then current item.
+
+</pre>
+</div>
+<div class="cycler-items system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 1174)</p>
+<p>Unknown directive type &quot;attribute&quot;.</p>
+<pre class="literal-block">
+.. attribute:: current
+
+    Returns the current item.
+
+</pre>
+</div>
+<p class="cycler-items"><strong>new in Jinja 2.1</strong></p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 1180)</p>
+<p>Invalid class attribute value for &quot;class&quot; directive: &quot;joiner(sep=', ')&quot;.</p>
+<pre class="literal-block">
+.. class:: joiner(sep=', ')
+
+    A tiny helper that can be use to &quot;join&quot; multiple sections.  A joiner is
+    passed a string and will return that string every time it's calld, except
+    the first time in which situation it returns an empty string.  You can
+    use this to join things::
+
+        {% set pipe = joiner(&quot;|&quot;) %}
+        {% if categories %} {{ pipe() }}
+            Categories: {{ categories|join(&quot;, &quot;) }}
+        {% endif %}
+        {% if author %} {{ pipe() }}
+            Author: {{ author() }}
+        {% endif %}
+        {% if can_edit %} {{ pipe() }}
+            &lt;a href=&quot;?action=edit&quot;&gt;Edit&lt;/a&gt;
+        {% endif %}
+
+    **new in Jinja 2.1**
+
+
+</pre>
+</div>
+</div>
+<div class="section" id="extensions">
+<h2>Extensions</h2>
+<p>The following sections cover the built-in Jinja2 extensions that may be
+enabled by the application.  The application could also provide further
+extensions not covered by this documentation.  In that case there should
+be a separate document explaining the extensions.</p>
+<div class="section" id="i18n">
+<span id="i18n-in-templates"></span><h3>i18n</h3>
+<p>If the i18n extension is enabled it's possible to mark parts in the template
+as translatable.  To mark a section as translatable you can use <cite>trans</cite>:</p>
+<pre class="literal-block">
+&lt;p&gt;{% trans %}Hello {{ user }}!{% endtrans %}&lt;/p&gt;
+</pre>
+<p>To translate a template expression --- say, using template filters or just
+accessing an attribute of an object --- you need to bind the expression to a
+name for use within the translation block:</p>
+<pre class="literal-block">
+&lt;p&gt;{% trans user=user.username %}Hello {{ user }}!{% endtrans %}&lt;/p&gt;
+</pre>
+<p>If you need to bind more than one expression inside a <cite>trans</cite> tag, separate
+the pieces with a comma (<tt class="docutils literal">,</tt>):</p>
+<pre class="literal-block">
+{% trans book_title=book.title, author=author.name %}
+This is {{ book_title }} by {{ author }}
+{% endtrans %}
+</pre>
+<p>Inside trans tags no statements are allowed, only variable tags are.</p>
+<p>To pluralize, specify both the singular and plural forms with the <cite>pluralize</cite>
+tag, which appears between <cite>trans</cite> and <cite>endtrans</cite>:</p>
+<pre class="literal-block">
+{% trans count=list|length %}
+There is {{ count }} {{ name }} object.
+{% pluralize %}
+There are {{ count }} {{ name }} objects.
+{% endtrans %}
+</pre>
+<p>Per default the first variable in a block is used to determine the correct
+singular or plural form.  If that doesn't work out you can specify the name
+which should be used for pluralizing by adding it as parameter to <cite>pluralize</cite>:</p>
+<pre class="literal-block">
+{% trans ..., user_count=users|length %}...
+{% pluralize user_count %}...{% endtrans %}
+</pre>
+<p>It's also possible to translate strings in expressions.  For that purpose
+three functions exist:</p>
+<p>_   <cite>gettext</cite>: translate a single string
+-   <cite>ngettext</cite>: translate a pluralizable string
+-   <cite>_</cite>: alias for <cite>gettext</cite></p>
+<p>For example you can print a translated string easily this way:</p>
+<pre class="literal-block">
+{{ _('Hello World!') }}
+</pre>
+<p>To use placeholders you can use the <cite>format</cite> filter:</p>
+<pre class="literal-block">
+{{ _('Hello %(user)s!')|format(user=user.username) }}
+</pre>
+<p>For multiple placeholders always use keyword arguments to <cite>format</cite> as other
+languages may not use the words in the same order.</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 1268)</p>
+<p>Unknown directive type &quot;versionchanged&quot;.</p>
+<pre class="literal-block">
+.. versionchanged:: 2.5
+
+</pre>
+</div>
+<p>If newstyle gettext calls are activated (<a href="#id53"><span class="problematic" id="id54">:ref:`newstyle-gettext`</span></a>), using
+placeholders is a lot easier:</p>
+<div class="system-message" id="id53">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 1270); <em><a href="#id54">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+<div class="highlight"><pre><span class="cp">{{</span> <span class="nv">gettext</span><span class="o">(</span><span class="s1">&#39;Hello World!&#39;</span><span class="o">)</span> <span class="cp">}}</span>
+<span class="cp">{{</span> <span class="nv">gettext</span><span class="o">(</span><span class="s1">&#39;Hello %(name)s!&#39;</span><span class="o">,</span> <span class="nv">name</span><span class="o">=</span><span class="s1">&#39;World&#39;</span><span class="o">)</span> <span class="cp">}}</span>
+<span class="cp">{{</span> <span class="nv">ngettext</span><span class="o">(</span><span class="s1">&#39;%(num)d apple&#39;</span><span class="o">,</span> <span class="s1">&#39;%(num)d apples&#39;</span><span class="o">,</span> <span class="nv">apples</span><span class="o">|</span><span class="nf">count</span><span class="o">)</span> <span class="cp">}}</span>
+</pre></div>
+<p>Note that the <cite>ngettext</cite> function's format string automatically recieves
+the count as <cite>num</cite> parameter additionally to the regular parameters.</p>
+</div>
+<div class="section" id="expression-statement">
+<h3>Expression Statement</h3>
+<p>If the expression-statement extension is loaded a tag called <cite>do</cite> is available
+that works exactly like the regular variable expression (<tt class="docutils literal">{{ ... }}</tt>) just
+that it doesn't print anything.  This can be used to modify lists:</p>
+<pre class="literal-block">
+{% do navigation.append('a string') %}
+</pre>
+</div>
+<div class="section" id="loop-controls">
+<h3>Loop Controls</h3>
+<p>If the application enables the <a href="#id55"><span class="problematic" id="id56">:ref:`loopcontrols-extension`</span></a> it's possible to
+use <cite>break</cite> and <cite>continue</cite> in loops.  When <cite>break</cite> is reached, the loop is
+terminated, if <cite>continue</cite> is eached the processing is stopped and continues
+with the next iteration.</p>
+<div class="system-message" id="id55">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 1296); <em><a href="#id56">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+<p>Here a loop that skips every second item:</p>
+<pre class="literal-block">
+{% for user in users %}
+    {%- if loop.index is even %}{% continue %}{% endif %}
+    ...
+{% endfor %}
+</pre>
+<p>Likewise a look that stops processing after the 10th iteration:</p>
+<pre class="literal-block">
+{% for user in users %}
+    {%- if loop.index &gt;= 10 %}{% break %}{% endif %}
+{%- endfor %}
+</pre>
+</div>
+<div class="section" id="with-statement">
+<h3>With Statement</h3>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 1318)</p>
+<p>Unknown directive type &quot;versionadded&quot;.</p>
+<pre class="literal-block">
+.. versionadded:: 2.3
+
+</pre>
+</div>
+<p>If the application enables the <a href="#id57"><span class="problematic" id="id58">:ref:`with-extension`</span></a> it is possible to
+use the <cite>with</cite> keyword in templates.  This makes it possible to create
+a new inner scope.  Variables set within this scope are not visible
+outside of the scope.</p>
+<div class="system-message" id="id57">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 1320); <em><a href="#id58">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+<p>With in a nutshell:</p>
+<pre class="literal-block">
+{% with %}
+    {% set foo = 42 %}
+    {{ foo }}           foo is 42 here
+{% endwith %}
+foo is not visible here any longer
+</pre>
+<p>Because it is common to set variables at the beginning of the scope
+you can do that within the with statement.  The following two examples
+are equivalent:</p>
+<pre class="literal-block">
+{% with foo = 42 %}
+    {{ foo }}
+{% endwith %}
+
+{% with %}
+    {% set foo = 42 %}
+    {{ foo }}
+{% endwith %}
+</pre>
+</div>
+</div>
+<div class="section" id="autoescape-extension">
+<span id="autoescape-overrides"></span><h2>Autoescape Extension</h2>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 1351)</p>
+<p>Unknown directive type &quot;versionadded&quot;.</p>
+<pre class="literal-block">
+.. versionadded:: 2.4
+
+</pre>
+</div>
+<p>If the application enables the <a href="#id59"><span class="problematic" id="id60">:ref:`autoescape-extension`</span></a> one can
+activate and deactivate the autoescaping from within the templates.</p>
+<div class="system-message" id="id59">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/templates.rst</tt>, line 1353); <em><a href="#id60">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+<p>Example:</p>
+<pre class="literal-block">
+{% autoescape true %}
+    Autoescaping is active within this block
+{% endautoescape %}
+
+{% autoescape false %}
+    Autoescaping is inactive within this block
+{% endautoescape %}
+</pre>
+<p>After the <cite>endautoescape</cite> the behavior is reverted to what it was before.</p>
+</div>
+
+    </div><!-- /.entry-content -->
+    
+
+  </article>
+</section>
+
+        <section id="extras" class="body">
+        
+        
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+
+
+
+</body>
+</html>

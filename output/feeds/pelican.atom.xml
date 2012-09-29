@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>A Pelican Blog</title><link href="/" rel="alternate"></link><link href="/feeds/pelican.atom.xml" rel="self"></link><id>/</id><updated>2012-09-30T04:52:35Z</updated><entry><title>Pelican</title><link href="/pelican.html" rel="alternate"></link><updated>2012-09-30T04:52:35Z</updated><author><name>kamal</name></author><id>tag:,2012-09-30:pelican.html</id><summary type="html">&lt;a class="reference external image-reference" href="http://travis-ci.org/#!/getpelican/pelican"&gt;&lt;img alt="Travis-ci: continuous integration status." src="https://secure.travis-ci.org/getpelican/pelican.png?branch=master" /&gt;&lt;/a&gt;
+&lt;p&gt;Pelican is a static site generator, written in &lt;a class="reference external" href="http://www.python.org/"&gt;Python&lt;/a&gt;.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Write your weblog entries directly with your editor of choice (vim!)
+in &lt;a class="reference external" href="http://docutils.sourceforge.net/rst.html"&gt;reStructuredText&lt;/a&gt; or &lt;a class="reference external" href="http://daringfireball.net/projects/markdown/"&gt;Markdown&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Includes a simple CLI tool to (re)generate the weblog&lt;/li&gt;
+&lt;li&gt;Easy to interface with DVCSes and web hooks&lt;/li&gt;
+&lt;li&gt;Completely static output is easy to host anywhere&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="section" id="features"&gt;
+&lt;h2&gt;Features&lt;/h2&gt;
+&lt;p&gt;Pelican currently supports:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Blog articles and pages&lt;/li&gt;
+&lt;li&gt;Comments, via an external service (Disqus). (Please note that while
+useful, Disqus is an external service, and thus the comment data will be
+somewhat outside of your control and potentially subject to data loss.)&lt;/li&gt;
+&lt;li&gt;Theming support (themes are created using &lt;a class="reference external" href="http://jinja.pocoo.org/"&gt;Jinja2&lt;/a&gt; templates)&lt;/li&gt;
+&lt;li&gt;PDF generation of the articles/pages (optional)&lt;/li&gt;
+&lt;li&gt;Publication of articles in multiple languages&lt;/li&gt;
+&lt;li&gt;Atom/RSS feeds&lt;/li&gt;
+&lt;li&gt;Code syntax highlighting&lt;/li&gt;
+&lt;li&gt;Compilation of &lt;a class="reference external" href="http://lesscss.org/"&gt;LESS CSS&lt;/a&gt; (optional)&lt;/li&gt;
+&lt;li&gt;Import from WordPress, Dotclear, or RSS feeds&lt;/li&gt;
+&lt;li&gt;Integration with external tools: Twitter, Google Analytics, etc. (optional)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Have a look at the &lt;a class="reference external" href="http://docs.getpelican.com/latest/"&gt;Pelican documentation&lt;/a&gt; for more information.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="why-the-name-pelican"&gt;
+&lt;h2&gt;Why the name &amp;quot;Pelican&amp;quot;?&lt;/h2&gt;
+&lt;p&gt;&amp;quot;Pelican&amp;quot; is an anagram for &lt;em&gt;calepin&lt;/em&gt;, which means &amp;quot;notebook&amp;quot; in French. ;)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="source-code"&gt;
+&lt;h2&gt;Source code&lt;/h2&gt;
+&lt;p&gt;You can access the source code at: &lt;a class="reference external" href="https://github.com/getpelican/pelican"&gt;https://github.com/getpelican/pelican&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;If you feel hackish, have a look at the explanation of &lt;a class="reference external" href="http://docs.getpelican.com/en/latest/internals.html"&gt;Pelican's internals&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="feedback-contact-us"&gt;
+&lt;h2&gt;Feedback / Contact us&lt;/h2&gt;
+&lt;p&gt;If you want to see new features in Pelican, don't hesitate to offer
+suggestions, clone the repository, etc. There are many ways to &lt;a class="reference external" href="http://docs.getpelican.com/en/latest/contribute.html"&gt;contribute&lt;/a&gt;.
+That's open source, dude!&lt;/p&gt;
+&lt;p&gt;Send a message to &amp;quot;alexis at notmyidea dot org&amp;quot; with any requests/feedback! You
+can also join the team at &lt;a class="reference external" href="irc://irc.freenode.net/pelican"&gt;#pelican on Freenode&lt;/a&gt; (or if you don't have an IRC
+client handy, use the &lt;a class="reference external" href="http://webchat.freenode.net/?channels=pelican&amp;amp;uio=d4"&gt;webchat&lt;/a&gt; for quick feedback.&lt;/p&gt;
+&lt;!-- Links --&gt;
+&lt;/div&gt;
+</summary></entry></feed>

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Signals</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="./theme/css/main.css" type="text/css" />
+        
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="A Pelican Blog Atom Feed" />
+        
+        
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="./css/ie.css"/>
+                <script src="./js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="./css/ie6.css"/><![endif]-->
+
+</head>
+
+<body id="index" class="home">
+
+        <header id="banner" class="body">
+                <h1><a href=".">A Pelican Blog </a></h1>
+                <nav><ul>
+                
+                
+                
+                
+                
+                    <li ><a href="./category/testcategory.html">TestCategory</a></li>
+                
+                    <li ><a href="./category/testpages.html">TestPages</a></li>
+                
+                    <li ><a href="./category/yeah.html">Yeah</a></li>
+                
+                    <li ><a href="./category/content.html">content</a></li>
+                
+                    <li ><a href="./category/docs.html">docs</a></li>
+                
+                    <li ><a href="./category/emacs.html">emacs</a></li>
+                
+                    <li ><a href="./category/pelican.html">pelican</a></li>
+                
+                    <li class="active"><a href="./category/source.html">source</a></li>
+                
+                    <li ><a href="./category/src.html">src</a></li>
+                
+                    <li ><a href="./category/test.html">test</a></li>
+                
+                    <li ><a href="./category/yeah.html">yeah</a></li>
+                
+                </ul></nav>
+        </header><!-- /#banner -->
+        
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="signals.html" rel="bookmark"
+           title="Permalink to Signals">Signals</a></h1>
+      
+    </header>
+
+    <div class="entry-content">
+      <footer class="post-info">
+        <abbr class="published" title="2012-09-30T04:54:36.713308">
+                Sun 30 September 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/kamal.html">kamal</a>
+        </address>
+        
+<p>In <a href="./category/source.html">source</a>. </p>
+
+
+
+</footer><!-- /.post-info -->
+      <div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/blinker/docs/source/signals.rst</tt>, line 5)</p>
+<p>Unknown directive type &quot;currentmodule&quot;.</p>
+<pre class="literal-block">
+.. currentmodule:: blinker.base
+
+</pre>
+</div>
+<div class="section" id="decoupling-with-named-signals">
+<h2>Decoupling With Named Signals</h2>
+<p>Named signals are created with <a href="#id1"><span class="problematic" id="id2">:func:`signal`</span></a>:</p>
+<div class="system-message" id="id1">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/blinker/docs/source/signals.rst</tt>, line 10); <em><a href="#id2">backlink</a></em></p>
+Unknown interpreted text role &quot;func&quot;.</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/blinker/docs/source/signals.rst</tt>, line 12)</p>
+<p>Unknown directive type &quot;doctest&quot;.</p>
+<pre class="literal-block">
+.. doctest::
+
+  &gt;&gt;&gt; from blinker import signal
+  &gt;&gt;&gt; initialized = signal('initialized')
+  &gt;&gt;&gt; initialized is signal('initialized')
+  True
+
+</pre>
+</div>
+<p>Every call to <tt class="docutils literal"><span class="pre">signal('name')</span></tt> returns the same signal object,
+allowing unconnected parts of code (different modules, plugins,
+anything) to all use the same signal without requiring any code
+sharing or special imports.</p>
+</div>
+<div class="section" id="subscribing-to-signals">
+<h2>Subscribing to Signals</h2>
+<p><a href="#id3"><span class="problematic" id="id4">:meth:`Signal.connect`</span></a> registers a function to be invoked each time
+the signal is emitted.  Connected functions are always passed the
+object that caused the signal to be emitted.</p>
+<div class="system-message" id="id3">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/blinker/docs/source/signals.rst</tt>, line 28); <em><a href="#id4">backlink</a></em></p>
+Unknown interpreted text role &quot;meth&quot;.</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/blinker/docs/source/signals.rst</tt>, line 32)</p>
+<p>Unknown directive type &quot;doctest&quot;.</p>
+<pre class="literal-block">
+.. doctest::
+
+  &gt;&gt;&gt; def subscriber(sender):
+  ...     print(&quot;Got a signal sent by %r&quot; % sender)
+  ...
+  &gt;&gt;&gt; ready = signal('ready')
+  &gt;&gt;&gt; ready.connect(subscriber)
+  &lt;function subscriber at 0x...&gt;
+
+
+</pre>
+</div>
+</div>
+<div class="section" id="emitting-signals">
+<h2>Emitting Signals</h2>
+<p>Code producing events of interest can <a href="#id5"><span class="problematic" id="id6">:meth:`Signal.send`</span></a>
+notifications to all connected receivers.</p>
+<div class="system-message" id="id5">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/blinker/docs/source/signals.rst</tt>, line 45); <em><a href="#id6">backlink</a></em></p>
+Unknown interpreted text role &quot;meth&quot;.</div>
+<p>Below, a simple <tt class="docutils literal">Processor</tt> class emits a <tt class="docutils literal">ready</tt> signal when it's
+about to process something, and <tt class="docutils literal">complete</tt> when it is done.  It
+passes <tt class="docutils literal">self</tt> to the <a href="#id7"><span class="problematic" id="id8">:meth:`~Signal.send`</span></a> method, signifying that
+that particular instance was responsible for emitting the signal.</p>
+<div class="system-message" id="id7">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/blinker/docs/source/signals.rst</tt>, line 48); <em><a href="#id8">backlink</a></em></p>
+Unknown interpreted text role &quot;meth&quot;.</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/blinker/docs/source/signals.rst</tt>, line 53)</p>
+<p>Unknown directive type &quot;doctest&quot;.</p>
+<pre class="literal-block">
+.. doctest::
+
+  &gt;&gt;&gt; class Processor:
+  ...    def __init__(self, name):
+  ...        self.name = name
+  ...
+  ...    def go(self):
+  ...        ready = signal('ready')
+  ...        ready.send(self)
+  ...        print(&quot;Processing.&quot;)
+  ...        complete = signal('complete')
+  ...        complete.send(self)
+  ...
+  ...    def __repr__(self):
+  ...        return '&lt;Processor %s&gt;' % self.name
+  ...
+  &gt;&gt;&gt; processor_a = Processor('a')
+  &gt;&gt;&gt; processor_a.go()
+  Got a signal sent by &lt;Processor a&gt;
+  Processing.
+
+</pre>
+</div>
+<p>Notice the <tt class="docutils literal">complete</tt> signal in <tt class="docutils literal">go()</tt>?  No receivers have
+connected to <tt class="docutils literal">complete</tt> yet, and that's a-ok.  Calling
+<a href="#id9"><span class="problematic" id="id10">:meth:`~Signal.send`</span></a> on a signal with no receivers will result in no
+notifications being sent, and these no-op sends are optimized to be as
+inexpensive as possible.</p>
+<div class="system-message" id="id9">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/blinker/docs/source/signals.rst</tt>, line 74); <em><a href="#id10">backlink</a></em></p>
+Unknown interpreted text role &quot;meth&quot;.</div>
+</div>
+<div class="section" id="subscribing-to-specific-senders">
+<h2>Subscribing to Specific Senders</h2>
+<p>The default connection to a signal invokes the receiver function when
+any sender emits it.  The <a href="#id11"><span class="problematic" id="id12">:meth:`Signal.connect`</span></a> function accepts an
+optional argument to restrict the subscription to one specific sending
+object:</p>
+<div class="system-message" id="id11">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/blinker/docs/source/signals.rst</tt>, line 84); <em><a href="#id12">backlink</a></em></p>
+Unknown interpreted text role &quot;meth&quot;.</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/blinker/docs/source/signals.rst</tt>, line 89)</p>
+<p>Unknown directive type &quot;doctest&quot;.</p>
+<pre class="literal-block">
+.. doctest::
+
+  &gt;&gt;&gt; def b_subscriber(sender):
+  ...     print(&quot;Caught signal from processor_b.&quot;)
+  ...     assert sender.name == 'b'
+  ...
+  &gt;&gt;&gt; processor_b = Processor('b')
+  &gt;&gt;&gt; ready.connect(b_subscriber, sender=processor_b)
+  &lt;function b_subscriber at 0x...&gt;
+
+</pre>
+</div>
+<p>This function has been subscribed to <tt class="docutils literal">ready</tt> but only when sent by
+<tt class="docutils literal">processor_b</tt>:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/blinker/docs/source/signals.rst</tt>, line 102)</p>
+<p>Unknown directive type &quot;doctest&quot;.</p>
+<pre class="literal-block">
+.. doctest::
+
+  &gt;&gt;&gt; processor_a.go()
+  Got a signal sent by &lt;Processor a&gt;
+  Processing.
+  &gt;&gt;&gt; processor_b.go()
+  Got a signal sent by &lt;Processor b&gt;
+  Caught signal from processor_b.
+  Processing.
+
+
+</pre>
+</div>
+</div>
+<div class="section" id="sending-and-receiving-data-through-signals">
+<h2>Sending and Receiving Data Through Signals</h2>
+<p>Additional keyword arguments can be passed to <a href="#id13"><span class="problematic" id="id14">:meth:`~Signal.send`</span></a>.
+These will in turn be passed to the connected functions:</p>
+<div class="system-message" id="id13">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/blinker/docs/source/signals.rst</tt>, line 116); <em><a href="#id14">backlink</a></em></p>
+Unknown interpreted text role &quot;meth&quot;.</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/blinker/docs/source/signals.rst</tt>, line 119)</p>
+<p>Unknown directive type &quot;doctest&quot;.</p>
+<pre class="literal-block">
+.. doctest::
+
+  &gt;&gt;&gt; send_data = signal('send-data')
+  &gt;&gt;&gt; &#64;send_data.connect
+  ... def receive_data(sender, **kw):
+  ...     print(&quot;Caught signal from %r, data %r&quot; % (sender, kw))
+  ...     return 'received!'
+  ...
+  &gt;&gt;&gt; result = send_data.send('anonymous', abc=123)
+  Caught signal from 'anonymous', data {'abc': 123}
+
+</pre>
+</div>
+<p>The return value of <a href="#id15"><span class="problematic" id="id16">:meth:`~Signal.send`</span></a> collects the return values of
+each connected function as a list of (<tt class="docutils literal">receiver function</tt>, <tt class="docutils literal">return
+value</tt>) pairs:</p>
+<div class="system-message" id="id15">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/blinker/docs/source/signals.rst</tt>, line 130); <em><a href="#id16">backlink</a></em></p>
+Unknown interpreted text role &quot;meth&quot;.</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/blinker/docs/source/signals.rst</tt>, line 134)</p>
+<p>Unknown directive type &quot;doctest&quot;.</p>
+<pre class="literal-block">
+.. doctest::
+
+  &gt;&gt;&gt; result
+  [(&lt;function receive_data at 0x...&gt;, 'received!')]
+
+
+</pre>
+</div>
+</div>
+<div class="section" id="anonymous-signals">
+<h2>Anonymous Signals</h2>
+<p>Signals need not be named.  The <a href="#id17"><span class="problematic" id="id18">:class:`Signal`</span></a> constructor creates a
+unique signal each time it is invoked.  For example, an alternative
+implementation of the Processor from above might provide the
+processing signals as class attributes:</p>
+<div class="system-message" id="id17">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/blinker/docs/source/signals.rst</tt>, line 143); <em><a href="#id18">backlink</a></em></p>
+Unknown interpreted text role &quot;class&quot;.</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/blinker/docs/source/signals.rst</tt>, line 148)</p>
+<p>Unknown directive type &quot;doctest&quot;.</p>
+<pre class="literal-block">
+.. doctest::
+
+  &gt;&gt;&gt; from blinker import Signal
+  &gt;&gt;&gt; class AltProcessor:
+  ...    on_ready = Signal()
+  ...    on_complete = Signal()
+  ...
+  ...    def __init__(self, name):
+  ...        self.name = name
+  ...
+  ...    def go(self):
+  ...        self.on_ready.send(self)
+  ...        print(&quot;Alternate processing.&quot;)
+  ...        self.on_complete.send(self)
+  ...
+  ...    def __repr__(self):
+  ...        return '&lt;AltProcessor %s&gt;' % self.name
+  ...
+
+</pre>
+</div>
+</div>
+<div class="section" id="connect-as-a-decorator">
+<h2><tt class="docutils literal">connect</tt> as a Decorator</h2>
+<p>You may have noticed the return value of <a href="#id19"><span class="problematic" id="id20">:meth:`~Signal.connect`</span></a> in
+the console output in the sections above.  This allows <tt class="docutils literal">connect</tt> to
+be used as a decorator on functions:</p>
+<div class="system-message" id="id19">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/blinker/docs/source/signals.rst</tt>, line 170); <em><a href="#id20">backlink</a></em></p>
+Unknown interpreted text role &quot;meth&quot;.</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/blinker/docs/source/signals.rst</tt>, line 174)</p>
+<p>Unknown directive type &quot;doctest&quot;.</p>
+<pre class="literal-block">
+.. doctest::
+
+  &gt;&gt;&gt; apc = AltProcessor('c')
+  &gt;&gt;&gt; &#64;apc.on_complete.connect
+  ... def completed(sender):
+  ...     print &quot;AltProcessor %s completed!&quot; % sender.name
+  ...
+  &gt;&gt;&gt; apc.go()
+  Alternate processing.
+  AltProcessor c completed!
+
+</pre>
+</div>
+<p>While convenient, this form unfortunately does not allow the
+<tt class="docutils literal">sender</tt> or <tt class="docutils literal">weak</tt> arguments to be customized for the connected
+function.  For this, <a href="#id21"><span class="problematic" id="id22">:meth:`~Signal.connect_via`</span></a> can be used:</p>
+<div class="system-message" id="id21">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/blinker/docs/source/signals.rst</tt>, line 185); <em><a href="#id22">backlink</a></em></p>
+Unknown interpreted text role &quot;meth&quot;.</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/blinker/docs/source/signals.rst</tt>, line 189)</p>
+<p>Unknown directive type &quot;doctest&quot;.</p>
+<pre class="literal-block">
+.. doctest::
+
+  &gt;&gt;&gt; dice_roll = signal('dice_roll')
+  &gt;&gt;&gt; &#64;dice_roll.connect_via(1)
+  ... &#64;dice_roll.connect_via(3)
+  ... &#64;dice_roll.connect_via(5)
+  ... def odd_subscriber(sender):
+  ...     print(&quot;Observed dice roll %r.&quot; % sender)
+  ...
+  &gt;&gt;&gt; result = dice_roll.send(3)
+  Observed dice roll 3.
+
+
+</pre>
+</div>
+</div>
+<div class="section" id="optimizing-signal-sending">
+<h2>Optimizing Signal Sending</h2>
+<p>Signals are optimized to send very quickly, whether receivers are
+connected or not.  If the data to be sent down a signal is very
+expensive, it can be more efficient to check to see if any receivers
+are connected first by testing the <a href="#id23"><span class="problematic" id="id24">:attr:`~Signal.receivers`</span></a> property:</p>
+<div class="system-message" id="id23">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/blinker/docs/source/signals.rst</tt>, line 205); <em><a href="#id24">backlink</a></em></p>
+Unknown interpreted text role &quot;attr&quot;.</div>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/blinker/docs/source/signals.rst</tt>, line 210)</p>
+<p>Unknown directive type &quot;doctest&quot;.</p>
+<pre class="literal-block">
+.. doctest::
+
+  &gt;&gt;&gt; bool(signal('ready').receivers)
+  True
+  &gt;&gt;&gt; bool(signal('complete').receivers)
+  False
+  &gt;&gt;&gt; bool(AltProcessor.on_complete.receivers)
+  True
+
+</pre>
+</div>
+<p>Checking for a receiver listening for a particular sender is also
+possible:</p>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/blinker/docs/source/signals.rst</tt>, line 222)</p>
+<p>Unknown directive type &quot;doctest&quot;.</p>
+<pre class="literal-block">
+.. doctest::
+
+  &gt;&gt;&gt; signal('ready').has_receivers_for(processor_a)
+  True
+
+</pre>
+</div>
+</div>
+<div class="section" id="documenting-signals">
+<h2>Documenting Signals</h2>
+<p>Both named and anonymous signals can be passed a <tt class="docutils literal">doc</tt> argument at
+construction to set the pydoc help text for the signal.  This
+documentation will be picked up by most documentation generators (such
+as sphinx) and is nice for documenting any additional data parameters
+that will be sent down with the signal.</p>
+<p>See the documentation of the <a href="#id25"><span class="problematic" id="id26">:obj:`receiver_connected`</span></a> built-in signal
+for an example.</p>
+<div class="system-message" id="id25">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/blinker/docs/source/signals.rst</tt>, line 236); <em><a href="#id26">backlink</a></em></p>
+Unknown interpreted text role &quot;obj&quot;.</div>
+</div>
+<div class="section" id="more">
+<h2>More</h2>
+<p>Disconnecting receivers from signals, introspection of connected
+receivers, private namespaces for named signals and more are discussed
+in the <a href="#id27"><span class="problematic" id="id28">:ref:`api`</span></a>.</p>
+<div class="system-message" id="id27">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/blinker/docs/source/signals.rst</tt>, line 242); <em><a href="#id28">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+</div>
+
+    </div><!-- /.entry-content -->
+    
+
+  </article>
+</section>
+
+        <section id="extras" class="body">
+        
+        
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+
+
+
+</body>
+</html>

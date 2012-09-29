@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>A Pelican Blog</title><link href="/" rel="alternate"></link><link href="/feeds/content.atom.xml" rel="self"></link><id>/</id><updated>2012-09-30T04:52:35Z</updated><entry><title>Article title</title><link href="/article-title.html" rel="alternate"></link><updated>2012-09-30T04:52:35Z</updated><author><name>kamal</name></author><id>tag:,2012-09-30:article-title.html</id><summary type="html">&lt;p&gt;This is some content. With some stuff to &amp;quot;typogrify&amp;quot;.&lt;/p&gt;
+&lt;p&gt;Now with added support for &lt;abbr title="three letter acronym"&gt;TLA&lt;/abbr&gt;.&lt;/p&gt;
+</summary></entry><entry><title>Article with template</title><link href="/article-with-template.html" rel="alternate"></link><updated>2012-09-30T04:52:35Z</updated><author><name>kamal</name></author><id>tag:,2012-09-30:article-with-template.html</id><summary type="html">&lt;p&gt;This article has a custom template to be called when rendered&lt;/p&gt;
+&lt;p&gt;This is some content. With some stuff to &amp;quot;typogrify&amp;quot;.&lt;/p&gt;
+</summary></entry><entry><title>This is an article without category !</title><link href="/this-is-an-article-without-category.html" rel="alternate"></link><updated>2012-09-30T04:52:35Z</updated><author><name>kamal</name></author><id>tag:,2012-09-30:this-is-an-article-without-category.html</id><summary type="html">&lt;p&gt;This article should be in the DEFAULT_CATEGORY.&lt;/p&gt;
+</summary></entry></feed>

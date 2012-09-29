@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>A Pelican Blog</title><link href="/" rel="alternate"></link><link href="/feeds/source.atom.xml" rel="self"></link><id>/</id><updated>2012-09-30T04:54:36Z</updated><entry><title>API Documentation</title><link href="/api-documentation.html" rel="alternate"></link><updated>2012-09-30T04:54:36Z</updated><author><name>kamal</name></author><id>tag:,2012-09-30:api-documentation.html</id><summary type="html">&lt;p&gt;All public API members can (and should) be imported from &lt;tt class="docutils literal"&gt;blinker&lt;/tt&gt;:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from blinker import ANY, signal
+&lt;/pre&gt;
+&lt;div class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/api.rst&lt;/tt&gt;, line 10)&lt;/p&gt;
+&lt;p&gt;Unknown directive type &amp;quot;currentmodule&amp;quot;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.. currentmodule:: blinker.base
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="basic-signals"&gt;
+&lt;h2&gt;Basic Signals&lt;/h2&gt;
+&lt;div class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/api.rst&lt;/tt&gt;, line 15)&lt;/p&gt;
+&lt;p&gt;Unknown directive type &amp;quot;autoattribute&amp;quot;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.. autoattribute:: blinker.base.ANY
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/api.rst&lt;/tt&gt;, line 17)&lt;/p&gt;
+&lt;p&gt;Unknown directive type &amp;quot;autoattribute&amp;quot;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.. autoattribute:: blinker.base.receiver_connected
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/api.rst&lt;/tt&gt;, line 19)&lt;/p&gt;
+&lt;p&gt;Unknown directive type &amp;quot;autoclass&amp;quot;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.. autoclass:: Signal
+   :members:
+   :undoc-members:
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="named-signals"&gt;
+&lt;h2&gt;Named Signals&lt;/h2&gt;
+&lt;div class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/api.rst&lt;/tt&gt;, line 26)&lt;/p&gt;
+&lt;p&gt;Unknown directive type &amp;quot;function&amp;quot;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.. function:: signal(name, doc=None)
+
+  Return the :class:`NamedSignal` *name*, creating it if required.
+
+  Repeated calls to this function will return the same signal object.
+  Signals are created in a global :class:`Namespace`.
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/api.rst&lt;/tt&gt;, line 33)&lt;/p&gt;
+&lt;p&gt;Unknown directive type &amp;quot;autoclass&amp;quot;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.. autoclass:: NamedSignal
+   :show-inheritance:
+   :members:
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/api.rst&lt;/tt&gt;, line 37)&lt;/p&gt;
+&lt;p&gt;Unknown directive type &amp;quot;autoclass&amp;quot;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.. autoclass:: Namespace
+   :show-inheritance:
+   :members: signal
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</summary></entry><entry><title>Blinker Documentation</title><link href="/blinker-documentation.html" rel="alternate"></link><updated>2012-09-30T04:54:36Z</updated><author><name>kamal</name></author><id>tag:,2012-09-30:blinker-documentation.html</id><summary type="html">&lt;p&gt;Blinker provides fast &amp;amp; simple object-to-object and broadcast
+signaling for Python objects.&lt;/p&gt;
+&lt;p&gt;The core of Blinker is quite small but provides powerful features:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;a global registry of named signals&lt;/li&gt;
+&lt;li&gt;anonymous signals&lt;/li&gt;
+&lt;li&gt;custom name registries&lt;/li&gt;
+&lt;li&gt;permanently or temporarily connected receivers&lt;/li&gt;
+&lt;li&gt;automatically disconnected receivers via weak referencing&lt;/li&gt;
+&lt;li&gt;sending arbitrary data payloads&lt;/li&gt;
+&lt;li&gt;collecting return values from signal receivers&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;div class="section" id="requirements"&gt;
+&lt;h2&gt;Requirements&lt;/h2&gt;
+&lt;p&gt;Python 2.4 or later; Python 3.0 or later; or Jython 2.5 or later.&lt;/p&gt;
+&lt;p&gt;No other modules are required.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="license"&gt;
+&lt;h2&gt;License&lt;/h2&gt;
+&lt;p&gt;Blinker is provided under the MIT License.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="contents"&gt;
+&lt;h2&gt;Contents&lt;/h2&gt;
+&lt;div class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/index.rst&lt;/tt&gt;, line 35)&lt;/p&gt;
+&lt;p&gt;Unknown directive type &amp;quot;toctree&amp;quot;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.. toctree::
+   :maxdepth: 2
+
+   signals
+   api
+
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</summary></entry><entry><title>Signals</title><link href="/signals.html" rel="alternate"></link><updated>2012-09-30T04:54:36Z</updated><author><name>kamal</name></author><id>tag:,2012-09-30:signals.html</id><summary type="html">&lt;div class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/signals.rst&lt;/tt&gt;, line 5)&lt;/p&gt;
+&lt;p&gt;Unknown directive type &amp;quot;currentmodule&amp;quot;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.. currentmodule:: blinker.base
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="decoupling-with-named-signals"&gt;
+&lt;h2&gt;Decoupling With Named Signals&lt;/h2&gt;
+&lt;p&gt;Named signals are created with &lt;a href="#id1"&gt;&lt;span class="problematic" id="id2"&gt;:func:`signal`&lt;/span&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="system-message" id="id1"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/signals.rst&lt;/tt&gt;, line 10); &lt;em&gt;&lt;a href="#id2"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+Unknown interpreted text role &amp;quot;func&amp;quot;.&lt;/div&gt;
+&lt;div class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/signals.rst&lt;/tt&gt;, line 12)&lt;/p&gt;
+&lt;p&gt;Unknown directive type &amp;quot;doctest&amp;quot;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.. doctest::
+
+  &amp;gt;&amp;gt;&amp;gt; from blinker import signal
+  &amp;gt;&amp;gt;&amp;gt; initialized = signal('initialized')
+  &amp;gt;&amp;gt;&amp;gt; initialized is signal('initialized')
+  True
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Every call to &lt;tt class="docutils literal"&gt;&lt;span class="pre"&gt;signal('name')&lt;/span&gt;&lt;/tt&gt; returns the same signal object,
+allowing unconnected parts of code (different modules, plugins,
+anything) to all use the same signal without requiring any code
+sharing or special imports.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="subscribing-to-signals"&gt;
+&lt;h2&gt;Subscribing to Signals&lt;/h2&gt;
+&lt;p&gt;&lt;a href="#id3"&gt;&lt;span class="problematic" id="id4"&gt;:meth:`Signal.connect`&lt;/span&gt;&lt;/a&gt; registers a function to be invoked each time
+the signal is emitted.  Connected functions are always passed the
+object that caused the signal to be emitted.&lt;/p&gt;
+&lt;div class="system-message" id="id3"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/signals.rst&lt;/tt&gt;, line 28); &lt;em&gt;&lt;a href="#id4"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+Unknown interpreted text role &amp;quot;meth&amp;quot;.&lt;/div&gt;
+&lt;div class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/signals.rst&lt;/tt&gt;, line 32)&lt;/p&gt;
+&lt;p&gt;Unknown directive type &amp;quot;doctest&amp;quot;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.. doctest::
+
+  &amp;gt;&amp;gt;&amp;gt; def subscriber(sender):
+  ...     print(&amp;quot;Got a signal sent by %r&amp;quot; % sender)
+  ...
+  &amp;gt;&amp;gt;&amp;gt; ready = signal('ready')
+  &amp;gt;&amp;gt;&amp;gt; ready.connect(subscriber)
+  &amp;lt;function subscriber at 0x...&amp;gt;
+
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="emitting-signals"&gt;
+&lt;h2&gt;Emitting Signals&lt;/h2&gt;
+&lt;p&gt;Code producing events of interest can &lt;a href="#id5"&gt;&lt;span class="problematic" id="id6"&gt;:meth:`Signal.send`&lt;/span&gt;&lt;/a&gt;
+notifications to all connected receivers.&lt;/p&gt;
+&lt;div class="system-message" id="id5"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/signals.rst&lt;/tt&gt;, line 45); &lt;em&gt;&lt;a href="#id6"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+Unknown interpreted text role &amp;quot;meth&amp;quot;.&lt;/div&gt;
+&lt;p&gt;Below, a simple &lt;tt class="docutils literal"&gt;Processor&lt;/tt&gt; class emits a &lt;tt class="docutils literal"&gt;ready&lt;/tt&gt; signal when it's
+about to process something, and &lt;tt class="docutils literal"&gt;complete&lt;/tt&gt; when it is done.  It
+passes &lt;tt class="docutils literal"&gt;self&lt;/tt&gt; to the &lt;a href="#id7"&gt;&lt;span class="problematic" id="id8"&gt;:meth:`~Signal.send`&lt;/span&gt;&lt;/a&gt; method, signifying that
+that particular instance was responsible for emitting the signal.&lt;/p&gt;
+&lt;div class="system-message" id="id7"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/signals.rst&lt;/tt&gt;, line 48); &lt;em&gt;&lt;a href="#id8"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+Unknown interpreted text role &amp;quot;meth&amp;quot;.&lt;/div&gt;
+&lt;div class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/signals.rst&lt;/tt&gt;, line 53)&lt;/p&gt;
+&lt;p&gt;Unknown directive type &amp;quot;doctest&amp;quot;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.. doctest::
+
+  &amp;gt;&amp;gt;&amp;gt; class Processor:
+  ...    def __init__(self, name):
+  ...        self.name = name
+  ...
+  ...    def go(self):
+  ...        ready = signal('ready')
+  ...        ready.send(self)
+  ...        print(&amp;quot;Processing.&amp;quot;)
+  ...        complete = signal('complete')
+  ...        complete.send(self)
+  ...
+  ...    def __repr__(self):
+  ...        return '&amp;lt;Processor %s&amp;gt;' % self.name
+  ...
+  &amp;gt;&amp;gt;&amp;gt; processor_a = Processor('a')
+  &amp;gt;&amp;gt;&amp;gt; processor_a.go()
+  Got a signal sent by &amp;lt;Processor a&amp;gt;
+  Processing.
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Notice the &lt;tt class="docutils literal"&gt;complete&lt;/tt&gt; signal in &lt;tt class="docutils literal"&gt;go()&lt;/tt&gt;?  No receivers have
+connected to &lt;tt class="docutils literal"&gt;complete&lt;/tt&gt; yet, and that's a-ok.  Calling
+&lt;a href="#id9"&gt;&lt;span class="problematic" id="id10"&gt;:meth:`~Signal.send`&lt;/span&gt;&lt;/a&gt; on a signal with no receivers will result in no
+notifications being sent, and these no-op sends are optimized to be as
+inexpensive as possible.&lt;/p&gt;
+&lt;div class="system-message" id="id9"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/signals.rst&lt;/tt&gt;, line 74); &lt;em&gt;&lt;a href="#id10"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+Unknown interpreted text role &amp;quot;meth&amp;quot;.&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="subscribing-to-specific-senders"&gt;
+&lt;h2&gt;Subscribing to Specific Senders&lt;/h2&gt;
+&lt;p&gt;The default connection to a signal invokes the receiver function when
+any sender emits it.  The &lt;a href="#id11"&gt;&lt;span class="problematic" id="id12"&gt;:meth:`Signal.connect`&lt;/span&gt;&lt;/a&gt; function accepts an
+optional argument to restrict the subscription to one specific sending
+object:&lt;/p&gt;
+&lt;div class="system-message" id="id11"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/signals.rst&lt;/tt&gt;, line 84); &lt;em&gt;&lt;a href="#id12"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+Unknown interpreted text role &amp;quot;meth&amp;quot;.&lt;/div&gt;
+&lt;div class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/signals.rst&lt;/tt&gt;, line 89)&lt;/p&gt;
+&lt;p&gt;Unknown directive type &amp;quot;doctest&amp;quot;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.. doctest::
+
+  &amp;gt;&amp;gt;&amp;gt; def b_subscriber(sender):
+  ...     print(&amp;quot;Caught signal from processor_b.&amp;quot;)
+  ...     assert sender.name == 'b'
+  ...
+  &amp;gt;&amp;gt;&amp;gt; processor_b = Processor('b')
+  &amp;gt;&amp;gt;&amp;gt; ready.connect(b_subscriber, sender=processor_b)
+  &amp;lt;function b_subscriber at 0x...&amp;gt;
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;This function has been subscribed to &lt;tt class="docutils literal"&gt;ready&lt;/tt&gt; but only when sent by
+&lt;tt class="docutils literal"&gt;processor_b&lt;/tt&gt;:&lt;/p&gt;
+&lt;div class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/signals.rst&lt;/tt&gt;, line 102)&lt;/p&gt;
+&lt;p&gt;Unknown directive type &amp;quot;doctest&amp;quot;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.. doctest::
+
+  &amp;gt;&amp;gt;&amp;gt; processor_a.go()
+  Got a signal sent by &amp;lt;Processor a&amp;gt;
+  Processing.
+  &amp;gt;&amp;gt;&amp;gt; processor_b.go()
+  Got a signal sent by &amp;lt;Processor b&amp;gt;
+  Caught signal from processor_b.
+  Processing.
+
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="sending-and-receiving-data-through-signals"&gt;
+&lt;h2&gt;Sending and Receiving Data Through Signals&lt;/h2&gt;
+&lt;p&gt;Additional keyword arguments can be passed to &lt;a href="#id13"&gt;&lt;span class="problematic" id="id14"&gt;:meth:`~Signal.send`&lt;/span&gt;&lt;/a&gt;.
+These will in turn be passed to the connected functions:&lt;/p&gt;
+&lt;div class="system-message" id="id13"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/signals.rst&lt;/tt&gt;, line 116); &lt;em&gt;&lt;a href="#id14"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+Unknown interpreted text role &amp;quot;meth&amp;quot;.&lt;/div&gt;
+&lt;div class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/signals.rst&lt;/tt&gt;, line 119)&lt;/p&gt;
+&lt;p&gt;Unknown directive type &amp;quot;doctest&amp;quot;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.. doctest::
+
+  &amp;gt;&amp;gt;&amp;gt; send_data = signal('send-data')
+  &amp;gt;&amp;gt;&amp;gt; &amp;#64;send_data.connect
+  ... def receive_data(sender, **kw):
+  ...     print(&amp;quot;Caught signal from %r, data %r&amp;quot; % (sender, kw))
+  ...     return 'received!'
+  ...
+  &amp;gt;&amp;gt;&amp;gt; result = send_data.send('anonymous', abc=123)
+  Caught signal from 'anonymous', data {'abc': 123}
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;The return value of &lt;a href="#id15"&gt;&lt;span class="problematic" id="id16"&gt;:meth:`~Signal.send`&lt;/span&gt;&lt;/a&gt; collects the return values of
+each connected function as a list of (&lt;tt class="docutils literal"&gt;receiver function&lt;/tt&gt;, &lt;tt class="docutils literal"&gt;return
+value&lt;/tt&gt;) pairs:&lt;/p&gt;
+&lt;div class="system-message" id="id15"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/signals.rst&lt;/tt&gt;, line 130); &lt;em&gt;&lt;a href="#id16"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+Unknown interpreted text role &amp;quot;meth&amp;quot;.&lt;/div&gt;
+&lt;div class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/signals.rst&lt;/tt&gt;, line 134)&lt;/p&gt;
+&lt;p&gt;Unknown directive type &amp;quot;doctest&amp;quot;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.. doctest::
+
+  &amp;gt;&amp;gt;&amp;gt; result
+  [(&amp;lt;function receive_data at 0x...&amp;gt;, 'received!')]
+
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="anonymous-signals"&gt;
+&lt;h2&gt;Anonymous Signals&lt;/h2&gt;
+&lt;p&gt;Signals need not be named.  The &lt;a href="#id17"&gt;&lt;span class="problematic" id="id18"&gt;:class:`Signal`&lt;/span&gt;&lt;/a&gt; constructor creates a
+unique signal each time it is invoked.  For example, an alternative
+implementation of the Processor from above might provide the
+processing signals as class attributes:&lt;/p&gt;
+&lt;div class="system-message" id="id17"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/signals.rst&lt;/tt&gt;, line 143); &lt;em&gt;&lt;a href="#id18"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+Unknown interpreted text role &amp;quot;class&amp;quot;.&lt;/div&gt;
+&lt;div class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/signals.rst&lt;/tt&gt;, line 148)&lt;/p&gt;
+&lt;p&gt;Unknown directive type &amp;quot;doctest&amp;quot;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.. doctest::
+
+  &amp;gt;&amp;gt;&amp;gt; from blinker import Signal
+  &amp;gt;&amp;gt;&amp;gt; class AltProcessor:
+  ...    on_ready = Signal()
+  ...    on_complete = Signal()
+  ...
+  ...    def __init__(self, name):
+  ...        self.name = name
+  ...
+  ...    def go(self):
+  ...        self.on_ready.send(self)
+  ...        print(&amp;quot;Alternate processing.&amp;quot;)
+  ...        self.on_complete.send(self)
+  ...
+  ...    def __repr__(self):
+  ...        return '&amp;lt;AltProcessor %s&amp;gt;' % self.name
+  ...
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="connect-as-a-decorator"&gt;
+&lt;h2&gt;&lt;tt class="docutils literal"&gt;connect&lt;/tt&gt; as a Decorator&lt;/h2&gt;
+&lt;p&gt;You may have noticed the return value of &lt;a href="#id19"&gt;&lt;span class="problematic" id="id20"&gt;:meth:`~Signal.connect`&lt;/span&gt;&lt;/a&gt; in
+the console output in the sections above.  This allows &lt;tt class="docutils literal"&gt;connect&lt;/tt&gt; to
+be used as a decorator on functions:&lt;/p&gt;
+&lt;div class="system-message" id="id19"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/signals.rst&lt;/tt&gt;, line 170); &lt;em&gt;&lt;a href="#id20"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+Unknown interpreted text role &amp;quot;meth&amp;quot;.&lt;/div&gt;
+&lt;div class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/signals.rst&lt;/tt&gt;, line 174)&lt;/p&gt;
+&lt;p&gt;Unknown directive type &amp;quot;doctest&amp;quot;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.. doctest::
+
+  &amp;gt;&amp;gt;&amp;gt; apc = AltProcessor('c')
+  &amp;gt;&amp;gt;&amp;gt; &amp;#64;apc.on_complete.connect
+  ... def completed(sender):
+  ...     print &amp;quot;AltProcessor %s completed!&amp;quot; % sender.name
+  ...
+  &amp;gt;&amp;gt;&amp;gt; apc.go()
+  Alternate processing.
+  AltProcessor c completed!
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;While convenient, this form unfortunately does not allow the
+&lt;tt class="docutils literal"&gt;sender&lt;/tt&gt; or &lt;tt class="docutils literal"&gt;weak&lt;/tt&gt; arguments to be customized for the connected
+function.  For this, &lt;a href="#id21"&gt;&lt;span class="problematic" id="id22"&gt;:meth:`~Signal.connect_via`&lt;/span&gt;&lt;/a&gt; can be used:&lt;/p&gt;
+&lt;div class="system-message" id="id21"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/signals.rst&lt;/tt&gt;, line 185); &lt;em&gt;&lt;a href="#id22"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+Unknown interpreted text role &amp;quot;meth&amp;quot;.&lt;/div&gt;
+&lt;div class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/signals.rst&lt;/tt&gt;, line 189)&lt;/p&gt;
+&lt;p&gt;Unknown directive type &amp;quot;doctest&amp;quot;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.. doctest::
+
+  &amp;gt;&amp;gt;&amp;gt; dice_roll = signal('dice_roll')
+  &amp;gt;&amp;gt;&amp;gt; &amp;#64;dice_roll.connect_via(1)
+  ... &amp;#64;dice_roll.connect_via(3)
+  ... &amp;#64;dice_roll.connect_via(5)
+  ... def odd_subscriber(sender):
+  ...     print(&amp;quot;Observed dice roll %r.&amp;quot; % sender)
+  ...
+  &amp;gt;&amp;gt;&amp;gt; result = dice_roll.send(3)
+  Observed dice roll 3.
+
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="optimizing-signal-sending"&gt;
+&lt;h2&gt;Optimizing Signal Sending&lt;/h2&gt;
+&lt;p&gt;Signals are optimized to send very quickly, whether receivers are
+connected or not.  If the data to be sent down a signal is very
+expensive, it can be more efficient to check to see if any receivers
+are connected first by testing the &lt;a href="#id23"&gt;&lt;span class="problematic" id="id24"&gt;:attr:`~Signal.receivers`&lt;/span&gt;&lt;/a&gt; property:&lt;/p&gt;
+&lt;div class="system-message" id="id23"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/signals.rst&lt;/tt&gt;, line 205); &lt;em&gt;&lt;a href="#id24"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+Unknown interpreted text role &amp;quot;attr&amp;quot;.&lt;/div&gt;
+&lt;div class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/signals.rst&lt;/tt&gt;, line 210)&lt;/p&gt;
+&lt;p&gt;Unknown directive type &amp;quot;doctest&amp;quot;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.. doctest::
+
+  &amp;gt;&amp;gt;&amp;gt; bool(signal('ready').receivers)
+  True
+  &amp;gt;&amp;gt;&amp;gt; bool(signal('complete').receivers)
+  False
+  &amp;gt;&amp;gt;&amp;gt; bool(AltProcessor.on_complete.receivers)
+  True
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Checking for a receiver listening for a particular sender is also
+possible:&lt;/p&gt;
+&lt;div class="system-message"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/signals.rst&lt;/tt&gt;, line 222)&lt;/p&gt;
+&lt;p&gt;Unknown directive type &amp;quot;doctest&amp;quot;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+.. doctest::
+
+  &amp;gt;&amp;gt;&amp;gt; signal('ready').has_receivers_for(processor_a)
+  True
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="documenting-signals"&gt;
+&lt;h2&gt;Documenting Signals&lt;/h2&gt;
+&lt;p&gt;Both named and anonymous signals can be passed a &lt;tt class="docutils literal"&gt;doc&lt;/tt&gt; argument at
+construction to set the pydoc help text for the signal.  This
+documentation will be picked up by most documentation generators (such
+as sphinx) and is nice for documenting any additional data parameters
+that will be sent down with the signal.&lt;/p&gt;
+&lt;p&gt;See the documentation of the &lt;a href="#id25"&gt;&lt;span class="problematic" id="id26"&gt;:obj:`receiver_connected`&lt;/span&gt;&lt;/a&gt; built-in signal
+for an example.&lt;/p&gt;
+&lt;div class="system-message" id="id25"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/signals.rst&lt;/tt&gt;, line 236); &lt;em&gt;&lt;a href="#id26"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+Unknown interpreted text role &amp;quot;obj&amp;quot;.&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="more"&gt;
+&lt;h2&gt;More&lt;/h2&gt;
+&lt;p&gt;Disconnecting receivers from signals, introspection of connected
+receivers, private namespaces for named signals and more are discussed
+in the &lt;a href="#id27"&gt;&lt;span class="problematic" id="id28"&gt;:ref:`api`&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="system-message" id="id27"&gt;
+&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./~/.pip/build/blinker/docs/source/signals.rst&lt;/tt&gt;, line 242); &lt;em&gt;&lt;a href="#id28"&gt;backlink&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+Unknown interpreted text role &amp;quot;ref&amp;quot;.&lt;/div&gt;
+&lt;/div&gt;
+</summary></entry></feed>

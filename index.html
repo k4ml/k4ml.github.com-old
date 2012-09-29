@@ -12,10 +12,10 @@
     <![endif]-->
 
     <!-- Le styles -->
-    <link href="./theme/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="./theme/bootstrap.min.responsive.css" rel="stylesheet" type="text/css">
-    <link href="./theme/pygments.css" rel="stylesheet" type="text/css">
-    <link href="./theme/local.css" rel="stylesheet" type="text/css">
+    <link href="./theme/bootstrap.min.css" rel="stylesheet">
+    <link href="./theme/bootstrap.min.responsive.css" rel="stylesheet">
+    <link href="./theme/local.css" rel="stylesheet">
+    <link href="./theme/pygments.css" rel="stylesheet">
 
 </head>
 
@@ -62,11 +62,11 @@
 
     <div class='article'>
         <div class="content-title">
-            <a href="./django-admin-hook-into-actions.html"><h1>Django admin: Hook into actions</h1></a>
-            Thu 21 June 2012
+            <a href="./android-phonegap-with-existing-sqlite-database.html"><h1>Android: Phonegap with existing sqlite database</h1></a>
+            Sun 30 September 2012
 
 
-by <a class="url fn" href="./">Kamal Bin Mustafa</a>
+by <a class="url fn" href="./author/kamal-bin-mustafa.html">Kamal Bin Mustafa</a>
  
 
 
@@ -74,68 +74,49 @@ by <a class="url fn" href="./">Kamal Bin Mustafa</a>
  
         </div>
         
-        <div><p>I want to do something before actions was executed. For example when admin 
-deleting users using 'Delete selected' dropdown in admin panel, I want to run 
-some commands in backend system to remove info about that user in a config 
-file. If the commands somehow failed, I want to abort the operation so the user 
-can't be deleted. Signals won't work here since there's no way to abort the 
-request gracefully (other than raising exception and causing the 500 error page 
-displayed). Using transaction also wouldn't work since there might be more 
-users deleted in single actions and I only want the user that failed get 
-aborted, not the whole users selected.</p>
-<p>Django allow us to define custom actions in admin, it quite simple but I don't 
-want to reimplement what <code>delete_selected</code> already doing. The idea is just hook 
-before the action function get called and do my stuff. The first part is 
-overriding the actions:</p>
-<div class="codehilite"><pre><span class="k">class</span> <span class="nc">MyModelAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
-    <span class="n">actions</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;delete_selected&#39;</span><span class="p">,]</span>
-
-    <span class="k">def</span> <span class="nf">delete_selected</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">queryset</span><span class="p">):</span>
-        <span class="k">pass</span>
+        <div><p>Just started my journey into android development and one thing I quickly found 
+along the way is that shipping existing sqlite database with your phonegap app 
+is non-trivial. Not sure this is problem with android directly or just 
+phonegap. While you can put the sqlite database in your <code>assets/</code> directory, 
+phonegap apparently try to read the database from other fix location on the 
+phone. Failing to read that, it will create new empty database.</p>
+<p>There's workaround scattered in blogpost and mailing-list posts and I finally 
+managed to get it working after hours of hunting and try and error session. If 
+you search around you probably end up on some of these sites:-</p>
+<ul>
+<li><a href="http://www.raymondcamden.com/index.cfm/2012/7/27/Guest-Blog-Post-Shipping-a-populated-SQLite-DB-with-PhoneGap">http://www.raymondcamden.com/index.cfm/2012/7/27/Guest-Blog-Post-Shipping-a-populated-SQLite-DB-with-PhoneGap</a></li>
+<li><a href="http://www.corporatezen.com/shipping_prepopulated_database_with_phonegap">http://www.corporatezen.com/shipping_prepopulated_database_with_phonegap</a></li>
+<li><a href="http://gauravstomar.blogspot.ca/2011/08/prepopulate-sqlite-in-phonegap.html">http://gauravstomar.blogspot.ca/2011/08/prepopulate-sqlite-in-phonegap.html</a></li>
+</ul>
+<p>The fix involved few steps:-</p>
+<ul>
+<li>You have to move the sqlite database file to location that phonegap expected. 
+Have to write some java for this but luckily the code we found on those site 
+still working on latest phonegap release.</li>
+<li>The built-in sqlite driver (if I can call it as such) does not support 
+reading from existing sqlite database so we have to use 3rd party sqlite 
+plugin.</li>
+<li>The 3rd party sqlite plugin turn out to have issue with android &lt; 2.3.3 and 
+since I plan to also include support for froyo based phone, I have to fix this 
+too.</li>
+</ul>
+<p>You can get the code to move the db from this <a href="https://gist.github.com/3805152">gist</a>.</p>
+<p>Next grab the sqlite plugin from 
+<a href="https://github.com/chbrody/Cordova-SQLitePlugin">https://github.com/chbrody/Cordova-SQLitePlugin</a> and copy the folder under 
+<code>Android/src</code> to our <code>src/</code> directory. Then we have to tell phonegap about this 
+plugin by editing <code>res/xml/config.xml</code> and include the following line:-</p>
+<div class="codehilite"><pre><span class="o">&lt;</span><span class="n">plugin</span> <span class="n">name</span><span class="p">=</span>&quot;<span class="n">SQLitePlugin</span>&quot; 
+<span class="n">value</span><span class="p">=</span>&quot;<span class="n">com</span><span class="p">.</span><span class="n">phonegap</span><span class="p">.</span><span class="n">plugin</span><span class="p">.</span><span class="n">sqlitePlugin</span><span class="p">.</span><span class="n">SQLitePlugin</span>&quot;<span class="o">/&gt;</span>
 </pre></div>
 
 
-<p>This seem to work. When you define action name similar to what already defined 
-in <code>django.contrib.admin</code>, yours will be used. (TODO: Check if order in 
-<code>INSTALLED_APPS</code> matters). The next thing to do is to wrap your logic before 
-calling actual <code>delete_selected</code> function. I have implemented my 
-<code>delete_selected</code> as:-</p>
-<div class="codehilite"><pre><span class="kn">from</span> <span class="nn">django.contrib.admin.actions</span> <span class="kn">import</span> <span class="n">delete_selected</span>
-
-<span class="k">class</span> <span class="nc">MyModelAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
-    <span class="n">actions</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;delete_selected&#39;</span><span class="p">,]</span>
-
-    <span class="k">def</span> <span class="nf">delete_selected</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">queryset</span><span class="p">):</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;post&#39;</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">delete_selected</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">queryset</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;post&#39;</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">queryset</span><span class="p">:</span>
-                <span class="n">status</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">some_command</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="n">status</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">message_user</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;Fail to update user&#39;</span><span class="p">)</span>
-                    <span class="k">break</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">delete_selected</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">queryset</span><span class="p">)</span>
-    <span class="n">delete_selected</span><span class="o">.</span><span class="n">short_description</span> <span class="o">=</span> <span class="s">&#39;Delete selected&#39;</span>
-</pre></div>
-
-
-<p>My code just iterate through the selected users and run backend command on 
-them, if the command success it will go through the next user. If the loop 
-terminate normally, the else clause will be executed, calling the real 
-<code>delete_selected</code> function. If somehow the backend function failed, the loop 
-<code>break</code> and the else clause will never been executed. Here I'd also finally 
-found some use case for <a href="http://psung.blogspot.com/2007/12/for-else-in-python.html">python's <code>for ... else</code></a> construct.</p>
-<p>Initially I named my <code>delete_selected</code> as <code>custom_delete_selected</code> and then 
-remove the real <code>delete_selected</code> by overriding ModelAdmin's <code>get_actions()</code> 
-method but there's a problem with that. When user submit to delete the selected 
-users, a confirmation page is displayed. Only when admin submit the 
-confirmation page the function start deleting the user. To facilitate the 
-confirmation, it use form validition to make sure the action name 
-('delete_selected') exists in the POST data. If we use our 
-<code>custom_delete_selected</code> as the action then 'delete_selected' not present in 
-the POST data and the validation fail, the function will not be executed.</p></div>
+<p>Finally we have to remove some lines from 
+<code>src/com/phonegap/plugin/sqlitePlugin.java</code>. The dev already marked the files 
+to be deleted so we just need to find and remove it. You can see the <a href="https://github.com/k4ml/halal-android/commit/f6bbf52a5504367a0e5aaeae8b8ea24068403f4a#src/com/phonegap/plugin/sqlitePlugin/SQLitePlugin.java">diff</a> 
+from my app repo. To open the database from our app code, make sure to omit the 
+.db extension since phonegap seem to automatically append that to db name.</p>
+<p>You can also clone <a href="https://github.com/k4ml/halal-android">my app on github</a> which has (hopefully) everything in 
+place and you just need to load it into your Eclipse project.</p></div>
         <hr />
     </div>
 		
@@ -150,17 +131,20 @@ the POST data and the validation fail, the function will not be executed.</p></d
  
 
     <div class='article'>
-        <a href="./new-blog.html"><h2>New blog</h2></a>
-        <div class= "well small"> Thu 21 June 2012
+        <a href="./django-admin-hook-into-actions.html"><h2>Django admin: Hook into actions</h2></a>
+        <div class= "well small"> Mon 18 June 2012
 
 
-by <a class="url fn" href="./">Kamal Bin Mustafa</a>
+by <a class="url fn" href="./author/kamal-bin-mustafa.html">Kamal Bin Mustafa</a>
  
 
 
 
  </div>
-        <div class="summary"><p>Just testing new blog using Pelican.</p> <a class="btn btn-info xsmall" href="./new-blog.html">read more</a></div>
+        <div class="summary"><p>I want to do something before actions was executed. For example when admin 
+deleting users using 'Delete selected' dropdown in admin panel, I want to run 
+some commands in backend system to remove info about that user in a config 
+file. If the commands somehow failed, I want to abort ...</p> <a class="btn btn-info xsmall" href="./django-admin-hook-into-actions.html">read more</a></div>
     </div>	
 				
     
@@ -173,24 +157,17 @@ by <a class="url fn" href="./">Kamal Bin Mustafa</a>
  
 
     <div class='article'>
-        <a href="./svn-branching-strategies.html"><h2>SVN branching strategies</h2></a>
-        <div class= "well small"> Sat 27 August 2011
+        <a href="./new-blog.html"><h2>New blog</h2></a>
+        <div class= "well small"> Sun 17 June 2012
 
 
-by <a class="url fn" href="./">Kamal Bin Mustafa</a>
+by <a class="url fn" href="./author/kamal-bin-mustafa.html">Kamal Bin Mustafa</a>
  
 
 
 
  </div>
-        <div class="summary"><p>The linked SO question mentioned two branching strategies commonly used in parallel developments.</p>
-<div class="codehilite"><pre><span class="o">*</span> <span class="n">Trunk</span> <span class="n">as</span> <span class="n">stable</span> <span class="n">point</span> <span class="n">and</span> <span class="n">development</span> <span class="n">of</span> <span class="n">new</span> <span class="n">features</span> <span class="n">in</span> <span class="n">separate</span> <span class="n">branch</span><span class="p">.</span>
-<span class="o">*</span> <span class="n">Trunk</span> <span class="n">as</span> <span class="n">development</span> <span class="n">mainline</span> <span class="n">with</span> <span class="n">every</span> <span class="n">releases</span> <span class="n">tagged</span> <span class="n">or</span> <span class="n">branched</span> <span class="n">in</span> <span class="n">a</span>
-  <span class="n">separate</span> <span class="n">branch</span><span class="p">.</span>
-</pre></div>
-
-
-<p>Currently we're using more of the former approach where development ...</p> <a class="btn btn-info xsmall" href="./svn-branching-strategies.html">read more</a></div>
+        <div class="summary"><p>Just testing new blog using Pelican.</p> <a class="btn btn-info xsmall" href="./new-blog.html">read more</a></div>
     </div>	
 				
     
@@ -204,6 +181,8 @@ by <a class="url fn" href="./">Kamal Bin Mustafa</a>
     <li class="active"><a href="./index.html">1</a></li>
 
     <li class=""><a href="./index2.html">2</a></li>
+
+    <li class=""><a href="./index3.html">3</a></li>
 
 
 
@@ -232,7 +211,7 @@ by <a class="url fn" href="./">Kamal Bin Mustafa</a>
             
                 <li><a href="./archives.html">Archives</a>
                 <li><a href="./tags.html">Tags</a>
-                <li><a href="./feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
+                <li><a href="./" rel="alternate">Atom feed</a></li>
                 
             </ul>
             </div>
@@ -246,7 +225,7 @@ by <a class="url fn" href="./">Kamal Bin Mustafa</a>
                 </li>
                 
                 
-                <li><a href="./">misc</a></li>
+                <li><a href="./category/misc.html">misc</a></li>
                                    
             </ul>
             </div>

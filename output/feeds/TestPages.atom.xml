@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>A Pelican Blog</title><link href="/" rel="alternate"></link><link href="/feeds/TestPages.atom.xml" rel="self"></link><id>/</id><updated>2012-09-30T04:52:35Z</updated><entry><title>This is a markdown test page</title><link href="/this-is-a-markdown-test-page.html" rel="alternate"></link><updated>2012-09-30T04:52:35Z</updated><author><name>kamal</name></author><id>tag:,2012-09-30:this-is-a-markdown-test-page.html</id><summary type="html">&lt;h1&gt;Test Markdown File Header&lt;/h1&gt;
+&lt;h2&gt;Used for pelican test&lt;/h2&gt;
+&lt;p&gt;The quick brown fox jumped over the lazy dog's back.&lt;/p&gt;</summary></entry><entry><title>This is a test page</title><link href="/this-is-a-test-page.html" rel="alternate"></link><updated>2012-09-30T04:52:35Z</updated><author><name>kamal</name></author><id>tag:,2012-09-30:this-is-a-test-page.html</id><summary type="html">&lt;p&gt;The quick brown fox jumped over the lazy dog's back.&lt;/p&gt;
+</summary></entry><entry><title>This is a test page with a preset template</title><link href="/this-is-a-test-page-with-a-preset-template.html" rel="alternate"></link><updated>2012-09-30T04:52:35Z</updated><author><name>kamal</name></author><id>tag:,2012-09-30:this-is-a-test-page-with-a-preset-template.html</id><summary type="html">&lt;p&gt;The quick brown fox jumped over the lazy dog's back.&lt;/p&gt;
+&lt;p&gt;This article has a custom template to be called when rendered&lt;/p&gt;
+</summary></entry></feed>

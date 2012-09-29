@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Switching from other Template Engines</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="./theme/css/main.css" type="text/css" />
+        
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="A Pelican Blog Atom Feed" />
+        
+        
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="./css/ie.css"/>
+                <script src="./js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="./css/ie6.css"/><![endif]-->
+
+</head>
+
+<body id="index" class="home">
+
+        <header id="banner" class="body">
+                <h1><a href=".">A Pelican Blog </a></h1>
+                <nav><ul>
+                
+                
+                
+                
+                
+                    <li ><a href="./category/testcategory.html">TestCategory</a></li>
+                
+                    <li ><a href="./category/testpages.html">TestPages</a></li>
+                
+                    <li ><a href="./category/yeah.html">Yeah</a></li>
+                
+                    <li ><a href="./category/content.html">content</a></li>
+                
+                    <li class="active"><a href="./category/docs.html">docs</a></li>
+                
+                    <li ><a href="./category/emacs.html">emacs</a></li>
+                
+                    <li ><a href="./category/pelican.html">pelican</a></li>
+                
+                    <li ><a href="./category/source.html">source</a></li>
+                
+                    <li ><a href="./category/src.html">src</a></li>
+                
+                    <li ><a href="./category/test.html">test</a></li>
+                
+                    <li ><a href="./category/yeah.html">yeah</a></li>
+                
+                </ul></nav>
+        </header><!-- /#banner -->
+        
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="switching-from-other-template-engines.html" rel="bookmark"
+           title="Permalink to Switching from other Template Engines">Switching from other Template Engines</a></h1>
+      
+    </header>
+
+    <div class="entry-content">
+      <footer class="post-info">
+        <abbr class="published" title="2012-09-30T04:52:53.529306">
+                Sun 30 September 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/kamal.html">kamal</a>
+        </address>
+        
+<p>In <a href="./category/docs.html">docs</a>. </p>
+
+
+
+</footer><!-- /.post-info -->
+      <div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/switching.rst</tt>, line 4)</p>
+<p>Unknown directive type &quot;highlight&quot;.</p>
+<pre class="literal-block">
+.. highlight:: html+jinja
+
+</pre>
+</div>
+<p>If you have used a different template engine in the past and want to swtich
+to Jinja2 here is a small guide that shows the basic syntatic and semantic
+changes between some common, similar text template engines for Python.</p>
+<div class="section" id="jinja1">
+<h2>Jinja1</h2>
+<p>Jinja2 is mostly compatible with Jinja1 in terms of API usage and template
+syntax.  The differences between Jinja1 and 2 are explained in the following
+list.</p>
+<div class="section" id="api">
+<h3>API</h3>
+<dl class="docutils">
+<dt>Loaders</dt>
+<dd><p class="first">Jinja2 uses a different loader API.  Because the internal representation
+of templates changed there is no longer support for external caching
+systems such as memcached.  The memory consumed by templates is comparable
+with regular Python modules now and external caching doesn't give any
+advantage.  If you have used a custom loader in the past have a look at
+the new <a href="#id1"><span class="problematic" id="id2">:ref:`loader API &lt;loaders&gt;`</span></a>.</p>
+<div class="last system-message" id="id1">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/switching.rst</tt>, line 21); <em><a href="#id2">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+</dd>
+<dt>Loading templates from strings</dt>
+<dd><p class="first">In the past it was possible to generate templates from a string with the
+default environment configuration by using <cite>jinja.from_string</cite>.  Jinja2
+provides a <a href="#id3"><span class="problematic" id="id4">:class:`Template`</span></a> class that can be used to do the same, but
+with optional additional configuration.</p>
+<div class="last system-message" id="id3">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/switching.rst</tt>, line 29); <em><a href="#id4">backlink</a></em></p>
+Unknown interpreted text role &quot;class&quot;.</div>
+</dd>
+<dt>Automatic unicode conversion</dt>
+<dd>Jinja1 performed automatic conversion of bytestrings in a given encoding
+into unicode objects.  This conversion is no longer implemented as it
+was inconsistent as most libraries are using the regular Python ASCII
+bytestring to Unicode conversion.  An application powered by Jinja2
+<em>has to</em> use unicode internally everywhere or make sure that Jinja2 only
+gets unicode strings passed.</dd>
+<dt>i18n</dt>
+<dd><p class="first">Jinja1 used custom translators for internationalization.  i18n is now
+available as Jinja2 extension and uses a simpler, more gettext friendly
+interface and has support for babel.  For more details see
+<a href="#id5"><span class="problematic" id="id6">:ref:`i18n-extension`</span></a>.</p>
+<div class="last system-message" id="id5">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/switching.rst</tt>, line 43); <em><a href="#id6">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+</dd>
+<dt>Internal methods</dt>
+<dd>Jinja1 exposed a few internal methods on the environment object such
+as <cite>call_function</cite>, <cite>get_attribute</cite> and others.  While they were marked
+as being an internal method it was possible to override them.  Jinja2
+doesn't have equivalent methods.</dd>
+<dt>Sandbox</dt>
+<dd><p class="first">Jinja1 was running sandbox mode by default.  Few applications actually
+used that feature so it became optional in Jinja2.  For more details
+about the sandboxed execution see <a href="#id7"><span class="problematic" id="id8">:class:`SandboxedEnvironment`</span></a>.</p>
+<div class="last system-message" id="id7">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/switching.rst</tt>, line 55); <em><a href="#id8">backlink</a></em></p>
+Unknown interpreted text role &quot;class&quot;.</div>
+</dd>
+<dt>Context</dt>
+<dd>Jinja1 had a stacked context as storage for variables passed to the
+environment.  In Jinja2 a similar object exists but it doesn't allow
+modifications nor is it a singleton.  As inheritance is dynamic now
+multiple context objects may exist during template evaluation.</dd>
+<dt>Filters and Tests</dt>
+<dd>Filters and tests are regular functions now.  It's no longer necessary
+and allowed to use factory functions.</dd>
+</dl>
+</div>
+<div class="section" id="templates">
+<h3>Templates</h3>
+<p>Jinja2 has mostly the same syntax as Jinja1.  What's different is that
+macros require parentheses around the argument list now.</p>
+<p>Additionally Jinja2 allows dynamic inheritance now and dynamic includes.
+The old helper function <cite>rendertemplate</cite> is gone now, <cite>include</cite> can be used
+instead.  Includes no longer import macros and variable assignments, for
+that the new <cite>import</cite> tag is used.  This concept is explained in the
+<a href="#id9"><span class="problematic" id="id10">:ref:`import`</span></a> documentation.</p>
+<div class="system-message" id="id9">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/switching.rst</tt>, line 76); <em><a href="#id10">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+<p>Another small change happened in the <cite>for</cite>-tag.  The special loop variable
+doesn't have a <cite>parent</cite> attribute, instead you have to alias the loop
+yourself.  See <a href="#id11"><span class="problematic" id="id12">:ref:`accessing-the-parent-loop`</span></a> for more details.</p>
+<div class="system-message" id="id11">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/switching.rst</tt>, line 82); <em><a href="#id12">backlink</a></em></p>
+Unknown interpreted text role &quot;ref&quot;.</div>
+</div>
+</div>
+<div class="section" id="django">
+<h2>Django</h2>
+<p>If you have previously worked with Django templates, you should find
+Jinja2 very familiar.  In fact, most of the syntax elements look and
+work the same.</p>
+<p>However, Jinja2 provides some more syntax elements covered in the
+documentation and some work a bit different.</p>
+<p>This section covers the template changes.  As the API is fundamentally
+different we won't cover it here.</p>
+<div class="section" id="method-calls">
+<h3>Method Calls</h3>
+<p>In Django method calls work implicitly.  With Jinja2 you have to specify that
+you want to call an object.  Thus this Django code:</p>
+<pre class="literal-block">
+{% for page in user.get_created_pages %}
+    ...
+{% endfor %}
+</pre>
+<p>will look like this in Jinja:</p>
+<pre class="literal-block">
+{% for page in user.get_created_pages() %}
+    ...
+{% endfor %}
+</pre>
+<p>This allows you to pass variables to the function which is also used for macros
+which is not possible in Django.</p>
+</div>
+<div class="section" id="conditions">
+<h3>Conditions</h3>
+<p>In Django you can use the following constructs to check for equality:</p>
+<pre class="literal-block">
+{% ifequal foo &quot;bar&quot; %}
+    ...
+{% else %}
+    ...
+{% endifequal %}
+</pre>
+<p>In Jinja2 you can use the normal if statement in combination with operators:</p>
+<pre class="literal-block">
+{% if foo == 'bar' %}
+    ...
+{% else %}
+    ...
+{% endif %}
+</pre>
+<p>You can also have multiple elif branches in your template:</p>
+<pre class="literal-block">
+{% if something %}
+    ...
+{% elif otherthing %}
+    ...
+{% elif foothing %}
+    ...
+{% else %}
+    ...
+{% endif %}
+</pre>
+</div>
+<div class="section" id="filter-arguments">
+<h3>Filter Arguments</h3>
+<p>Jinja2 provides more than one argument for filters.  Also the syntax for
+argument passing is different.  A template that looks like this in Django:</p>
+<pre class="literal-block">
+{{ items|join:&quot;, &quot; }}
+</pre>
+<p>looks like this in Jinja2:</p>
+<pre class="literal-block">
+{{ items|join(', ') }}
+</pre>
+<p>In fact it's a bit more verbose but it allows different types of arguments -
+including variables - and more than one of them.</p>
+</div>
+<div class="section" id="tests">
+<h3>Tests</h3>
+<p>In addition to filters there also are tests you can perform using the is
+operator.  Here are some examples:</p>
+<pre class="literal-block">
+{% if user.user_id is odd %}
+    {{ user.username|e }} is odd
+{% else %}
+    hmm. {{ user.username|e }} looks pretty normal
+{% endif %}
+</pre>
+</div>
+<div class="section" id="loops">
+<h3>Loops</h3>
+<p>For loops work very similar to Django, the only incompatibility is that in
+Jinja2 the special variable for the loop context is called <cite>loop</cite> and not
+<cite>forloop</cite> like in Django.</p>
+</div>
+<div class="section" id="cycle">
+<h3>Cycle</h3>
+<p>The <tt class="docutils literal">{% cycle %}</tt> tag does not exist in Jinja because of it's implicit
+nature.  However you can achieve mostly the same by using the <cite>cycle</cite>
+method on a loop object.</p>
+<p>The following Django template:</p>
+<pre class="literal-block">
+{% for user in users %}
+    &lt;li class=&quot;{% cycle 'odd' 'even' %}&quot;&gt;{{ user }}&lt;/li&gt;
+{% endfor %}
+</pre>
+<p>Would look like this in Jinja:</p>
+<pre class="literal-block">
+{% for user in users %}
+    &lt;li class=&quot;{{ loop.cycle('odd', 'even') }}&quot;&gt;{{ user }}&lt;/li&gt;
+{% endfor %}
+</pre>
+<p>There is no equivalent of <tt class="docutils literal">{% cycle ... as variable %}</tt>.</p>
+</div>
+</div>
+<div class="section" id="mako">
+<h2>Mako</h2>
+<div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./~/.pip/build/jinja2/docs/switching.rst</tt>, line 209)</p>
+<p>Unknown directive type &quot;highlight&quot;.</p>
+<pre class="literal-block">
+.. highlight:: html+mako
+
+</pre>
+</div>
+<p>If you have used Mako so far and want to switch to Jinja2 you can configure
+Jinja2 to look more like Mako:</p>
+<div class="highlight"><pre><span class="n">env</span> <span class="o">=</span> <span class="n">Environment</span><span class="p">(</span><span class="s">&#39;&lt;%&#39;</span><span class="p">,</span> <span class="s">&#39;%&gt;&#39;</span><span class="p">,</span> <span class="s">&#39;${&#39;</span><span class="p">,</span> <span class="s">&#39;}&#39;</span><span class="p">,</span> <span class="s">&#39;%&#39;</span><span class="p">)</span>
+</pre></div>
+<p>Once the environment is configure like that Jinja2 should be able to interpret
+a small subset of Mako templates.  Jinja2 does not support embedded Python code
+so you would have to move that out of the template.  The syntax for defs (in
+Jinja2 defs are called macros) and template inheritance is different too.  The
+following Mako template:</p>
+<pre class="literal-block">
+&lt;%inherit file=&quot;layout.html&quot; /&gt;
+&lt;%def name=&quot;title()&quot;&gt;Page Title&lt;/%def&gt;
+&lt;ul&gt;
+% for item in list:
+    &lt;li&gt;${item}&lt;/li&gt;
+% endfor
+&lt;/ul&gt;
+</pre>
+<p>Looks like this in Jinja2 with the above configuration:</p>
+<pre class="literal-block">
+&lt;% extends &quot;layout.html&quot; %&gt;
+&lt;% block title %&gt;Page Title&lt;% endblock %&gt;
+&lt;% block body %&gt;
+&lt;ul&gt;
+% for item in list:
+    &lt;li&gt;${item}&lt;/li&gt;
+% endfor
+&lt;/ul&gt;
+&lt;% endblock %&gt;
+</pre>
+</div>
+
+    </div><!-- /.entry-content -->
+    
+
+  </article>
+</section>
+
+        <section id="extras" class="body">
+        
+        
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+
+
+
+</body>
+</html>
