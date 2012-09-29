@@ -1,5 +1,6 @@
 Title: Android: Phonegap with existing sqlite database
 Date: 2012-09-30
+Tags: android, phonegap, sqlite
 
 Just started my journey into android development and one thing I quickly found 
 along the way is that shipping existing sqlite database with your phonegap app 
