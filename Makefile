@@ -46,6 +46,7 @@ ftp_upload: $(OUTPUTDIR)/index.html
 	lftp ftp://$(FTP_USER)@$(FTP_HOST) -e "mirror -R $(OUTPUT_DIR)/* $(FTP_TARGET_DIR) ; quit"
 
 github: $(OUTPUTDIR)/index.html
+	git status | grep -v "Your branch is ahead of" || (echo 'Push first' && exit 1)
 	ghp-import $(OUTPUTDIR)
 	git push origin gh-pages
 
