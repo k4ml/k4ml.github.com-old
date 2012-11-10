@@ -1,6 +1,7 @@
 Title: Webdev Pattern - Shortcircuit
 Date: 2012-11-11 03:13:00
 Category: Webdev Pattern
+Status: Draft
 
 This will be the first installment to what I hope a series of common pattern 
 used in web development.
