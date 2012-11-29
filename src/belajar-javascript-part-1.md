@@ -54,3 +54,4 @@ Kita mulakan aplikasi ini dengan kod html ringkas seperti berikut:-
 
 [1]:http://javascript.crockford.com/
 [2]:http://stackoverflow.com/questions/1634268/explain-javascripts-encapsulated-anonymous-function-syntax
+[3]:http://stackoverflow.com/questions/9342122/javascript-on-load-execution
