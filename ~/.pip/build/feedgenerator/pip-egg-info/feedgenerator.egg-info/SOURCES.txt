@@ -1,6 +1,0 @@
-feedgenerator.py
-setup.cfg
-pip-egg-info/feedgenerator.egg-info/PKG-INFO
-pip-egg-info/feedgenerator.egg-info/SOURCES.txt
-pip-egg-info/feedgenerator.egg-info/dependency_links.txt
-pip-egg-info/feedgenerator.egg-info/top_level.txt

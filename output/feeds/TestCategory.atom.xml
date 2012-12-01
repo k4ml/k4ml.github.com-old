@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>A Pelican Blog</title><link href="/" rel="alternate"></link><link href="/feeds/TestCategory.atom.xml" rel="self"></link><id>/</id><updated>2012-09-30T04:52:35Z</updated><entry><title>This is an article without category !</title><link href="/this-is-an-article-without-category.html" rel="alternate"></link><updated>2012-09-30T04:52:35Z</updated><author><name>kamal</name></author><id>tag:,2012-09-30:this-is-an-article-without-category.html</id><summary type="html">&lt;p&gt;This article should be in 'TestCategory' category.&lt;/p&gt;
-</summary></entry></feed>
