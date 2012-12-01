@@ -5,7 +5,7 @@
 	logallrefupdates = true
 [remote "origin"]
 	fetch = +refs/heads/*:refs/remotes/origin/*
-	url = github:k4ml/k4ml.github.com.git
+	url = https://github.com/k4ml/k4ml.github.com.git
 [branch "master"]
 	remote = origin
 	merge = refs/heads/master
