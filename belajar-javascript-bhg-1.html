@@ -5,7 +5,6 @@
     <title>Kamal Bin Mustafa</title>
     <meta name="description" content="">
     <meta name="author" content="Kamal Bin Mustafa">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
@@ -13,10 +12,10 @@
     <![endif]-->
 
     <!-- Le styles -->
-    <link href="./theme/bootstrap.min.css" rel="stylesheet">
-    <link href="./theme/bootstrap.min.responsive.css" rel="stylesheet">
-    <link href="./theme/local.css" rel="stylesheet">
-    <link href="./theme/pygments.css" rel="stylesheet">
+    <link href="./theme/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="./theme/bootstrap.min.responsive.css" rel="stylesheet" type="text/css">
+    <link href="./theme/pygments.css" rel="stylesheet" type="text/css">
+    <link href="./theme/local.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -70,20 +69,22 @@ by <a class="url fn" href="./author/kamal-bin-mustafa.html">Kamal Bin Mustafa</a
 	
         <div><p>Memetik kata-kata <a href="http://javascript.crockford.com/">Douglas Crockford</a>, JavaScript adalah bahasa 
 pengaturcaraan yang sering disalahfahami walaupun ianya merupakan bahasa 
-pengaturcaraan yang paling popular sekali dengan penggunaan yang paling meluas.  </p>
+pengaturcaraan yang paling popular sekali dengan penggunaan yang paling meluas.<br />
+</p>
 <p>JavaScript, sebelum penggunaannya yang begitu meluas seperti sekarang biasanya 
 menjadi bahasa kelas kedua bagi kebanyakkan programmer. Saya katakan kelas 
 kedua kerana ia jarang dipelajari secara formal sepertimana bahasa lain seperti 
 PHP, Python, Ruby, Perl, Java, C dan sebagainya. Maksud 'formal' disini ialah 
 kita mengambil masa untuk berkenalan dengan bahasa tersebut bermula daripada 
-ciri-ciri asas seperti <em>data type</em>, <em>control structure</em> dan sebagainya.  </p>
+ciri-ciri asas seperti <em>data type</em>, <em>control structure</em> dan sebagainya.<br />
+</p>
 <p>Seringkali apabila terpaksa menggunakan JavaScript, kita akan mendapatkan 
 library ataupun <em>code snippet</em> di Internet, ubah beberapa baris dan sekiranya 
 ia melakukan apa yang kita kehendaki, selesai ! Akhirnya JavaScript sering 
 menjadi cercaan apabila beberapa masalahnya yang tidak dijangka kita temui 
 dalam aplikasi yang kita bangunkan.</p>
 <p>Saya bercadang untuk mula mempelajari JavaScript secara lebih tersusun dan 
-berharap dapat berkongsi pengalaman yang tersebut melalui beberapa siri tulisan 
+berharap dapat berkongsi pengalaman tersebut melalui beberapa siri tulisan 
 dalam blog ini. Untuk proses pembelajaran ini, saya akan cuba membina sebuah 
 aplikasi JavaScript ringkas dan akan cuba meneroka ciri-ciri asas JavaScript.<br />
 Ini bagi saya lebih menarik dan tidak menjemukan berbanding mencuba satu demi 
@@ -108,8 +109,8 @@ bagaimana sebenarya fungsi autocomplete ini berfungsi dalam JavaScript.</p>
 
 
 <p><code>app.js</code> pula akan kelihatan seperti di bawah:-</p>
-<div class="codehilite"><pre><span class="p">(</span><span class="n">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">var</span> <span class="n">keyword</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">&#39;keyword&#39;</span><span class="p">);</span>
+<div class="codehilite"><pre><span class="p">(</span><span class="k">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">keyword</span> <span class="p">=</span> <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">&#39;keyword&#39;</span><span class="p">);</span>
     <span class="n">alert</span> <span class="p">(</span><span class="n">keyword</span><span class="p">);</span>
 <span class="p">}());</span>
 </pre></div>
@@ -132,15 +133,15 @@ semua programmer iaitu kesemua variable yang digunakan dalam <em>function</em> m
 diisytiharkan menggunakan <em>keyword</em> <code>var</code> sepertimana yang kita lihat dalam 
 contoh kod di atas. Jika tidak, ia akan turut wujud dalam skop global walaupun 
 hanya digunakan dalam <em>function</em> ! Sebagai contoh, perhatikan kod di bawah:-</p>
-<div class="codehilite"><pre><span class="n">function</span> <span class="n">add</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">_tmp1</span> <span class="o">=</span> <span class="n">parseInt</span><span class="p">(</span><span class="n">num1</span><span class="p">);</span>
-    <span class="n">_tmp2</span> <span class="o">=</span> <span class="n">parseInt</span><span class="p">(</span><span class="n">num2</span><span class="p">);</span>
+<div class="codehilite"><pre><span class="k">function</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span>num1, num2<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+    <span class="n">_tmp1</span> <span class="p">=</span> <span class="n">parseInt</span><span class="p">(</span><span class="n">num1</span><span class="p">);</span>
+    <span class="n">_tmp2</span> <span class="p">=</span> <span class="n">parseInt</span><span class="p">(</span><span class="n">num2</span><span class="p">);</span>
 
     <span class="k">return</span> <span class="n">_tmp1</span> <span class="o">+</span> <span class="n">_tmp2</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="n">total</span> <span class="o">=</span> <span class="n">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
-<span class="n">console</span><span class="o">.</span><span class="nb">log</span><span class="p">(</span><span class="n">_tmp1</span><span class="p">);</span>
+<span class="n">total</span> <span class="p">=</span> <span class="n">add</span><span class="p">(</span>1<span class="p">,</span> 2<span class="p">);</span>
+<span class="n">console</span><span class="p">.</span><span class="nb">log</span><span class="p">(</span><span class="n">_tmp1</span><span class="p">);</span>
 </pre></div>
 
 
@@ -152,9 +153,9 @@ akan menyebabkan bug yang sukar dijejaki di mana puncanya kerana variable
 <code>_tmp1</code> kini boleh dicapai oleh mana-mana bahagian aturcara sekalipun. Untuk 
 membetulkan keadaan di atas, <em>keyword</em> <code>var</code> mesti sentiasa digunakan untuk 
 mengisytiharkan <em>variable</em> dalam <em>function</em>. Contoh:-</p>
-<div class="codehilite"><pre><span class="n">function</span> <span class="n">add</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">var</span> <span class="n">_tmp1</span> <span class="o">=</span> <span class="n">parseInt</span><span class="p">(</span><span class="n">num1</span><span class="p">);</span>
-    <span class="n">var</span> <span class="n">_tmp2</span> <span class="o">=</span> <span class="n">parseInt</span><span class="p">(</span><span class="n">num2</span><span class="p">);</span>
+<div class="codehilite"><pre><span class="k">function</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span>num1, num2<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+    <span class="n">var</span> <span class="n">_tmp1</span> <span class="p">=</span> <span class="n">parseInt</span><span class="p">(</span><span class="n">num1</span><span class="p">);</span>
+    <span class="n">var</span> <span class="n">_tmp2</span> <span class="p">=</span> <span class="n">parseInt</span><span class="p">(</span><span class="n">num2</span><span class="p">);</span>
 
     <span class="k">return</span> <span class="n">_tmp1</span> <span class="o">+</span> <span class="n">_tmp2</span><span class="p">;</span>
 <span class="p">}</span>
@@ -168,8 +169,8 @@ meminimumkan bilangan <em>variable</em> yang didedahkan kepada skop global, kita
 dibuka oleh <em>JavaScript engine</em>. Kod sebelum ini contohnya, tidak mendedahkan 
 sebarang variable kepada skop global berbanding sekiranya ia ditulis seperti 
 berikut:-</p>
-<div class="codehilite"><pre><span class="n">function</span> <span class="n">init</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">var</span> <span class="n">keyword</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">&#39;keyword&#39;</span><span class="p">);</span>
+<div class="codehilite"><pre><span class="k">function</span><span class="w"> </span><span class="nf">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+    <span class="n">var</span> <span class="n">keyword</span> <span class="p">=</span> <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">&#39;keyword&#39;</span><span class="p">);</span>
     <span class="n">alert</span> <span class="p">(</span><span class="n">keyword</span><span class="p">);</span>
 <span class="p">}</span>
 
@@ -186,6 +187,7 @@ tersebut seperti <code>$.getJSON</code>, <code>YUI.dom</code> dan sebagainya. Wa
 tidak mempunyai sokongan <em>namespace</em> atau <em>module</em>, function dan object boleh 
 digunakan untuk <em>simulate</em> namespace. Lagi yang boleh dipelajari daripada contoh
 ringkas ini adalah perbezaan antara <em>function declaration</em> dan <em>function expression</em> tetapi saya tidak bercadang untuk mengulasnya dalam bahagian ini.</p>
+<p>Setakat ini sahaja untuk bahagian pertama. Saya berharap akan dapat terus menulis dan berkongsi bahagian seterusnya, Insya Allah.</p>
 <p><em>p/s - Siri belajar JavaScript ini mendapat inspirasi daripada sahabat saya yang mencatatkan pengalamannya <a href="https://plus.google.com/u/0/104286962752255423480/posts/Tb1ffbfzZdM">mempelajari Python</a> hari demi hari di <a href="https://plus.google.com/104286962752255423480/posts">laman G+ beliau</a></em>.</p></div>
 	
         <hr>
@@ -207,7 +209,7 @@ ringkas ini adalah perbezaan antara <em>function declaration</em> dan <em>functi
             
                 <li><a href="./archives.html">Archives</a>
                 <li><a href="./tags.html">Tags</a>
-                <li><a href="/feeds/all.atom.xml" rel="alternate">Atom feed</a></li>
+                <li><a href="./" rel="alternate">Atom feed</a></li>
                 
             </ul>
             </div>
@@ -253,6 +255,20 @@ ringkas ini adalah perbezaan antara <em>function declaration</em> dan <em>functi
             </div>
             
 
+            <div class="well" style="padding: 8px 0; background-color: #FBFBFB;">
+            <script type="text/javascript"><!--
+            google_ad_client = "ca-pub-8281975820122676";
+            /* k4ml_github */
+            google_ad_slot = "8197732247";
+            google_ad_width = 300;
+            google_ad_height = 250;
+            //-->
+            </script>
+            <script type="text/javascript"
+            src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script>
+            </div>
+
         </div>  
     </div> 
     </div> 
@@ -265,6 +281,8 @@ ringkas ini adalah perbezaan antara <em>function declaration</em> dan <em>functi
 </div> <!-- /container -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+
+<script>var _gaq=[['_setAccount','UA-36737378-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
 
  
 </body>
