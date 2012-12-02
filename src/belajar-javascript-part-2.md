@@ -4,10 +4,10 @@ Category: JavaScript
 
 Sebelum ini kita telah menulis kod JavaScript asas seperti berikut:-
 
-(function() {
-    var keyword = document.getElementById('keyword');
-    alert keyword;
-})();
+    (function() {
+        var keyword = document.getElementById('keyword');
+        alert keyword;
+    })();
 
 Bagi yang biasa dengan JavaScript pasti menyedari ada masalah dengan kod di 
 atas. Malah jika anda membuka fail `index.html` melalui browser, anda akan 
@@ -19,8 +19,7 @@ tersebut dijalankan, DOM element yang kita cuba dapatkan masih belum disediakan
 sepenuhnya oleh browser.
 
 Untuk membetulkan masalah di atas, kita perlu attach function tersebut kepada 
-`load` event sama ada pada object `window` ataupun pada element `body`.  
-Contohnya adalah seperti berikut:-
+`load` event sama ada pada object `window` ataupun pada element `body`. Contohnya adalah seperti berikut:-
 
     window.onload = function() {
         var keyword = document.getElementById('keyword');
@@ -66,8 +65,7 @@ berikut:-
 Kelebihan cara di atas adalah struktur kod kita masih kekal sebagaimana asal 
 dipermulaan siri ini. Bagaimanapun menggunakan `load` event tetap mempunyai 
 satu masalah iaitu kod tersebut hanya akan dijalankan apabila kesemua elemen 
-dan juga *resource* seperti imej telah selesai dimuat-turun oleh browser.  
-Kebanyakkan kod JavaScript adalah untuk memanipulasi DOM jadi agak membuang 
+dan juga *resource* seperti imej telah selesai dimuat-turun oleh browser. Kebanyakkan kod JavaScript adalah untuk memanipulasi DOM jadi agak membuang 
 masa dan juga mungkin menghasilkan kesan yang tidak diingini jika terpaksa 
 menunggu kesemua *resource* selesai dimuat-turun sebelum kod JavaScript kita 
 boleh memainkan peranan. Alternatif kepada `load` event adalah 
@@ -83,10 +81,9 @@ boleh memainkan peranan. Alternatif kepada `load` event adalah
 Kelebihan `DOMContentLoaded` adalah ia akan terus *execute* kod kita sebaik 
 sahaja kesemua struktur DOM telah dibina dalam memori. Namun hidup dalam dunia 
 JavaScript adalah sangat tidak menentu dan sukar diduga. Tidak semua browser 
-menyokong event DOMContentLoaded ini jadi kod kita perlu melakukan beberapa 
+menyokong event `DOMContentLoaded` ini jadi kod kita perlu melakukan beberapa 
 adaptasi bagi membolehkan ia berfungsi pada semua browser. Atas sebab inilah 
-library seperti JQuery menyediakan function khas untuk mengatasi masalah ini.  
-Menggunakan JQuery, kod di atas boleh ditulis seperti berikut:-
+library seperti JQuery menyediakan function khas untuk mengatasi masalah ini. Menggunakan JQuery, kod di atas boleh ditulis seperti berikut:-
 
     (function() {
         $(document).ready(function() {
