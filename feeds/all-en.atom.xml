@@ -1,5 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Kamal Bin Mustafa</title><link href="/" rel="alternate"></link><link href="/feeds/all-en.atom.xml" rel="self"></link><id>/</id><updated>2012-12-02T16:00:00+08:00</updated><entry><title>Belajar Javascript: Bhg 2</title><link href="/belajar-javascript-bhg-2.html" rel="alternate"></link><updated>2012-12-02T16:00:00+08:00</updated><author><name>Kamal Bin Mustafa</name></author><id>tag:,2012-12-02:belajar-javascript-bhg-2.html</id><summary type="html">&lt;p&gt;Sebelum ini kita telah menulis kod JavaScript asas seperti berikut:-&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Kamal Bin Mustafa</title><link href="/" rel="alternate"></link><link href="/feeds/all-en.atom.xml" rel="self"></link><id>/</id><updated>2012-12-03T06:30:00+08:00</updated><entry><title>On Python Namespace and PIL vs Pillow</title><link href="/on-python-namespace-and-pil-vs-pillow.html" rel="alternate"></link><updated>2012-12-03T06:30:00+08:00</updated><author><name>Kamal Bin Mustafa</name></author><id>tag:,2012-12-03:on-python-namespace-and-pil-vs-pillow.html</id><summary type="html">&lt;p&gt;All python dev know Zen of python, when you type import this at python
+console. One of the Zen say:-&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Namespaces are one honking great idea -- let's do more of those!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Namespace is great. It allow you to keep your stuff separate from others.
+While namespace such a great thing, you'll surprise that some packages in
+Python does not embrace it very well. PIL for example is quite an important
+package. The official documentation however does not advertise &lt;code&gt;PIL&lt;/code&gt; as it
+top level namespace. Instead every individual module is imported directly.&lt;/p&gt;
+&lt;p&gt;This does not pose much problem back then but with people start using
+virtualenv to isolate their apps and install the package through pip or
+easy_install, we start to realize a problem with how PIL was packaged. Folks
+at plone repackaged PIL into &lt;a href="http://pypi.python.org/pypi/Pillow"&gt;Pillow&lt;/a&gt; with a premise to make it easy to
+install not through system package manager. I've been using Pillow most of
+the time these days.&lt;/p&gt;
+&lt;p&gt;When working on &lt;a href="https://github.com/k4ml/booktype-openshift"&gt;Booktype openshift quickstart&lt;/a&gt;, I'd somehow changed the deps in
+&lt;code&gt;setup.py&lt;/code&gt; to Pillow instead of the original PIL along the way. After sorting
+out all action hooks script and was about to call it a day, a final test
+showed that an image that uploaded not longer listed. Looking at &lt;code&gt;MEDIA_ROOT&lt;/code&gt;
+confirmed the image was successfully uploaded. My initial thought was could be
+some issue with my settings since I split some of it into separate file and
+not using the default that come with the release tarball. Debugging was so
+painful since no exception happened at all and with all the Ajax call, I'm
+lost.&lt;/p&gt;
+&lt;p&gt;After going through all the Ajax calls, I finally found the url to list the
+images. Accessing the url through browser immediately revealed the
+error. It was an import error when the code want to import &lt;code&gt;Image&lt;/code&gt; module. It
+work fine before when using PIL because PIL also add path to the top level
+directory in &lt;code&gt;site-packages&lt;/code&gt; effectively making all modules underneath it
+being exposed as top level namespace. But Pillow on the other hand only
+expose PIL as top level namespace so the code break.&lt;/p&gt;
+&lt;p&gt;While the ideal thing to do is to fix all code so that they're not
+importing modules directly, it not always feasible. I'm quite lucky that
+PIL compiled successfully on openshift so I don't have to use Pillow. A
+lesson to learn is always publish your packages as single top level
+namespace and never misused your language flexibility (in this case
+extending path through .pth file) to do something 'clever'.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;2012-11-18 17:54&lt;/em&gt;&lt;/p&gt;</summary></entry><entry><title>Belajar Javascript: Bhg 2</title><link href="/belajar-javascript-bhg-2.html" rel="alternate"></link><updated>2012-12-02T16:00:00+08:00</updated><author><name>Kamal Bin Mustafa</name></author><id>tag:,2012-12-02:belajar-javascript-bhg-2.html</id><summary type="html">&lt;p&gt;Sebelum ini kita telah menulis kod JavaScript asas seperti berikut:-&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="n"&gt;alert&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
