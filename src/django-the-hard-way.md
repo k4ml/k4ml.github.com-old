@@ -1,4 +1,5 @@
 Title: Django The Hard Way
+Status: draft
 
 There are a lot of tutorials out there on Django and the official documentation also has one. For this post, I decided not to go through the typical route on how to get started with django. Let's 'ignore' the best practices and focus on what actually work and hopefully we can learn something along the way. So let's get started by downloading Django itself from the website.
 
