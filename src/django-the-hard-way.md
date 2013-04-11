@@ -2,7 +2,7 @@ Title: Django The Hard Way
 
 There are a lot of tutorials out there on Django and the official documentation also has one. For this post, I decided not to go through the typical route on how to get started with django. Let's 'ignore' the best practices and focus on what actually work and hopefully we can learn something along the way. So let's get started by downloading Django itself from the website.
 
-    $ wget https://www.djangoproject.com/download/1.5.1/tarball/
+    $ wget -o django.tar.gz https://www.djangoproject.com/download/1.5.1/tarball/
     $ tar xzf django.tar.gz 
     $ ls
     Django-1.5.1  django.tar.gz
@@ -54,7 +54,7 @@ You'll get a message like this:-
 
     ImproperlyConfigured: Requested setting USE_I18N, but settings are not configured. You must either define the environment variable DJANGO_SETTINGS_MODULE or call settings.configure() before accessing settings.
 
-So something not right, in order for Django to start up, you have to tell it how to configure itself. You have to provide some settings. The settings itself just another python module (there's another way to provide settings) which mean the module must be able to be imported from the python script that we use to run django. Let's create the settings module, name it `settings.py`:-
+So something not right, in order for Django to start up, you have to tell it how to configure itself. You have to provide some settings. The settings itself just another python module (there's another way to provide settings) which mean the module must be able to be imported from the python script that we use to run django. Let's create the settings module, name it `settings.py` (it can be anything):-
 
     $ touch settings.py
     $ python
@@ -82,7 +82,7 @@ The result would be the same. Specifying the environment variables value on the 
     $ python main.py runserver
     ImproperlyConfigured: The SECRET_KEY setting must not be empty.
 
-Django already come with list of default settings but apparently for this one, you have to specify it yourself. Let's ignore first what the purpose of this `SECRET_KEY`. So fix our settings module to have that:-
+Django already come with list of [default settings][1] but apparently for this one, you have to specify it yourself. Let's ignore first what the purpose of this `SECRET_KEY`. So fix our settings module to have that:-
 
     $ cat settings.py
     SECRET_KEY = "1+)O49,>}5!$+ 43*PN+2+=(2S'W*0^1_|76n{_"
@@ -188,3 +188,5 @@ Now we have to fix our settings a bit to reflect the new location of our modules
     os.environ['DJANGO_SETTINGS_MODULE'] = 'myapp.settings'
 
     execute_from_command_line()
+
+[1]:https://docs.djangoproject.com/en/1.5/ref/settings/
