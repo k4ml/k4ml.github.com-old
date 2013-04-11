@@ -1,5 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Kamal Bin Mustafa</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2012-12-03T06:30:00+08:00</updated><entry><title>On Python Namespace and PIL vs Pillow</title><link href="/on-python-namespace-and-pil-vs-pillow.html" rel="alternate"></link><updated>2012-12-03T06:30:00+08:00</updated><author><name>Kamal Bin Mustafa</name></author><id>tag:,2012-12-03:on-python-namespace-and-pil-vs-pillow.html</id><summary type="html">&lt;p&gt;All python dev know Zen of python, when you type import this at python
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Kamal Bin Mustafa</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2013-04-12T07:25:58+08:00</updated><entry><title>Django The Hard Way</title><link href="/django-the-hard-way.html" rel="alternate"></link><updated>2013-04-12T07:25:58+08:00</updated><author><name>Kamal Bin Mustafa</name></author><id>tag:,2013-04-12:django-the-hard-way.html</id><summary type="html">&lt;p&gt;There are a lot of tutorials out there on Django and the official documentation also has one. For this post, I decided not to go through the typical route on how to get started with django. Let's 'ignore' the best practices and focus on what actually work and hopefully we can learn something along the way. So let's get started by downloading Django itself from the website.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;wget&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;o&lt;/span&gt; &lt;span class="n"&gt;django&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gz&lt;/span&gt; &lt;span class="n"&gt;https:&lt;/span&gt;&lt;span class="sr"&gt;//&lt;/span&gt;&lt;span class="n"&gt;www&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;djangoproject&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="sr"&gt;/download/&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="sr"&gt;/tarball/&lt;/span&gt;
+&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;tar&lt;/span&gt; &lt;span class="n"&gt;xzf&lt;/span&gt; &lt;span class="n"&gt;django&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gz&lt;/span&gt; 
+&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;ls&lt;/span&gt;
+&lt;span class="n"&gt;Django&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;  &lt;span class="n"&gt;django&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tar&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gz&lt;/span&gt;
+&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;ls&lt;/span&gt; &lt;span class="n"&gt;Django&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;AUTHORS&lt;/span&gt;  &lt;span class="n"&gt;docs&lt;/span&gt;    &lt;span class="n"&gt;INSTALL&lt;/span&gt;  &lt;span class="n"&gt;MANIFEST&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;in&lt;/span&gt;  &lt;span class="n"&gt;README&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rst&lt;/span&gt;  &lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cfg&lt;/span&gt;  &lt;span class="n"&gt;tests&lt;/span&gt;
+&lt;span class="n"&gt;django&lt;/span&gt;   &lt;span class="n"&gt;extras&lt;/span&gt;  &lt;span class="n"&gt;LICENSE&lt;/span&gt;  &lt;span class="n"&gt;PKG&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;INFO&lt;/span&gt;     &lt;span class="n"&gt;scripts&lt;/span&gt;     &lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;What we're getting is called a Python package that supposed to be installed. But we're not going to install it, instead let just take what we really need. Take out the &lt;code&gt;django&lt;/code&gt; directory and move to our current directory.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;mv&lt;/span&gt; &lt;span class="n"&gt;Django&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;django&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;One thing we should understand when get started with Django is that it's just Python. In Python the most important thing is to make sure we can import the module we want to use. Let's try to &lt;code&gt;import django&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;python&lt;/span&gt;
+&lt;span class="n"&gt;Python&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r265:79063&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Apr&lt;/span&gt; &lt;span class="mi"&gt;16&lt;/span&gt; &lt;span class="mi"&gt;2010&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;09&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;56&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;GCC&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt; &lt;span class="n"&gt;linux2&lt;/span&gt;
+&lt;span class="n"&gt;Type&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;help&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;copyright&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;credits&amp;quot;&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;license&amp;quot;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;more&lt;/span&gt; &lt;span class="n"&gt;information&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;import&lt;/span&gt; &lt;span class="n"&gt;django&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;django&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;module&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;django&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;django/__init__.py&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This is great, we 'have' django now so let's build some application with it. In any computer program, it's important to know what is the entry point to that program. In C program we have the &lt;code&gt;main()&lt;/code&gt; function for example, in Java you specify a class for the JVM to load and that class must have the &lt;code&gt;static main()&lt;/code&gt; method. So what is the entry point to django application ? There will be at least 2 entry points to django application. First let's called command line entry point (CLI) and second the WSGI entry point. Let's ignore what is WSGI and focus on executing django application from command line. This is the minimal python script that you can use to invoke django application:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; 
+&lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;django&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;core&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;management&lt;/span&gt; &lt;span class="nb"&gt;import&lt;/span&gt; &lt;span class="n"&gt;execute_from_command_line&lt;/span&gt;
+
+&lt;span class="n"&gt;execute_from_command_line&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The filename can be anything but let's call it &lt;code&gt;main.py&lt;/code&gt;. If you run that script with python, it will display a list of available sub-commands, along with some help message.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;python&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; 
+&lt;span class="n"&gt;Usage:&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="n"&gt;subcommand&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;django&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;cleanup&lt;/span&gt;
+&lt;span class="n"&gt;compilemessages&lt;/span&gt;
+&lt;span class="n"&gt;createcachetable&lt;/span&gt;
+&lt;span class="n"&gt;dbshell&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;span class="n"&gt;runserver&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The sub-command we're interested with is the &lt;code&gt;runserver&lt;/code&gt;. That will start a process that listen at port 8000 and ready to serve HTTP request. People call it web server, quite similar to that well known Apache. Of course this web server that come with Django is not meant to replace Apache and far from usable outside of this local machine but that will be in another post. Let's try to run the &lt;code&gt;runserver&lt;/code&gt; command:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;python&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="n"&gt;runserver&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;You'll get a message like this:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;ImproperlyConfigured&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Requested&lt;/span&gt; &lt;span class="n"&gt;setting&lt;/span&gt; &lt;span class="n"&gt;USE_I18N&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;but&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt; &lt;span class="n"&gt;are&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;configured&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="n"&gt;You&lt;/span&gt; &lt;span class="n"&gt;must&lt;/span&gt; &lt;span class="n"&gt;either&lt;/span&gt; &lt;span class="n"&gt;define&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;environment&lt;/span&gt; &lt;span class="n"&gt;variable&lt;/span&gt; &lt;span class="n"&gt;DJANGO_SETTINGS_MODULE&lt;/span&gt; &lt;span class="n"&gt;or&lt;/span&gt; &lt;span class="n"&gt;call&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="na"&gt;configure&lt;/span&gt;&lt;span class="o"&gt;()&lt;/span&gt; &lt;span class="n"&gt;before&lt;/span&gt; &lt;span class="n"&gt;accessing&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;So something not right, in order for Django to start up, you have to tell it how to configure itself. You have to provide some settings. The settings itself just another python module (there's another way to provide settings) which mean the module must be able to be imported from the python script that we use to run django. Let's create the settings module, name it &lt;code&gt;settings.py&lt;/code&gt; (it can be anything):-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;touch&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;python&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="nb"&gt;import&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;module&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;settings&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;settings.py&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now that we have settings module in place, let's modify our &lt;code&gt;main.py&lt;/code&gt;:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;span class="nb"&gt;import&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;
+
+&lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;django&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;core&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;management&lt;/span&gt; &lt;span class="nb"&gt;import&lt;/span&gt; &lt;span class="n"&gt;execute_from_command_line&lt;/span&gt;
+
+&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;DJANGO_SETTINGS_MODULE&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;settings&amp;#39;&lt;/span&gt;
+
+&lt;span class="n"&gt;execute_from_command_line&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Above, we hardcode the value of &lt;code&gt;DJANGO_SETTINGS_MODULE&lt;/code&gt; environment variables to our settings module. Just like any environment variables, we can also specify it when we run our script:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;DJANGO_SETTINGS_MODULE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;settings&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The result would be the same. Specifying the environment variables value on the command line without hardcoding allow us to specify different settings to our app with having to modify the code. That's one of the reason why django choose to use environment variables to store pointer to the settings. One typical usecase when you want to have different settings for development and production. Let's continue with our app:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;python&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="n"&gt;runserver&lt;/span&gt;
+&lt;span class="n"&gt;ImproperlyConfigured:&lt;/span&gt; &lt;span class="n"&gt;The&lt;/span&gt; &lt;span class="n"&gt;SECRET_KEY&lt;/span&gt; &lt;span class="n"&gt;setting&lt;/span&gt; &lt;span class="n"&gt;must&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;be&lt;/span&gt; &lt;span class="n"&gt;empty&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Django already come with list of &lt;a href="https://docs.djangoproject.com/en/1.5/ref/settings/"&gt;default settings&lt;/a&gt; but apparently for this one, you have to specify it yourself. Let's ignore first what the purpose of this &lt;code&gt;SECRET_KEY&lt;/code&gt;. So fix our settings module to have that:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;span class="n"&gt;SECRET_KEY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;1+)O49,&amp;gt;}5!$+ 43*PN+2+=(2S&amp;#39;W*0^1_|76n{_&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Run &lt;code&gt;runserver&lt;/code&gt; again:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;python&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="n"&gt;runserver&lt;/span&gt;
+&lt;span class="n"&gt;Validating&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt;
+
+&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;errors&lt;/span&gt; &lt;span class="n"&gt;found&lt;/span&gt;
+&lt;span class="n"&gt;April&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2013&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;34&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;29&lt;/span&gt;
+&lt;span class="n"&gt;Django&lt;/span&gt; &lt;span class="n"&gt;version&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;settings&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;Development&lt;/span&gt; &lt;span class="n"&gt;server&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;running&lt;/span&gt; &lt;span class="n"&gt;at&lt;/span&gt; &lt;span class="n"&gt;http:&lt;/span&gt;&lt;span class="sr"&gt;//&lt;/span&gt;&lt;span class="mi"&gt;127&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;8000&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;Quit&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;server&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="n"&gt;CONTROL&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now django happily start the server. Let's try to access it:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;curl&lt;/span&gt; &lt;span class="n"&gt;http:&lt;/span&gt;&lt;span class="sr"&gt;//&lt;/span&gt;&lt;span class="n"&gt;localhost:8000&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;Traceback&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;most&lt;/span&gt; &lt;span class="n"&gt;recent&lt;/span&gt; &lt;span class="n"&gt;call&lt;/span&gt; &lt;span class="k"&gt;last&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+  &lt;span class="n"&gt;File&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;/usr/lib/python2.6/wsgiref/handlers.py&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="mi"&gt;93&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;run&lt;/span&gt;
+    &lt;span class="n"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;application&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;start_response&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="n"&gt;File&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;/home/kamal/python/dthw/django/core/handlers/wsgi.py&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="mi"&gt;255&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;__call__&lt;/span&gt;
+    &lt;span class="n"&gt;response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_response&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="n"&gt;File&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;/home/kamal/python/dthw/django/core/handlers/base.py&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="mi"&gt;85&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;get_response&lt;/span&gt;
+    &lt;span class="n"&gt;urlconf&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ROOT_URLCONF&lt;/span&gt;
+  &lt;span class="n"&gt;File&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;/home/kamal/python/dthw/django/conf/__init__.py&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt; &lt;span class="mi"&gt;54&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;__getattr__&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;getattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;_wrapped&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;AttributeError:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Settings&amp;#39;&lt;/span&gt; &lt;span class="n"&gt;object&lt;/span&gt; &lt;span class="n"&gt;has&lt;/span&gt; &lt;span class="nb"&gt;no&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;ROOT_URLCONF&amp;#39;&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="sr"&gt;/Apr/&lt;/span&gt;&lt;span class="mi"&gt;2013&lt;/span&gt; &lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;37&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;55&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;GET / HTTP/1.1&amp;quot;&lt;/span&gt; &lt;span class="mi"&gt;500&lt;/span&gt; &lt;span class="mi"&gt;59&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The reason django gave you an error because you haven't tell yet django what to serve from your application. You can do this by providing a mapping between a set of url pattern to python function that will be called when the pattern match. Create a new python module, name it &lt;code&gt;urls.py&lt;/code&gt; (once again, the name can be anything).&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;urls&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;django&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;http&lt;/span&gt; &lt;span class="nb"&gt;import&lt;/span&gt; &lt;span class="n"&gt;HttpResponse&lt;/span&gt;
+&lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;django&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;urls&lt;/span&gt; &lt;span class="nb"&gt;import&lt;/span&gt; &lt;span class="n"&gt;patterns&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;url&lt;/span&gt;
+
+&lt;span class="n"&gt;def&lt;/span&gt; &lt;span class="n"&gt;hello_world&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;HttpResponse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Hello world&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;urlpatterns&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;patterns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;^$&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;hello_world&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The module must have a name called &lt;code&gt;urlpatterns&lt;/code&gt; that having a reference to the return value of function &lt;code&gt;django.conf.urls.patterns&lt;/code&gt;. You call the function by passing 2 or more parameters, the first parameter can just be an empty string (explanation should be in another post), the rest of the parameters should be a tuple of 2 items - (pattern, function). It's recommended however to wrap the tuple through django provided function &lt;code&gt;url()&lt;/code&gt; as it will provide you with more features that you will need as your application grow. The function can be a direct reference to function object (like above) or just a string of valid import path to the function. In the later case, django will try to import the function and then call it.&lt;/p&gt;
+&lt;p&gt;Once above is done, you can hook it into &lt;code&gt;settings.py&lt;/code&gt; which now should look like:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;span class="n"&gt;SECRET_KEY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;1+)O49,&amp;gt;}5!$+ 43*PN+2+=(2S&amp;#39;W*0^1_|76n{_&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;ROOT_URLCONF&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;urls&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;ROOT_URLCONF&lt;/code&gt; should contain valid import path to our module that define the url mapping. Try to &lt;code&gt;runserver&lt;/code&gt; and access our app again:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;python&lt;/span&gt; &lt;span class="n"&gt;manage&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="n"&gt;runserver&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;On another console:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;curl&lt;/span&gt; &lt;span class="n"&gt;http:&lt;/span&gt;&lt;span class="sr"&gt;//&lt;/span&gt;&lt;span class="n"&gt;localhost:8000&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Unfortunately django still come up with 500 error. This is because django refuse to run our function through the development server with DEBUG settings set to False. This is to avoid you from running this crippled web server for production application. You should use Apache with &lt;code&gt;mod_wsgi&lt;/code&gt; or any other production ready wsgi server out there. So let's fix the settings:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;span class="n"&gt;SECRET_KEY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;1+)O49,&amp;gt;}5!$+ 43*PN+2+=(2S&amp;#39;W*0^1_|76n{_&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;ROOT_URLCONF&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;urls&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;DEBUG&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;True&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now running the &lt;code&gt;runserver&lt;/code&gt; and try accessing http://localhost:8000/ through browser or using curl will give the "Hello world" string. The takeout from this is that all the django need is just a function that it can call given a particular url. From that function you can do whatever you want as long as you return a valid value that is an instance of &lt;code&gt;django.http.HttpResponse&lt;/code&gt; or it's subclass. Another important thing to know is that most of the settings require you to provide a valid python import path that django can use to import the required module. The module itself can be anywhere and django does not restrict you to any particular structure. As long as you can do &lt;code&gt;import somestuff&lt;/code&gt;, that would be fine. How to make sure you module can be imported will be a point of another post though.&lt;/p&gt;
+&lt;h2&gt;Namespace&lt;/h2&gt;
+&lt;p&gt;So far what we have been doing is defining python module in the same directory as the script that executing our application (&lt;code&gt;main.py&lt;/code&gt;). The is the easiest to get started because nothing we have to do in order for python to be able to import our module. Most of the time python can import module or package defined in the same directory of the executing script. In our case we defined &lt;code&gt;settings.py&lt;/code&gt; and in &lt;code&gt;main.py&lt;/code&gt; it's importable as &lt;code&gt;settings&lt;/code&gt;. Similar goes to &lt;code&gt;urls.py&lt;/code&gt;. These (settings, urls) however are too generic name that can potentially conflict with other python modules once our app grow and we need to use more python libraries than just django. Python has [namespace] to solve this so why not we start using it before getting too deep with our app.&lt;/p&gt;
+&lt;p&gt;Create a new directory called &lt;code&gt;myapp&lt;/code&gt; (or anything you wish) in the same directory containing &lt;code&gt;main.py&lt;/code&gt;, &lt;code&gt;settings.py&lt;/code&gt; and &lt;code&gt;urls.py&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;mkdir&lt;/span&gt; &lt;span class="n"&gt;myapp&lt;/span&gt;
+&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;ls&lt;/span&gt;
+&lt;span class="n"&gt;django&lt;/span&gt;  &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;  &lt;span class="n"&gt;myapp&lt;/span&gt;  &lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;  &lt;span class="n"&gt;urls&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then move &lt;code&gt;settings.py&lt;/code&gt; and &lt;code&gt;urls.py&lt;/code&gt; into the new directory.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;ls&lt;/span&gt;
+&lt;span class="n"&gt;django&lt;/span&gt;  &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;  &lt;span class="n"&gt;myapp&lt;/span&gt;
+&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;ls&lt;/span&gt; &lt;span class="n"&gt;myapp&lt;/span&gt;
+&lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;  &lt;span class="n"&gt;urls&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;main.py&lt;/code&gt; should remain outside as it is the entry point to our app and it will be much easier if it is not in the containing app. This way we can phrase it as &lt;code&gt;main.py&lt;/code&gt; will call &lt;code&gt;myapp&lt;/code&gt;, otherwise if we put &lt;code&gt;main.py&lt;/code&gt; in &lt;code&gt;myapp&lt;/code&gt;, then &lt;code&gt;myapp&lt;/code&gt; has to call itself. While technically possible it will be much harder to explain. Django has done this in the beginning and has since corrected it in last few latest versions. In order for a directory to be recognised as valid python package (namespace), you have to provide a file named &lt;code&gt;__init__.py&lt;/code&gt;. Most of the time it can be empty.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;touch&lt;/span&gt; &lt;span class="n"&gt;myapp&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;__init__&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now we have to fix our settings a bit to reflect the new location of our modules. It should look like this:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;myapp&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;span class="n"&gt;SECRET_KEY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;1+)O49,&amp;gt;}5!$+ 43*PN+2+=(2S&amp;#39;W*0^1_|76n{_&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;ROOT_URLCONF&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;myapp.urls&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;DEBUG&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;True&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;main.py&lt;/code&gt; also need fixing:-&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;cat&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;span class="nb"&gt;import&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;
+
+&lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;django&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;core&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;management&lt;/span&gt; &lt;span class="nb"&gt;import&lt;/span&gt; &lt;span class="n"&gt;execute_from_command_line&lt;/span&gt;
+
+&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;DJANGO_SETTINGS_MODULE&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;myapp.settings&amp;#39;&lt;/span&gt;
+
+&lt;span class="n"&gt;execute_from_command_line&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary></entry><entry><title>On Python Namespace and PIL vs Pillow</title><link href="/on-python-namespace-and-pil-vs-pillow.html" rel="alternate"></link><updated>2012-12-03T06:30:00+08:00</updated><author><name>Kamal Bin Mustafa</name></author><id>tag:,2012-12-03:on-python-namespace-and-pil-vs-pillow.html</id><summary type="html">&lt;p&gt;All python dev know Zen of python, when you type import this at python
 console. One of the Zen say:-&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Namespaces are one honking great idea -- let's do more of those!&lt;/p&gt;
@@ -38,8 +245,8 @@ lesson to learn is always publish your packages as single top level
 namespace and never misused your language flexibility (in this case
 extending path through .pth file) to do something 'clever'.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;2012-11-18 17:54&lt;/em&gt;&lt;/p&gt;</summary></entry><entry><title>Belajar Javascript: Bhg 2</title><link href="/belajar-javascript-bhg-2.html" rel="alternate"></link><updated>2012-12-02T16:00:00+08:00</updated><author><name>Kamal Bin Mustafa</name></author><id>tag:,2012-12-02:belajar-javascript-bhg-2.html</id><summary type="html">&lt;p&gt;Sebelum ini kita telah menulis kod JavaScript asas seperti berikut:-&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="n"&gt;alert&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;})();&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -55,8 +262,8 @@ tersebut dijalankan, DOM element yang kita cuba dapatkan masih belum disediakan
 sepenuhnya oleh browser.&lt;/p&gt;
 &lt;p&gt;Untuk membetulkan masalah di atas, kita perlu attach function tersebut kepada 
 &lt;code&gt;load&lt;/code&gt; event sama ada pada object &lt;code&gt;window&lt;/code&gt; ataupun pada element &lt;code&gt;body&lt;/code&gt;. Contohnya adalah seperti berikut:-&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;onload&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;window&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;onload&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="n"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;using window.onload&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="n"&gt;alert&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
@@ -78,8 +285,8 @@ sepenuhnya oleh browser.&lt;/p&gt;
 
 &lt;p&gt;Tidak ada DOM object untuk &lt;code&gt;body&lt;/code&gt; dan saya pada mulanya mencuba seperti 
 berikut:-&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;body&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;onload&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;body&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;onload&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="n"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;using document.body.onload&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="n"&gt;alert&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
@@ -92,9 +299,9 @@ declare satu function pada skop global, sesuatu yang kita cuba elakkan seperti
 yang telah dibincangkan dalam tulisan yang lalu. Bagi browser moden pada hari 
 ini, cara yang direkomenkan adalah dengan menggunakan event listener seperti
 berikut:-&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="n"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;load&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;window&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;load&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="n"&gt;alert&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="n"&gt;false&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="p"&gt;}());&lt;/span&gt;
@@ -109,9 +316,9 @@ masa dan juga mungkin menghasilkan kesan yang tidak diingini jika terpaksa
 menunggu kesemua &lt;em&gt;resource&lt;/em&gt; selesai dimuat-turun sebelum kod JavaScript kita 
 boleh memainkan peranan. Alternatif kepada &lt;code&gt;load&lt;/code&gt; event adalah 
 &lt;code&gt;DOMContentLoaded&lt;/code&gt; dan kod di atas boleh ditulis seperti berikut:-&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="n"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;DOMContentLoaded&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;window&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;DOMContentLoaded&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="n"&gt;alert&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="n"&gt;false&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="p"&gt;}());&lt;/span&gt;
@@ -124,9 +331,9 @@ JavaScript adalah sangat tidak menentu dan sukar diduga. Tidak semua browser
 menyokong event &lt;code&gt;DOMContentLoaded&lt;/code&gt; ini jadi kod kita perlu melakukan beberapa 
 adaptasi bagi membolehkan ia berfungsi pada semua browser. Atas sebab inilah 
 library seperti JQuery menyediakan function khas untuk mengatasi masalah ini. Menggunakan JQuery, kod di atas boleh ditulis seperti berikut:-&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    $&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;ready&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nv"&gt;$&lt;/span&gt;&lt;span class="err"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;document&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ready&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
         &lt;span class="n"&gt;alert&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="p"&gt;});&lt;/span&gt;
 &lt;span class="p"&gt;}());&lt;/span&gt;
@@ -142,15 +349,13 @@ bahagian ini boleh rujuk perbincangan di laman stackoverflow:-&lt;/p&gt;
 &lt;p&gt;Sekian untuk kali ini, sehingga berjumpa lagi untuk siri akan datang, Insya 
 Allah.&lt;/p&gt;</summary></entry><entry><title>Belajar Javascript: Bhg 1</title><link href="/belajar-javascript-bhg-1.html" rel="alternate"></link><updated>2012-11-28T22:47:00+08:00</updated><author><name>Kamal Bin Mustafa</name></author><id>tag:,2012-11-28:belajar-javascript-bhg-1.html</id><summary type="html">&lt;p&gt;Memetik kata-kata &lt;a href="http://javascript.crockford.com/"&gt;Douglas Crockford&lt;/a&gt;, JavaScript adalah bahasa 
 pengaturcaraan yang sering disalahfahami walaupun ianya merupakan bahasa 
-pengaturcaraan yang paling popular sekali dengan penggunaan yang paling meluas.&lt;br /&gt;
-&lt;/p&gt;
+pengaturcaraan yang paling popular sekali dengan penggunaan yang paling meluas.  &lt;/p&gt;
 &lt;p&gt;JavaScript, sebelum penggunaannya yang begitu meluas seperti sekarang biasanya 
 menjadi bahasa kelas kedua bagi kebanyakkan programmer. Saya katakan kelas 
 kedua kerana ia jarang dipelajari secara formal sepertimana bahasa lain seperti 
 PHP, Python, Ruby, Perl, Java, C dan sebagainya. Maksud 'formal' disini ialah 
 kita mengambil masa untuk berkenalan dengan bahasa tersebut bermula daripada 
-ciri-ciri asas seperti &lt;em&gt;data type&lt;/em&gt;, &lt;em&gt;control structure&lt;/em&gt; dan sebagainya.&lt;br /&gt;
-&lt;/p&gt;
+ciri-ciri asas seperti &lt;em&gt;data type&lt;/em&gt;, &lt;em&gt;control structure&lt;/em&gt; dan sebagainya.  &lt;/p&gt;
 &lt;p&gt;Seringkali apabila terpaksa menggunakan JavaScript, kita akan mendapatkan 
 library ataupun &lt;em&gt;code snippet&lt;/em&gt; di Internet, ubah beberapa baris dan sekiranya 
 ia melakukan apa yang kita kehendaki, selesai ! Akhirnya JavaScript sering 
@@ -182,8 +387,8 @@ bagaimana sebenarya fungsi autocomplete ini berfungsi dalam JavaScript.&lt;/p&gt
 
 
 &lt;p&gt;&lt;code&gt;app.js&lt;/code&gt; pula akan kelihatan seperti di bawah:-&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="n"&gt;alert&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="p"&gt;}());&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -206,15 +411,15 @@ semua programmer iaitu kesemua variable yang digunakan dalam &lt;em&gt;function&
 diisytiharkan menggunakan &lt;em&gt;keyword&lt;/em&gt; &lt;code&gt;var&lt;/code&gt; sepertimana yang kita lihat dalam 
 contoh kod di atas. Jika tidak, ia akan turut wujud dalam skop global walaupun 
 hanya digunakan dalam &lt;em&gt;function&lt;/em&gt; ! Sebagai contoh, perhatikan kod di bawah:-&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;num1, num2&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="n"&gt;_tmp1&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parseInt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-    &lt;span class="n"&gt;_tmp2&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parseInt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;function&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;num2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;_tmp1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parseInt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;_tmp2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parseInt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;_tmp1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;_tmp2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 
-&lt;span class="n"&gt;total&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;1&lt;span class="p"&gt;,&lt;/span&gt; 2&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="n"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nb"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_tmp1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;total&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;console&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nb"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_tmp1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -226,9 +431,9 @@ akan menyebabkan bug yang sukar dijejaki di mana puncanya kerana variable
 &lt;code&gt;_tmp1&lt;/code&gt; kini boleh dicapai oleh mana-mana bahagian aturcara sekalipun. Untuk 
 membetulkan keadaan di atas, &lt;em&gt;keyword&lt;/em&gt; &lt;code&gt;var&lt;/code&gt; mesti sentiasa digunakan untuk 
 mengisytiharkan &lt;em&gt;variable&lt;/em&gt; dalam &lt;em&gt;function&lt;/em&gt;. Contoh:-&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;num1, num2&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;_tmp1&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parseInt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;_tmp2&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parseInt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;function&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;num2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;_tmp1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parseInt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;_tmp2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parseInt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;_tmp1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;_tmp2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
@@ -242,8 +447,8 @@ meminimumkan bilangan &lt;em&gt;variable&lt;/em&gt; yang didedahkan kepada skop 
 dibuka oleh &lt;em&gt;JavaScript engine&lt;/em&gt;. Kod sebelum ini contohnya, tidak mendedahkan 
 sebarang variable kepada skop global berbanding sekiranya ia ditulis seperti 
 berikut:-&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;init&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;function&lt;/span&gt; &lt;span class="n"&gt;init&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="n"&gt;alert&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 
@@ -292,8 +497,8 @@ too.&lt;/li&gt;
 &lt;a href="https://github.com/chbrody/Cordova-SQLitePlugin"&gt;https://github.com/chbrody/Cordova-SQLitePlugin&lt;/a&gt; and copy the folder under 
 &lt;code&gt;Android/src&lt;/code&gt; to our &lt;code&gt;src/&lt;/code&gt; directory. Then we have to tell phonegap about this 
 plugin by editing &lt;code&gt;res/xml/config.xml&lt;/code&gt; and include the following line:-&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;plugin&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&amp;quot;&lt;span class="n"&gt;SQLitePlugin&lt;/span&gt;&amp;quot; 
-&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&amp;quot;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;phonegap&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plugin&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sqlitePlugin&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SQLitePlugin&lt;/span&gt;&amp;quot;&lt;span class="o"&gt;/&amp;gt;&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;plugin&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;SQLitePlugin&amp;quot;&lt;/span&gt; 
+&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;com.phonegap.plugin.sqlitePlugin.SQLitePlugin&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;/&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -365,9 +570,9 @@ confirmation, it use form validition to make sure the action name
 ('delete_selected') exists in the POST data. If we use our 
 &lt;code&gt;custom_delete_selected&lt;/code&gt; as the action then 'delete_selected' not present in 
 the POST data and the validation fail, the function will not be executed.&lt;/p&gt;</summary><category term="django"></category><category term="python"></category></entry><entry><title>New blog</title><link href="/new-blog.html" rel="alternate"></link><updated>2012-06-17T00:00:00+08:00</updated><author><name>Kamal Bin Mustafa</name></author><id>tag:,2012-06-17:new-blog.html</id><summary type="html">&lt;p&gt;Just testing new blog using Pelican.&lt;/p&gt;</summary></entry><entry><title>SVN branching strategies</title><link href="/svn-branching-strategies.html" rel="alternate"></link><updated>2011-08-27T00:00:00+08:00</updated><author><name>Kamal Bin Mustafa</name></author><id>tag:,2011-08-27:svn-branching-strategies.html</id><summary type="html">&lt;p&gt;The linked SO question mentioned two branching strategies commonly used in parallel developments.&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;Trunk&lt;/span&gt; &lt;span class="n"&gt;as&lt;/span&gt; &lt;span class="n"&gt;stable&lt;/span&gt; &lt;span class="n"&gt;point&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;development&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;features&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;separate&lt;/span&gt; &lt;span class="n"&gt;branch&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;Trunk&lt;/span&gt; &lt;span class="n"&gt;as&lt;/span&gt; &lt;span class="n"&gt;development&lt;/span&gt; &lt;span class="n"&gt;mainline&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="n"&gt;every&lt;/span&gt; &lt;span class="n"&gt;releases&lt;/span&gt; &lt;span class="n"&gt;tagged&lt;/span&gt; &lt;span class="n"&gt;or&lt;/span&gt; &lt;span class="n"&gt;branched&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;
-  &lt;span class="n"&gt;separate&lt;/span&gt; &lt;span class="n"&gt;branch&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;Trunk&lt;/span&gt; &lt;span class="n"&gt;as&lt;/span&gt; &lt;span class="n"&gt;stable&lt;/span&gt; &lt;span class="n"&gt;point&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;development&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="n"&gt;features&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;separate&lt;/span&gt; &lt;span class="n"&gt;branch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;Trunk&lt;/span&gt; &lt;span class="n"&gt;as&lt;/span&gt; &lt;span class="n"&gt;development&lt;/span&gt; &lt;span class="n"&gt;mainline&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="n"&gt;every&lt;/span&gt; &lt;span class="n"&gt;releases&lt;/span&gt; &lt;span class="n"&gt;tagged&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="n"&gt;branched&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt;
+  &lt;span class="n"&gt;separate&lt;/span&gt; &lt;span class="n"&gt;branch&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -398,15 +603,15 @@ add_to_builtins('django.template.defaultfilters')
 http://stackoverflow.com/questions/1118183/how-to-debug-in-django-the-good-way/2324210#2324210&lt;/p&gt;</summary></entry><entry><title>System python is not for you</title><link href="/system-python-is-not-for-you.html" rel="alternate"></link><updated>2010-10-04T00:00:00+08:00</updated><author><name>Kamal Bin Mustafa</name></author><id>tag:,2010-10-04:system-python-is-not-for-you.html</id><summary type="html">&lt;p&gt;If you already did some python development or just getting started, one of the advice you would always get is to never mess with the system python - the python version that come with your distro. For example on Ubuntu or Debian based system, python that was installed by &lt;code&gt;sudo apt-get install python&lt;/code&gt;. At first I didn't really understand what this mean, why you can't use something that already comes for free ?&lt;/p&gt;
 &lt;p&gt;The answer to that question is because that version of python actually meant for the distro itself. Most distro would in some place used python, maybe for some configurations script. In Ubuntu, lot of their own applications are written with python. If we upgrade some of the libraries not through the standard package manager, there's a chance it would break these apps. So that's what the python they provided is for. It's for their own use, not us. Once I realized this, I have a feeling that distro should ship the python that they need separately from the python that would be used by the users.&lt;/p&gt;
 &lt;p&gt;For development purpose, I always run &lt;code&gt;virtualenv $HOME&lt;/code&gt; to setup virtualenv environment in my home directory. Under Ubuntu, &lt;code&gt;$HOME/bin&lt;/code&gt; is under &lt;code&gt;$PATH&lt;/code&gt; so &lt;code&gt;which python&lt;/code&gt; would always point to &lt;code&gt;/home/kamal/bin/python&lt;/code&gt; rather than &lt;code&gt;/usr/bin/python&lt;/code&gt;. This allow me to freely use easy_install and it would install it to my &lt;code&gt;$HOME/lib/python2.5&lt;/code&gt; instead of system wide lib directory. For something specific like developing a django project, I prefer to use &lt;a href="http://www.buildout.org/"&gt;Buildout&lt;/a&gt; to further isolate the environment. More on &lt;a href="http://www.buildout.org/"&gt;Buildout&lt;/a&gt; later.&lt;/p&gt;</summary></entry><entry><title>Hello World</title><link href="/hello-world.html" rel="alternate"></link><updated>2010-09-18T00:00:00+08:00</updated><author><name>Kamal Bin Mustafa</name></author><id>tag:,2010-09-18:hello-world.html</id><summary type="html">&lt;p&gt;Hello world, my attempt to use &lt;a href="http://pages.github.com/"&gt;github pages&lt;/a&gt; as blog platform.&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;somevar&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="n"&gt;print&lt;/span&gt; &amp;quot;&lt;span class="n"&gt;something&lt;/span&gt;&amp;quot;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;somevar:&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;something&amp;quot;&lt;/span&gt;
 &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="n"&gt;print&lt;/span&gt; &amp;quot;&lt;span class="n"&gt;another&lt;/span&gt; &lt;span class="n"&gt;thing&lt;/span&gt;&amp;quot;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;another thing&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;So &lt;code&gt;easy_install python&lt;/code&gt; will install into &lt;code&gt;/home/kamal/lib/python2.5/&lt;/code&gt;:-&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;$ &lt;span class="n"&gt;which&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt;
-&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;home&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;kamal&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;bin&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;
-$ &lt;span class="n"&gt;easy_install&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;which&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt;
+&lt;span class="sr"&gt;/home/&lt;/span&gt;&lt;span class="n"&gt;kamal&lt;/span&gt;&lt;span class="sr"&gt;/bin/&lt;/span&gt;&lt;span class="n"&gt;python&lt;/span&gt;
+&lt;span class="nv"&gt;$&lt;/span&gt; &lt;span class="nv"&gt;easy_install&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;</summary></entry></feed>

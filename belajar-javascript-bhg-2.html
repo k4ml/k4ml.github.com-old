@@ -68,8 +68,8 @@ by <a class="url fn" href="./author/kamal-bin-mustafa.html">Kamal Bin Mustafa</a
         </div>
 	
         <div><p>Sebelum ini kita telah menulis kod JavaScript asas seperti berikut:-</p>
-<div class="codehilite"><pre><span class="p">(</span><span class="k">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">var</span> <span class="n">keyword</span> <span class="p">=</span> <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">&#39;keyword&#39;</span><span class="p">);</span>
+<div class="codehilite"><pre><span class="p">(</span><span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">keyword</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">&#39;keyword&#39;</span><span class="p">);</span>
     <span class="n">alert</span> <span class="n">keyword</span><span class="p">;</span>
 <span class="p">})();</span>
 </pre></div>
@@ -85,8 +85,8 @@ tersebut dijalankan, DOM element yang kita cuba dapatkan masih belum disediakan
 sepenuhnya oleh browser.</p>
 <p>Untuk membetulkan masalah di atas, kita perlu attach function tersebut kepada 
 <code>load</code> event sama ada pada object <code>window</code> ataupun pada element <code>body</code>. Contohnya adalah seperti berikut:-</p>
-<div class="codehilite"><pre><span class="n">window</span><span class="p">.</span><span class="n">onload</span> <span class="p">=</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">var</span> <span class="n">keyword</span> <span class="p">=</span> <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">&#39;keyword&#39;</span><span class="p">);</span>
+<div class="codehilite"><pre><span class="n">window</span><span class="o">.</span><span class="n">onload</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">keyword</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">&#39;keyword&#39;</span><span class="p">);</span>
     <span class="n">alert</span><span class="p">(</span><span class="s">&#39;using window.onload&#39;</span><span class="p">);</span>
     <span class="n">alert</span> <span class="p">(</span><span class="n">keyword</span><span class="p">);</span>
 <span class="p">}</span>
@@ -108,8 +108,8 @@ sepenuhnya oleh browser.</p>
 
 <p>Tidak ada DOM object untuk <code>body</code> dan saya pada mulanya mencuba seperti 
 berikut:-</p>
-<div class="codehilite"><pre><span class="n">document</span><span class="p">.</span><span class="n">body</span><span class="p">.</span><span class="n">onload</span> <span class="p">=</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">var</span> <span class="n">keyword</span> <span class="p">=</span> <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">&#39;keyword&#39;</span><span class="p">);</span>
+<div class="codehilite"><pre><span class="n">document</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">onload</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">keyword</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">&#39;keyword&#39;</span><span class="p">);</span>
     <span class="n">alert</span><span class="p">(</span><span class="s">&#39;using document.body.onload&#39;</span><span class="p">);</span>
     <span class="n">alert</span> <span class="p">(</span><span class="n">keyword</span><span class="p">);</span>
 <span class="p">}</span>
@@ -122,9 +122,9 @@ declare satu function pada skop global, sesuatu yang kita cuba elakkan seperti
 yang telah dibincangkan dalam tulisan yang lalu. Bagi browser moden pada hari 
 ini, cara yang direkomenkan adalah dengan menggunakan event listener seperti
 berikut:-</p>
-<div class="codehilite"><pre><span class="p">(</span><span class="k">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">window</span><span class="p">.</span><span class="n">addEventListener</span><span class="p">(</span><span class="s">&#39;load&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">var</span> <span class="n">keyword</span> <span class="p">=</span> <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">&#39;keyword&#39;</span><span class="p">);</span>
+<div class="codehilite"><pre><span class="p">(</span><span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">addEventListener</span><span class="p">(</span><span class="s">&#39;load&#39;</span><span class="p">,</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">keyword</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">&#39;keyword&#39;</span><span class="p">);</span>
     <span class="n">alert</span> <span class="p">(</span><span class="n">keyword</span><span class="p">);</span>
     <span class="p">},</span> <span class="n">false</span><span class="p">);</span>
 <span class="p">}());</span>
@@ -139,9 +139,9 @@ masa dan juga mungkin menghasilkan kesan yang tidak diingini jika terpaksa
 menunggu kesemua <em>resource</em> selesai dimuat-turun sebelum kod JavaScript kita 
 boleh memainkan peranan. Alternatif kepada <code>load</code> event adalah 
 <code>DOMContentLoaded</code> dan kod di atas boleh ditulis seperti berikut:-</p>
-<div class="codehilite"><pre><span class="p">(</span><span class="k">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">window</span><span class="p">.</span><span class="n">addEventListener</span><span class="p">(</span><span class="s">&#39;DOMContentLoaded&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">var</span> <span class="n">keyword</span> <span class="p">=</span> <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">&#39;keyword&#39;</span><span class="p">);</span>
+<div class="codehilite"><pre><span class="p">(</span><span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">addEventListener</span><span class="p">(</span><span class="s">&#39;DOMContentLoaded&#39;</span><span class="p">,</span> <span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">keyword</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">&#39;keyword&#39;</span><span class="p">);</span>
     <span class="n">alert</span> <span class="p">(</span><span class="n">keyword</span><span class="p">);</span>
     <span class="p">},</span> <span class="n">false</span><span class="p">);</span>
 <span class="p">}());</span>
@@ -154,9 +154,9 @@ JavaScript adalah sangat tidak menentu dan sukar diduga. Tidak semua browser
 menyokong event <code>DOMContentLoaded</code> ini jadi kod kita perlu melakukan beberapa 
 adaptasi bagi membolehkan ia berfungsi pada semua browser. Atas sebab inilah 
 library seperti JQuery menyediakan function khas untuk mengatasi masalah ini. Menggunakan JQuery, kod di atas boleh ditulis seperti berikut:-</p>
-<div class="codehilite"><pre><span class="p">(</span><span class="k">function</span><span class="p">()</span> <span class="p">{</span>
-    $<span class="p">(</span><span class="n">document</span><span class="p">).</span><span class="n">ready</span><span class="p">(</span><span class="k">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">var</span> <span class="n">keyword</span> <span class="p">=</span> <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">&#39;keyword&#39;</span><span class="p">);</span>
+<div class="codehilite"><pre><span class="p">(</span><span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nv">$</span><span class="err">(</span><span class="nv">document</span><span class="p">)</span><span class="o">.</span><span class="n">ready</span><span class="p">(</span><span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">var</span> <span class="n">keyword</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">&#39;keyword&#39;</span><span class="p">);</span>
         <span class="n">alert</span> <span class="p">(</span><span class="n">keyword</span><span class="p">);</span>
     <span class="p">});</span>
 <span class="p">}());</span>
@@ -209,7 +209,7 @@ Allah.</p></div>
                 
                 <li><a href="./category/python.html">Python</a></li>
                 
-                <li><a href="./category/misc.html">misc</a></li>
+                <li><a href="./category/src.html">src</a></li>
                                    
             </ul>
             </div>

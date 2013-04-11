@@ -69,15 +69,13 @@ by <a class="url fn" href="./author/kamal-bin-mustafa.html">Kamal Bin Mustafa</a
 	
         <div><p>Memetik kata-kata <a href="http://javascript.crockford.com/">Douglas Crockford</a>, JavaScript adalah bahasa 
 pengaturcaraan yang sering disalahfahami walaupun ianya merupakan bahasa 
-pengaturcaraan yang paling popular sekali dengan penggunaan yang paling meluas.<br />
-</p>
+pengaturcaraan yang paling popular sekali dengan penggunaan yang paling meluas.  </p>
 <p>JavaScript, sebelum penggunaannya yang begitu meluas seperti sekarang biasanya 
 menjadi bahasa kelas kedua bagi kebanyakkan programmer. Saya katakan kelas 
 kedua kerana ia jarang dipelajari secara formal sepertimana bahasa lain seperti 
 PHP, Python, Ruby, Perl, Java, C dan sebagainya. Maksud 'formal' disini ialah 
 kita mengambil masa untuk berkenalan dengan bahasa tersebut bermula daripada 
-ciri-ciri asas seperti <em>data type</em>, <em>control structure</em> dan sebagainya.<br />
-</p>
+ciri-ciri asas seperti <em>data type</em>, <em>control structure</em> dan sebagainya.  </p>
 <p>Seringkali apabila terpaksa menggunakan JavaScript, kita akan mendapatkan 
 library ataupun <em>code snippet</em> di Internet, ubah beberapa baris dan sekiranya 
 ia melakukan apa yang kita kehendaki, selesai ! Akhirnya JavaScript sering 
@@ -109,8 +107,8 @@ bagaimana sebenarya fungsi autocomplete ini berfungsi dalam JavaScript.</p>
 
 
 <p><code>app.js</code> pula akan kelihatan seperti di bawah:-</p>
-<div class="codehilite"><pre><span class="p">(</span><span class="k">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">var</span> <span class="n">keyword</span> <span class="p">=</span> <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">&#39;keyword&#39;</span><span class="p">);</span>
+<div class="codehilite"><pre><span class="p">(</span><span class="n">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">keyword</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">&#39;keyword&#39;</span><span class="p">);</span>
     <span class="n">alert</span> <span class="p">(</span><span class="n">keyword</span><span class="p">);</span>
 <span class="p">}());</span>
 </pre></div>
@@ -133,15 +131,15 @@ semua programmer iaitu kesemua variable yang digunakan dalam <em>function</em> m
 diisytiharkan menggunakan <em>keyword</em> <code>var</code> sepertimana yang kita lihat dalam 
 contoh kod di atas. Jika tidak, ia akan turut wujud dalam skop global walaupun 
 hanya digunakan dalam <em>function</em> ! Sebagai contoh, perhatikan kod di bawah:-</p>
-<div class="codehilite"><pre><span class="k">function</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span>num1, num2<span class="p">)</span><span class="w"> </span><span class="p">{</span>
-    <span class="n">_tmp1</span> <span class="p">=</span> <span class="n">parseInt</span><span class="p">(</span><span class="n">num1</span><span class="p">);</span>
-    <span class="n">_tmp2</span> <span class="p">=</span> <span class="n">parseInt</span><span class="p">(</span><span class="n">num2</span><span class="p">);</span>
+<div class="codehilite"><pre><span class="n">function</span> <span class="n">add</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">_tmp1</span> <span class="o">=</span> <span class="n">parseInt</span><span class="p">(</span><span class="n">num1</span><span class="p">);</span>
+    <span class="n">_tmp2</span> <span class="o">=</span> <span class="n">parseInt</span><span class="p">(</span><span class="n">num2</span><span class="p">);</span>
 
     <span class="k">return</span> <span class="n">_tmp1</span> <span class="o">+</span> <span class="n">_tmp2</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="n">total</span> <span class="p">=</span> <span class="n">add</span><span class="p">(</span>1<span class="p">,</span> 2<span class="p">);</span>
-<span class="n">console</span><span class="p">.</span><span class="nb">log</span><span class="p">(</span><span class="n">_tmp1</span><span class="p">);</span>
+<span class="n">total</span> <span class="o">=</span> <span class="n">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">console</span><span class="o">.</span><span class="nb">log</span><span class="p">(</span><span class="n">_tmp1</span><span class="p">);</span>
 </pre></div>
 
 
@@ -153,9 +151,9 @@ akan menyebabkan bug yang sukar dijejaki di mana puncanya kerana variable
 <code>_tmp1</code> kini boleh dicapai oleh mana-mana bahagian aturcara sekalipun. Untuk 
 membetulkan keadaan di atas, <em>keyword</em> <code>var</code> mesti sentiasa digunakan untuk 
 mengisytiharkan <em>variable</em> dalam <em>function</em>. Contoh:-</p>
-<div class="codehilite"><pre><span class="k">function</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span>num1, num2<span class="p">)</span><span class="w"> </span><span class="p">{</span>
-    <span class="n">var</span> <span class="n">_tmp1</span> <span class="p">=</span> <span class="n">parseInt</span><span class="p">(</span><span class="n">num1</span><span class="p">);</span>
-    <span class="n">var</span> <span class="n">_tmp2</span> <span class="p">=</span> <span class="n">parseInt</span><span class="p">(</span><span class="n">num2</span><span class="p">);</span>
+<div class="codehilite"><pre><span class="n">function</span> <span class="n">add</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">_tmp1</span> <span class="o">=</span> <span class="n">parseInt</span><span class="p">(</span><span class="n">num1</span><span class="p">);</span>
+    <span class="n">var</span> <span class="n">_tmp2</span> <span class="o">=</span> <span class="n">parseInt</span><span class="p">(</span><span class="n">num2</span><span class="p">);</span>
 
     <span class="k">return</span> <span class="n">_tmp1</span> <span class="o">+</span> <span class="n">_tmp2</span><span class="p">;</span>
 <span class="p">}</span>
@@ -169,8 +167,8 @@ meminimumkan bilangan <em>variable</em> yang didedahkan kepada skop global, kita
 dibuka oleh <em>JavaScript engine</em>. Kod sebelum ini contohnya, tidak mendedahkan 
 sebarang variable kepada skop global berbanding sekiranya ia ditulis seperti 
 berikut:-</p>
-<div class="codehilite"><pre><span class="k">function</span><span class="w"> </span><span class="nf">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-    <span class="n">var</span> <span class="n">keyword</span> <span class="p">=</span> <span class="n">document</span><span class="p">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">&#39;keyword&#39;</span><span class="p">);</span>
+<div class="codehilite"><pre><span class="n">function</span> <span class="n">init</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">keyword</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s">&#39;keyword&#39;</span><span class="p">);</span>
     <span class="n">alert</span> <span class="p">(</span><span class="n">keyword</span><span class="p">);</span>
 <span class="p">}</span>
 
@@ -227,7 +225,7 @@ ringkas ini adalah perbezaan antara <em>function declaration</em> dan <em>functi
                 
                 <li><a href="./category/python.html">Python</a></li>
                 
-                <li><a href="./category/misc.html">misc</a></li>
+                <li><a href="./category/src.html">src</a></li>
                                    
             </ul>
             </div>

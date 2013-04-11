@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Kamal Bin Mustafa</title><link href="/" rel="alternate"></link><link href="/feeds/JavaScript.atom.xml" rel="self"></link><id>/</id><updated>2012-12-02T16:00:00+08:00</updated><entry><title>Belajar Javascript: Bhg 2</title><link href="/belajar-javascript-bhg-2.html" rel="alternate"></link><updated>2012-12-02T16:00:00+08:00</updated><author><name>Kamal Bin Mustafa</name></author><id>tag:,2012-12-02:belajar-javascript-bhg-2.html</id><summary type="html">&lt;p&gt;Sebelum ini kita telah menulis kod JavaScript asas seperti berikut:-&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="n"&gt;alert&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;})();&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -17,8 +17,8 @@ tersebut dijalankan, DOM element yang kita cuba dapatkan masih belum disediakan
 sepenuhnya oleh browser.&lt;/p&gt;
 &lt;p&gt;Untuk membetulkan masalah di atas, kita perlu attach function tersebut kepada 
 &lt;code&gt;load&lt;/code&gt; event sama ada pada object &lt;code&gt;window&lt;/code&gt; ataupun pada element &lt;code&gt;body&lt;/code&gt;. Contohnya adalah seperti berikut:-&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;onload&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;window&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;onload&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="n"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;using window.onload&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="n"&gt;alert&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
@@ -40,8 +40,8 @@ sepenuhnya oleh browser.&lt;/p&gt;
 
 &lt;p&gt;Tidak ada DOM object untuk &lt;code&gt;body&lt;/code&gt; dan saya pada mulanya mencuba seperti 
 berikut:-&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;body&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;onload&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;body&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;onload&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="n"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;using document.body.onload&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="n"&gt;alert&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
@@ -54,9 +54,9 @@ declare satu function pada skop global, sesuatu yang kita cuba elakkan seperti
 yang telah dibincangkan dalam tulisan yang lalu. Bagi browser moden pada hari 
 ini, cara yang direkomenkan adalah dengan menggunakan event listener seperti
 berikut:-&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="n"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;load&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;window&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;load&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="n"&gt;alert&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="n"&gt;false&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="p"&gt;}());&lt;/span&gt;
@@ -71,9 +71,9 @@ masa dan juga mungkin menghasilkan kesan yang tidak diingini jika terpaksa
 menunggu kesemua &lt;em&gt;resource&lt;/em&gt; selesai dimuat-turun sebelum kod JavaScript kita 
 boleh memainkan peranan. Alternatif kepada &lt;code&gt;load&lt;/code&gt; event adalah 
 &lt;code&gt;DOMContentLoaded&lt;/code&gt; dan kod di atas boleh ditulis seperti berikut:-&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="n"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;DOMContentLoaded&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;window&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;DOMContentLoaded&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="n"&gt;alert&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="n"&gt;false&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="p"&gt;}());&lt;/span&gt;
@@ -86,9 +86,9 @@ JavaScript adalah sangat tidak menentu dan sukar diduga. Tidak semua browser
 menyokong event &lt;code&gt;DOMContentLoaded&lt;/code&gt; ini jadi kod kita perlu melakukan beberapa 
 adaptasi bagi membolehkan ia berfungsi pada semua browser. Atas sebab inilah 
 library seperti JQuery menyediakan function khas untuk mengatasi masalah ini. Menggunakan JQuery, kod di atas boleh ditulis seperti berikut:-&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    $&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="n"&gt;ready&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nv"&gt;$&lt;/span&gt;&lt;span class="err"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;document&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ready&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
         &lt;span class="n"&gt;alert&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="p"&gt;});&lt;/span&gt;
 &lt;span class="p"&gt;}());&lt;/span&gt;
@@ -104,15 +104,13 @@ bahagian ini boleh rujuk perbincangan di laman stackoverflow:-&lt;/p&gt;
 &lt;p&gt;Sekian untuk kali ini, sehingga berjumpa lagi untuk siri akan datang, Insya 
 Allah.&lt;/p&gt;</summary></entry><entry><title>Belajar Javascript: Bhg 1</title><link href="/belajar-javascript-bhg-1.html" rel="alternate"></link><updated>2012-11-28T22:47:00+08:00</updated><author><name>Kamal Bin Mustafa</name></author><id>tag:,2012-11-28:belajar-javascript-bhg-1.html</id><summary type="html">&lt;p&gt;Memetik kata-kata &lt;a href="http://javascript.crockford.com/"&gt;Douglas Crockford&lt;/a&gt;, JavaScript adalah bahasa 
 pengaturcaraan yang sering disalahfahami walaupun ianya merupakan bahasa 
-pengaturcaraan yang paling popular sekali dengan penggunaan yang paling meluas.&lt;br /&gt;
-&lt;/p&gt;
+pengaturcaraan yang paling popular sekali dengan penggunaan yang paling meluas.  &lt;/p&gt;
 &lt;p&gt;JavaScript, sebelum penggunaannya yang begitu meluas seperti sekarang biasanya 
 menjadi bahasa kelas kedua bagi kebanyakkan programmer. Saya katakan kelas 
 kedua kerana ia jarang dipelajari secara formal sepertimana bahasa lain seperti 
 PHP, Python, Ruby, Perl, Java, C dan sebagainya. Maksud 'formal' disini ialah 
 kita mengambil masa untuk berkenalan dengan bahasa tersebut bermula daripada 
-ciri-ciri asas seperti &lt;em&gt;data type&lt;/em&gt;, &lt;em&gt;control structure&lt;/em&gt; dan sebagainya.&lt;br /&gt;
-&lt;/p&gt;
+ciri-ciri asas seperti &lt;em&gt;data type&lt;/em&gt;, &lt;em&gt;control structure&lt;/em&gt; dan sebagainya.  &lt;/p&gt;
 &lt;p&gt;Seringkali apabila terpaksa menggunakan JavaScript, kita akan mendapatkan 
 library ataupun &lt;em&gt;code snippet&lt;/em&gt; di Internet, ubah beberapa baris dan sekiranya 
 ia melakukan apa yang kita kehendaki, selesai ! Akhirnya JavaScript sering 
@@ -144,8 +142,8 @@ bagaimana sebenarya fungsi autocomplete ini berfungsi dalam JavaScript.&lt;/p&gt
 
 
 &lt;p&gt;&lt;code&gt;app.js&lt;/code&gt; pula akan kelihatan seperti di bawah:-&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="n"&gt;alert&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="p"&gt;}());&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -168,15 +166,15 @@ semua programmer iaitu kesemua variable yang digunakan dalam &lt;em&gt;function&
 diisytiharkan menggunakan &lt;em&gt;keyword&lt;/em&gt; &lt;code&gt;var&lt;/code&gt; sepertimana yang kita lihat dalam 
 contoh kod di atas. Jika tidak, ia akan turut wujud dalam skop global walaupun 
 hanya digunakan dalam &lt;em&gt;function&lt;/em&gt; ! Sebagai contoh, perhatikan kod di bawah:-&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;num1, num2&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="n"&gt;_tmp1&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parseInt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-    &lt;span class="n"&gt;_tmp2&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parseInt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;function&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;num2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;_tmp1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parseInt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;_tmp2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parseInt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;_tmp1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;_tmp2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 
-&lt;span class="n"&gt;total&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;1&lt;span class="p"&gt;,&lt;/span&gt; 2&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="n"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nb"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_tmp1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;total&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="n"&gt;console&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nb"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_tmp1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -188,9 +186,9 @@ akan menyebabkan bug yang sukar dijejaki di mana puncanya kerana variable
 &lt;code&gt;_tmp1&lt;/code&gt; kini boleh dicapai oleh mana-mana bahagian aturcara sekalipun. Untuk 
 membetulkan keadaan di atas, &lt;em&gt;keyword&lt;/em&gt; &lt;code&gt;var&lt;/code&gt; mesti sentiasa digunakan untuk 
 mengisytiharkan &lt;em&gt;variable&lt;/em&gt; dalam &lt;em&gt;function&lt;/em&gt;. Contoh:-&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;num1, num2&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;_tmp1&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parseInt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;_tmp2&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parseInt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;function&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;num2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;_tmp1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parseInt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;_tmp2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parseInt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;num2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;_tmp1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;_tmp2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
@@ -204,8 +202,8 @@ meminimumkan bilangan &lt;em&gt;variable&lt;/em&gt; yang didedahkan kepada skop 
 dibuka oleh &lt;em&gt;JavaScript engine&lt;/em&gt;. Kod sebelum ini contohnya, tidak mendedahkan 
 sebarang variable kepada skop global berbanding sekiranya ia ditulis seperti 
 berikut:-&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nf"&gt;init&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;function&lt;/span&gt; &lt;span class="n"&gt;init&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="n"&gt;keyword&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;document&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;keyword&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="n"&gt;alert&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;keyword&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 

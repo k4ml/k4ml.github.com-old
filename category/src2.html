@@ -58,12 +58,11 @@
         
 
 
-
+ 
 
     <div class='article'>
-        <div class="content-title">
-            <a href=".././android-phonegap-with-existing-sqlite-database.html"><h1>Android: Phonegap with existing sqlite database</h1></a>
-            Sun 30 September 2012
+        <a href=".././new-blog.html"><h2>New blog</h2></a>
+        <div class= "well small"> Sun 17 June 2012
 
 
 by <a class="url fn" href=".././author/kamal-bin-mustafa.html">Kamal Bin Mustafa</a>
@@ -71,74 +70,92 @@ by <a class="url fn" href=".././author/kamal-bin-mustafa.html">Kamal Bin Mustafa
 
 
 
+ </div>
+        <div class="summary"><p>Just testing new blog using Pelican.</p> <a class="btn btn-info xsmall" href=".././new-blog.html">read more</a></div>
+    </div>	
+				
+    
+
  
-        </div>
+
         
-        <div><p>Just started my journey into android development and one thing I quickly found 
-along the way is that shipping existing sqlite database with your phonegap app 
-is non-trivial. Not sure this is problem with android directly or just 
-phonegap. While you can put the sqlite database in your <code>assets/</code> directory, 
-phonegap apparently try to read the database from other fix location on the 
-phone. Failing to read that, it will create new empty database.</p>
-<p>There's workaround scattered in blogpost and mailing-list posts and I finally 
-managed to get it working after hours of hunting and try and error session. If 
-you search around you probably end up on some of these sites:-</p>
-<ul>
-<li><a href="http://www.raymondcamden.com/index.cfm/2012/7/27/Guest-Blog-Post-Shipping-a-populated-SQLite-DB-with-PhoneGap">http://www.raymondcamden.com/index.cfm/2012/7/27/Guest-Blog-Post-Shipping-a-populated-SQLite-DB-with-PhoneGap</a></li>
-<li><a href="http://www.corporatezen.com/shipping_prepopulated_database_with_phonegap">http://www.corporatezen.com/shipping_prepopulated_database_with_phonegap</a></li>
-<li><a href="http://gauravstomar.blogspot.ca/2011/08/prepopulate-sqlite-in-phonegap.html">http://gauravstomar.blogspot.ca/2011/08/prepopulate-sqlite-in-phonegap.html</a></li>
-</ul>
-<p>The fix involved few steps:-</p>
-<ul>
-<li>You have to move the sqlite database file to location that phonegap expected. 
-Have to write some java for this but luckily the code we found on those site 
-still working on latest phonegap release.</li>
-<li>The built-in sqlite driver (if I can call it as such) does not support 
-reading from existing sqlite database so we have to use 3rd party sqlite 
-plugin.</li>
-<li>The 3rd party sqlite plugin turn out to have issue with android &lt; 2.3.3 and 
-since I plan to also include support for froyo based phone, I have to fix this 
-too.</li>
-</ul>
-<p>You can get the code to move the db from this <a href="https://gist.github.com/3805152">gist</a>.</p>
-<p>Next grab the sqlite plugin from 
-<a href="https://github.com/chbrody/Cordova-SQLitePlugin">https://github.com/chbrody/Cordova-SQLitePlugin</a> and copy the folder under 
-<code>Android/src</code> to our <code>src/</code> directory. Then we have to tell phonegap about this 
-plugin by editing <code>res/xml/config.xml</code> and include the following line:-</p>
-<div class="codehilite"><pre><span class="o">&lt;</span><span class="n">plugin</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;SQLitePlugin&quot;</span> 
-<span class="n">value</span><span class="o">=</span><span class="s">&quot;com.phonegap.plugin.sqlitePlugin.SQLitePlugin&quot;</span><span class="o">/&gt;</span>
+
+
+ 
+
+    <div class='article'>
+        <a href=".././svn-branching-strategies.html"><h2>SVN branching strategies</h2></a>
+        <div class= "well small"> Sat 27 August 2011
+
+
+by <a class="url fn" href=".././author/kamal-bin-mustafa.html">Kamal Bin Mustafa</a>
+ 
+
+
+
+ </div>
+        <div class="summary"><p>The linked SO question mentioned two branching strategies commonly used in parallel developments.</p>
+<div class="codehilite"><pre><span class="o">*</span> <span class="n">Trunk</span> <span class="n">as</span> <span class="n">stable</span> <span class="n">point</span> <span class="ow">and</span> <span class="n">development</span> <span class="n">of</span> <span class="k">new</span> <span class="n">features</span> <span class="n">in</span> <span class="n">separate</span> <span class="n">branch</span><span class="o">.</span>
+<span class="o">*</span> <span class="n">Trunk</span> <span class="n">as</span> <span class="n">development</span> <span class="n">mainline</span> <span class="n">with</span> <span class="n">every</span> <span class="n">releases</span> <span class="n">tagged</span> <span class="ow">or</span> <span class="n">branched</span> <span class="n">in</span> <span class="n">a</span>
+  <span class="n">separate</span> <span class="n">branch</span><span class="o">.</span>
 </pre></div>
 
 
-<p>Finally we have to remove some lines from 
-<code>src/com/phonegap/plugin/sqlitePlugin.java</code>. The dev already marked the files 
-to be deleted so we just need to find and remove it. You can see the <a href="https://github.com/k4ml/halal-android/commit/f6bbf52a5504367a0e5aaeae8b8ea24068403f4a#src/com/phonegap/plugin/sqlitePlugin/SQLitePlugin.java">diff</a> 
-from my app repo. To open the database from our app code, make sure to omit the 
-.db extension since phonegap seem to automatically append that to db name.</p>
-<p>You can also clone <a href="https://github.com/k4ml/halal-android">my app on github</a> which has (hopefully) everything in 
-place and you just need to load it into your Eclipse project.</p></div>
-        <hr />
-    </div>
-		
+<p>Currently we're using more of the former approach where development ...</p> <a class="btn btn-info xsmall" href=".././svn-branching-strategies.html">read more</a></div>
+    </div>	
+				
+    
+
+ 
+
+        
+
+
+ 
+
+    <div class='article'>
+        <a href=".././load-django-custom-filterstags-on-all-templates.html"><h2>Load Django custom filters/tags on all templates</h2></a>
+        <div class= "well small"> Wed 09 February 2011
+
+
+by <a class="url fn" href=".././author/kamal-bin-mustafa.html">Kamal Bin Mustafa</a>
+ 
+
+
+
+ </div>
+        <div class="summary"><p>To load your custom template tags or filters in your template, you use the following:-</p>
+<pre>
+{! load custom_filters !}
+</pre>
+
+<p>Notes: ! is not valid django template tag, replace it with %. Refer <a href="https://github.com/mojombo/jekyll/issues/145">this</a>.</p>
+<p>In your template files. But this mean doing this in each template files that need to use the filters. You can ...</p> <a class="btn btn-info xsmall" href=".././load-django-custom-filterstags-on-all-templates.html">read more</a></div>
+    </div>	
+				
     
         <div class="pagination">
 <ul>
 
-    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
+
+    <li class="prev"><a href=".././category/src.html">&larr; Previous</a></li>
 
 
 
-    <li class="active"><a href=".././tag/android.html">1</a></li>
+    <li class=""><a href=".././category/src.html">1</a></li>
+
+    <li class="active"><a href=".././category/src2.html">2</a></li>
+
+    <li class=""><a href=".././category/src3.html">3</a></li>
 
 
 
-    <li class="next disabled"><a href="#">&rarr; Next</a></li>
+    <li class="next"><a href=".././category/src3.html">Next &rarr;</a></li>
 
 
 </ul>
 </div>
     
-
 
  
 

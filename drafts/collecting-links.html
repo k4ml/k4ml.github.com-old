@@ -52,18 +52,11 @@
     <div class="row">
 
         <div class="span9">
-                
-
-
         
-
-
-
-
     <div class='article'>
         <div class="content-title">
-            <a href=".././android-phonegap-with-existing-sqlite-database.html"><h1>Android: Phonegap with existing sqlite database</h1></a>
-            Sun 30 September 2012
+            <h1>Collecting links</h1>
+            Mon 03 December 2012
 
 
 by <a class="url fn" href=".././author/kamal-bin-mustafa.html">Kamal Bin Mustafa</a>
@@ -71,80 +64,22 @@ by <a class="url fn" href=".././author/kamal-bin-mustafa.html">Kamal Bin Mustafa
 
 
 
- 
+
         </div>
-        
-        <div><p>Just started my journey into android development and one thing I quickly found 
-along the way is that shipping existing sqlite database with your phonegap app 
-is non-trivial. Not sure this is problem with android directly or just 
-phonegap. While you can put the sqlite database in your <code>assets/</code> directory, 
-phonegap apparently try to read the database from other fix location on the 
-phone. Failing to read that, it will create new empty database.</p>
-<p>There's workaround scattered in blogpost and mailing-list posts and I finally 
-managed to get it working after hours of hunting and try and error session. If 
-you search around you probably end up on some of these sites:-</p>
+	
+        <div><p>So this about gathering interesting links I found. I plan to this by weekly.</p>
 <ul>
-<li><a href="http://www.raymondcamden.com/index.cfm/2012/7/27/Guest-Blog-Post-Shipping-a-populated-SQLite-DB-with-PhoneGap">http://www.raymondcamden.com/index.cfm/2012/7/27/Guest-Blog-Post-Shipping-a-populated-SQLite-DB-with-PhoneGap</a></li>
-<li><a href="http://www.corporatezen.com/shipping_prepopulated_database_with_phonegap">http://www.corporatezen.com/shipping_prepopulated_database_with_phonegap</a></li>
-<li><a href="http://gauravstomar.blogspot.ca/2011/08/prepopulate-sqlite-in-phonegap.html">http://gauravstomar.blogspot.ca/2011/08/prepopulate-sqlite-in-phonegap.html</a></li>
+<li>https://restful-api-design.readthedocs.org/en/latest/</li>
+<li>http://www.opsschool.org/en/latest/</li>
 </ul>
-<p>The fix involved few steps:-</p>
-<ul>
-<li>You have to move the sqlite database file to location that phonegap expected. 
-Have to write some java for this but luckily the code we found on those site 
-still working on latest phonegap release.</li>
-<li>The built-in sqlite driver (if I can call it as such) does not support 
-reading from existing sqlite database so we have to use 3rd party sqlite 
-plugin.</li>
-<li>The 3rd party sqlite plugin turn out to have issue with android &lt; 2.3.3 and 
-since I plan to also include support for froyo based phone, I have to fix this 
-too.</li>
-</ul>
-<p>You can get the code to move the db from this <a href="https://gist.github.com/3805152">gist</a>.</p>
-<p>Next grab the sqlite plugin from 
-<a href="https://github.com/chbrody/Cordova-SQLitePlugin">https://github.com/chbrody/Cordova-SQLitePlugin</a> and copy the folder under 
-<code>Android/src</code> to our <code>src/</code> directory. Then we have to tell phonegap about this 
-plugin by editing <code>res/xml/config.xml</code> and include the following line:-</p>
-<div class="codehilite"><pre><span class="o">&lt;</span><span class="n">plugin</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;SQLitePlugin&quot;</span> 
-<span class="n">value</span><span class="o">=</span><span class="s">&quot;com.phonegap.plugin.sqlitePlugin.SQLitePlugin&quot;</span><span class="o">/&gt;</span>
-</pre></div>
-
-
-<p>Finally we have to remove some lines from 
-<code>src/com/phonegap/plugin/sqlitePlugin.java</code>. The dev already marked the files 
-to be deleted so we just need to find and remove it. You can see the <a href="https://github.com/k4ml/halal-android/commit/f6bbf52a5504367a0e5aaeae8b8ea24068403f4a#src/com/phonegap/plugin/sqlitePlugin/SQLitePlugin.java">diff</a> 
-from my app repo. To open the database from our app code, make sure to omit the 
-.db extension since phonegap seem to automatically append that to db name.</p>
-<p>You can also clone <a href="https://github.com/k4ml/halal-android">my app on github</a> which has (hopefully) everything in 
-place and you just need to load it into your Eclipse project.</p></div>
-        <hr />
+<p><a href="http://ericholscher.com/blog/2012/dec/1/interesting-projects-read-docs-teaching/">via</a></p></div>
+	
+        <hr>
+    	   
+        <h2>Comments</h2>
+	
+	
     </div>
-		
-    
-        <div class="pagination">
-<ul>
-
-    <li class="prev disabled"><a href="#">&larr; Previous</a></li>
-
-
-
-    <li class="active"><a href=".././tag/android.html">1</a></li>
-
-
-
-    <li class="next disabled"><a href="#">&rarr; Next</a></li>
-
-
-</ul>
-</div>
-    
-
-
- 
-
- 
- 
-
 
         </div>
         
