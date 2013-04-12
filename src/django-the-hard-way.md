@@ -209,4 +209,47 @@ Inside `urls.py` we import the views module and hook it into our url pattern:-
         url(r'^$', hello_world),
     )
 
+## Models
+Now come the hardest part to explain because of some 'hardcoding' django did to implement the functionality. Unlike views, url config or settings, the name for the module that contain models definition was hardcoded in django - it want you to name it as `models.py`. Django also use `models.py` to imply some other parts of the framework. Let's define our models:-
+
+    $ cat myapp/models.py
+    from django.db import models
+
+    class Customer(models.Models):
+        name = models.CharField(max_length=255)
+
+After defining models, you have to tell django the package that contain this `models.py` module. Our settings should look like:-
+
+    $ cat myapp/settings.py
+    $ cat myapp/settings.py
+    SECRET_KEY = "1+)O49,>}5!$+ 43*PN+2+=(2S'W*0^1_|76n{_"
+    ROOT_URLCONF = 'myapp.urls'
+    DEBUG = True
+    INSTALLED_APPS = ('myapp',)
+
+In short, what you define in `INSTALLED_APPS` basically just an import path to python package that contain `models.py` file. You can put all your models definition for your application in a single `models.py` but you maybe want to split it into multiple apps for better design. A common use case is when the `apps` can actually being reused in other project as well. It also not necessarily must be in the same directory as your current application. What important is it can be import by the python interpreter running your application. This will always true to third party libraries that you install such as from PyPI since that libraries will be installed in some other place on your system, not in your current project directory.
+
+Since we started to use db, we must define our database credentials settings:-
+
+    $ cat myapp/settings.py
+    SECRET_KEY = "1+)O49,>}5!$+ 43*PN+2+=(2S'W*0^1_|76n{_"
+    ROOT_URLCONF = 'myapp.urls'
+    DEBUG = True
+    INSTALLED_APPS = ('myapp',)
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'myapp.db',
+        }
+    }
+
+Once we configured `settings.INSTALLED_APPS` to have our app defined, we can run `syncdb` to let django create necessary database tables to store our models data:-
+
+    $ python main.py syncdb
+    Creating tables ...
+    Creating table myapp_customer
+    Installing custom SQL ...
+    Installing indexes ...
+    Installed 0 object(s) from 0 fixture(s)
+
 [1]:https://docs.djangoproject.com/en/1.5/ref/settings/
