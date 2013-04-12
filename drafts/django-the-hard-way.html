@@ -274,6 +274,27 @@ by <a class="url fn" href=".././author/kamal-bin-mustafa.html">Kamal Bin Mustafa
 <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">&#39;DJANGO_SETTINGS_MODULE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;myapp.settings&#39;</span>
 
 <span class="n">execute_from_command_line</span><span class="p">()</span>
+</pre></div>
+
+
+<h2>Views</h2>
+<p>So we know that django only need to call our function for any matched url and we defined that function in the same module we defined the url mapping - <code>urls.py</code>. This is fine for small app but splitting it into separate module is a good practice. So <code>urls.py</code> can just contain url mapping instead of mixing it with our application logic. Let's create new module to store our app function. We call it <code>views.py</code> but you can choose any name you like.</p>
+<div class="codehilite"><pre><span class="nv">$</span> <span class="nv">cat</span> <span class="n">myapp</span><span class="o">/</span><span class="n">views</span><span class="o">.</span><span class="n">py</span>
+<span class="n">from</span> <span class="n">django</span><span class="o">.</span><span class="n">http</span> <span class="nb">import</span> <span class="n">HttpResponse</span>
+
+<span class="n">def</span> <span class="n">hello_world</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s">&#39;Hello world&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Inside <code>urls.py</code> we import the views module and hook it into our url pattern:-</p>
+<div class="codehilite"><pre><span class="n">from</span> <span class="n">django</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">urls</span> <span class="nb">import</span> <span class="n">patterns</span><span class="p">,</span> <span class="n">url</span>
+
+<span class="n">from</span> <span class="n">myapp</span><span class="o">.</span><span class="n">views</span> <span class="nb">import</span> <span class="n">hello_world</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="n">patterns</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">url</span><span class="p">(</span><span class="n">r</span><span class="s">&#39;^$&#39;</span><span class="p">,</span> <span class="n">hello_world</span><span class="p">),</span>
+<span class="p">)</span>
 </pre></div></div>
 	
         <hr>
