@@ -56,7 +56,7 @@
     <div class='article'>
         <div class="content-title">
             <h1>Django The Hard Way</h1>
-            Fri 12 April 2013
+            Sat 13 April 2013
 
 
 by <a class="url fn" href=".././author/kamal-bin-mustafa.html">Kamal Bin Mustafa</a>
@@ -295,6 +295,52 @@ by <a class="url fn" href=".././author/kamal-bin-mustafa.html">Kamal Bin Mustafa
 <span class="n">urlpatterns</span> <span class="o">=</span> <span class="n">patterns</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span>
     <span class="n">url</span><span class="p">(</span><span class="n">r</span><span class="s">&#39;^$&#39;</span><span class="p">,</span> <span class="n">hello_world</span><span class="p">),</span>
 <span class="p">)</span>
+</pre></div>
+
+
+<h2>Models</h2>
+<p>Now come the hardest part to explain because of some 'hardcoding' django did to implement the functionality. Unlike views, url config or settings, the name for the module that contain models definition was hardcoded in django - it want you to name it as <code>models.py</code>. Django also use <code>models.py</code> to imply some other parts of the framework. Let's define our models:-</p>
+<div class="codehilite"><pre><span class="nv">$</span> <span class="nv">cat</span> <span class="n">myapp</span><span class="o">/</span><span class="n">models</span><span class="o">.</span><span class="n">py</span>
+<span class="n">from</span> <span class="n">django</span><span class="o">.</span><span class="n">db</span> <span class="nb">import</span> <span class="n">models</span>
+
+<span class="n">class</span> <span class="n">Customer</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Models</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span>
+</pre></div>
+
+
+<p>After defining models, you have to tell django the package that contain this <code>models.py</code> module. Our settings should look like:-</p>
+<div class="codehilite"><pre><span class="nv">$</span> <span class="nv">cat</span> <span class="n">myapp</span><span class="o">/</span><span class="n">settings</span><span class="o">.</span><span class="n">py</span>
+<span class="nv">$</span> <span class="nv">cat</span> <span class="n">myapp</span><span class="o">/</span><span class="n">settings</span><span class="o">.</span><span class="n">py</span>
+<span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">&quot;1+)O49,&gt;}5!$+ 43*PN+2+=(2S&#39;W*0^1_|76n{_&quot;</span>
+<span class="n">ROOT_URLCONF</span> <span class="o">=</span> <span class="s">&#39;myapp.urls&#39;</span>
+<span class="n">DEBUG</span> <span class="o">=</span> <span class="n">True</span>
+<span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;myapp&#39;</span><span class="p">,)</span>
+</pre></div>
+
+
+<p>In short, what you define in <code>INSTALLED_APPS</code> basically just an import path to python package that contain <code>models.py</code> file. You can put all your models definition for your application in a single <code>models.py</code> but you maybe want to split it into multiple apps for better design. A common use case is when the <code>apps</code> can actually being reused in other project as well. It also not necessarily must be in the same directory as your current application. What important is it can be import by the python interpreter running your application. This will always true to third party libraries that you install such as from PyPI since that libraries will be installed in some other place on your system, not in your current project directory.</p>
+<p>Since we started to use db, we must define our database credentials settings:-</p>
+<div class="codehilite"><pre><span class="nv">$</span> <span class="nv">cat</span> <span class="n">myapp</span><span class="o">/</span><span class="n">settings</span><span class="o">.</span><span class="n">py</span>
+<span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">&quot;1+)O49,&gt;}5!$+ 43*PN+2+=(2S&#39;W*0^1_|76n{_&quot;</span>
+<span class="n">ROOT_URLCONF</span> <span class="o">=</span> <span class="s">&#39;myapp.urls&#39;</span>
+<span class="n">DEBUG</span> <span class="o">=</span> <span class="n">True</span>
+<span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;myapp&#39;</span><span class="p">,)</span>
+<span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s">&#39;django.db.backends.sqlite3&#39;</span><span class="p">,</span>
+        <span class="s">&#39;NAME&#39;</span><span class="p">:</span> <span class="s">&#39;myapp.db&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Once we configured <code>settings.INSTALLED_APPS</code> to have our app defined, we can run <code>syncdb</code> to let django create necessary database tables to store our models data:-</p>
+<div class="codehilite"><pre><span class="nv">$</span> <span class="nv">python</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span> <span class="n">syncdb</span>
+<span class="n">Creating</span> <span class="n">tables</span> <span class="o">...</span>
+<span class="n">Creating</span> <span class="n">table</span> <span class="n">myapp_customer</span>
+<span class="n">Installing</span> <span class="n">custom</span> <span class="n">SQL</span> <span class="o">...</span>
+<span class="n">Installing</span> <span class="n">indexes</span> <span class="o">...</span>
+<span class="n">Installed</span> <span class="mi">0</span> <span class="n">object</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">from</span> <span class="mi">0</span> <span class="n">fixture</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
 </pre></div></div>
 	
         <hr>
