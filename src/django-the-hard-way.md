@@ -190,4 +190,23 @@ Now we have to fix our settings a bit to reflect the new location of our modules
 
     execute_from_command_line()
 
+## Views
+So we know that django only need to call our function for any matched url and we defined that function in the same module we defined the url mapping - `urls.py`. This is fine for small app but splitting it into separate module is a good practice. So `urls.py` can just contain url mapping instead of mixing it with our application logic. Let's create new module to store our app function. We call it `views.py` but you can choose any name you like.
+
+    $ cat myapp/views.py
+    from django.http import HttpResponse
+
+    def hello_world(request):
+        return HttpResponse('Hello world')
+
+Inside `urls.py` we import the views module and hook it into our url pattern:-
+
+    from django.conf.urls import patterns, url
+
+    from myapp.views import hello_world
+
+    urlpatterns = patterns('',
+        url(r'^$', hello_world),
+    )
+
 [1]:https://docs.djangoproject.com/en/1.5/ref/settings/
